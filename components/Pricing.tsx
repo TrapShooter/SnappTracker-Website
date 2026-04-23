@@ -1,5 +1,5 @@
-import { Check, Minus } from "lucide-react";
 import Link from "next/link";
+import Icon from "@/components/Icon";
 
 const APP_STORE_URL = "#"; // TODO: replace with real App Store link
 
@@ -46,7 +46,7 @@ export default function Pricing() {
             <ul className="space-y-3 mb-8">
               {freeFeatures.map((f) => (
                 <li key={f} className="flex items-start gap-3 text-sm text-zinc-700">
-                  <Check size={16} className="mt-0.5 shrink-0 text-zinc-400" />
+                  <Icon name="check" size={16} className="mt-0.5 shrink-0 text-zinc-400" />
                   {f}
                 </li>
               ))}
@@ -72,7 +72,7 @@ export default function Pricing() {
             <ul className="space-y-3 mb-8">
               {proFeatures.map((f) => (
                 <li key={f} className="flex items-start gap-3 text-sm text-zinc-300">
-                  <Check size={16} className="mt-0.5 shrink-0 text-[#11aed7]" />
+                  <Icon name="check" size={16} className="mt-0.5 shrink-0 text-[#11aed7]" />
                   {f}
                 </li>
               ))}
