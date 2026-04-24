@@ -49,14 +49,13 @@ export default function DemoTimerDisplay({ mode, elapsedSeconds, countdownDurati
   const showBadge = pomodoro && isRunning;
 
   return (
-    <div className="flex flex-col items-center gap-3 px-6 pt-8 pb-2 select-none">
+    <div className="flex flex-col items-center gap-3 px-6 pt-12 pb-2 select-none">
       {/* Pomodoro phase badge — only while running */}
       {showBadge && (
-        <div className={`flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold transition-all duration-500 ${
-          pomodoro.isFocus
-            ? "bg-orange-100 text-orange-600"
-            : "bg-emerald-100 text-emerald-600"
-        }`}>
+        <div className={`flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold transition-all duration-500 ${pomodoro.isFocus
+          ? "bg-orange-100 text-orange-600"
+          : "bg-emerald-100 text-emerald-600"
+          }`}>
           <span
             className="material-symbols-rounded"
             style={{ fontSize: 12, fontVariationSettings: "'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20" }}

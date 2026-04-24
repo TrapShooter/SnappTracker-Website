@@ -7,7 +7,7 @@ export default function DemoSection() {
         <div className="flex flex-col lg:flex-row items-center gap-16">
           {/* Left: copy */}
           <div className="flex-1 text-center lg:text-left">
-            <p className="text-sm font-semibold text-[#11aed7] uppercase tracking-wider mb-3">
+            <p className="text-sm font-semibold text-accent-600 uppercase tracking-wider mb-3">
               Try it now
             </p>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-900 mb-5">
@@ -26,7 +26,7 @@ export default function DemoSection() {
               ].map(({ icon, text }) => (
                 <li key={text} className="flex items-center gap-3">
                   <span
-                    className="material-symbols-rounded text-[#11aed7] shrink-0"
+                    className="material-symbols-rounded text-accent-600 shrink-0"
                     style={{ fontSize: 18, fontVariationSettings: "'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20" }}
                   >
                     {icon}

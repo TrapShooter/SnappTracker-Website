@@ -7,11 +7,11 @@ import DemoSegmentedControl, { SegmentedControlOption } from "@/components/demo/
 import Icon from "@/components/Icon";
 
 const PRESETS = [
-  { label: "5m",  seconds: 5 * 60 },
+  { label: "5m", seconds: 5 * 60 },
   { label: "15m", seconds: 15 * 60 },
   { label: "30m", seconds: 30 * 60 },
   { label: "45m", seconds: 45 * 60 },
-  { label: "1h",  seconds: 60 * 60 },
+  { label: "1h", seconds: 60 * 60 },
 ];
 
 const modeOptions: SegmentedControlOption<TimerMode>[] = [
@@ -80,7 +80,7 @@ export default function DemoWidget() {
   };
 
   return (
-    <div className="w-full max-w-sm mx-auto rounded-3xl bg-white shadow-2xl shadow-gray-900/10 border border-gray-100 overflow-hidden">
+    <div className="w-full max-w-sm mx-auto rounded-3xl bg-white shadow-2xl shadow-gray-900/10 border border-gray-100 overflow-hidden transition-all duration-300 ease-in-out">
       <div className="px-5 pt-5">
         <DemoSegmentedControl
           options={modeOptions}
@@ -101,46 +101,49 @@ export default function DemoWidget() {
         isRunning={isRunning}
       />
 
-      {/* Pomodoro settings info */}
-      {mode === "pomodoro" && (
-        <div className="px-5 pb-2">
-          <div className="flex items-center justify-center gap-2 text-xs text-gray-400 h-[38px]">
-            <span className="flex items-center gap-1">
-              <span className="material-symbols-rounded" style={{ fontSize: 12, fontVariationSettings: "'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20" }}>bolt</span>
-              Focus {POMODORO_FOCUS / 60}m
-            </span>
-            <span>·</span>
-            <span className="flex items-center gap-1">
-              <span className="material-symbols-rounded" style={{ fontSize: 12, fontVariationSettings: "'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20" }}>coffee</span>
-              Short {POMODORO_BREAK / 60}m
-            </span>
-            <span>·</span>
-            <span className="flex items-center gap-1">
-              <span className="material-symbols-rounded" style={{ fontSize: 12, fontVariationSettings: "'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20" }}>coffee</span>
-              Long {POMODORO_LONG_BREAK / 60}m
-            </span>
+      {/* Shared Space for Mode-Specific Settings (Countdown Presets or Pomodoro Info) */}
+      <div className={`grid transition-all duration-300 ease-in-out px-5 ${(mode === "pomodoro") || (mode === "countdown" && !hasActiveTimer) ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
+        <div className="overflow-hidden min-h-0">
+          <div className="grid grid-cols-1 grid-rows-1">
+            {/* Pomodoro info */}
+            <div className={`col-start-1 row-start-1 transition-opacity duration-100 ${mode === "pomodoro" ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
+              <div className="flex items-center justify-center gap-2 text-xs text-gray-400 h-[34px]">
+                <span className="flex items-center gap-1">
+                  <span className="material-symbols-rounded" style={{ fontSize: 13, fontVariationSettings: "'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20" }}>bolt</span>
+                  Focus {POMODORO_FOCUS / 60}m
+                </span>
+                <span>·</span>
+                <span className="flex items-center gap-1">
+                  <span className="material-symbols-rounded" style={{ fontSize: 13, fontVariationSettings: "'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20" }}>coffee</span>
+                  Short {POMODORO_BREAK / 60}m
+                </span>
+                <span>·</span>
+                <span className="flex items-center gap-1">
+                  <span className="material-symbols-rounded" style={{ fontSize: 13, fontVariationSettings: "'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20" }}>coffee</span>
+                  Long {POMODORO_LONG_BREAK / 60}m
+                </span>
+              </div>
+            </div>
+
+            {/* Countdown duration picker */}
+            <div className={`col-start-1 row-start-1 transition-opacity duration-100 ${mode === "countdown" && !hasActiveTimer ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
+              <DemoSegmentedControl
+                options={PRESETS.map((p) => ({
+                  value: p.seconds,
+                  label: p.label,
+                  activeBgClassName: "bg-purple-600",
+                  activeTextClassName: "text-white",
+                }))}
+                value={countdownDuration}
+                onChange={setCountdownDuration}
+                size="sm"
+                buttonClassName="!min-w-0"
+                className="w-full"
+              />
+            </div>
           </div>
         </div>
-      )}
-
-      {/* Countdown duration picker */}
-      {mode === "countdown" && !hasActiveTimer && (
-        <div className="px-5 pb-2">
-          <DemoSegmentedControl
-            options={PRESETS.map((p) => ({
-              value: p.seconds,
-              label: p.label,
-              activeBgClassName: "bg-purple-600",
-              activeTextClassName: "text-white",
-            }))}
-            value={countdownDuration}
-            onChange={setCountdownDuration}
-            size="sm"
-            buttonClassName="!min-w-0"
-            className="w-full"
-          />
-        </div>
-      )}
+      </div>
 
       <DemoControls
         isRunning={isRunning}

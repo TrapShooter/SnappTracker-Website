@@ -24,13 +24,13 @@ export default function DemoControls({
   const stopOffset = 48;
 
   return (
-    <div className="p-6">
+    <div className="px-6 py-10">
       <div className="relative flex items-center justify-center h-20 max-w-sm mx-auto">
 
         {/* Stop button — slides in from the right when timer is active */}
         <button
           onClick={onStop}
-          className={`absolute h-16 w-16 rounded-full text-white transition-all duration-300 ease-spring active:scale-95
+          className={`absolute h-16 w-16 rounded-full text-white transition-all duration-300 ease-spring active:scale-95 cursor-pointer
             bg-red-500 hover:bg-red-600 shadow-lg shadow-red-500/40
             ${hasActiveTimer ? "opacity-100 scale-100" : "opacity-0 scale-50 pointer-events-none"}`}
           style={{ transform: `translateX(${stopOffset}px)` }}
@@ -44,10 +44,10 @@ export default function DemoControls({
         {/* Play / Pause button — slides left when timer is active */}
         <button
           onClick={isRunning ? onPause : onStart}
-          className={`absolute h-20 w-20 rounded-full shadow-2xl ring-4 ring-white transition-all duration-300 ease-spring active:scale-95 z-10
+          className={`absolute h-20 w-20 rounded-full shadow-2xl ring-4 ring-white transition-all duration-300 ease-spring active:scale-95 z-10 cursor-pointer
             ${isRunning
-              ? "bg-amber-500 hover:bg-amber-600 text-white shadow-amber-500/40"
-              : "bg-[#11aed7] hover:bg-[#0a8db3] text-white shadow-[#11aed7]/50"
+              ? "bg-amber-600 hover:bg-amber-700 text-white shadow-amber-500/40"
+              : "bg-cyan-600 hover:bg-cyan-700 text-white shadow-cyan-500/50"
             }`}
           style={{ transform: `translateX(${playOffset}px)` }}
           aria-label={isRunning ? "Pause timer" : "Start timer"}
