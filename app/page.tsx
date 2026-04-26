@@ -1,4 +1,5 @@
 import Hero from "@/components/Hero";
+import Walkthrough from "@/components/Walkthrough";
 import DemoSection from "@/components/DemoSection";
 import Features from "@/components/Features";
 import Screenshots from "@/components/Screenshots";
@@ -9,6 +10,7 @@ export default function Home() {
   return (
     <main>
       <Hero />
+      <Walkthrough />
       <DemoSection />
       <Features />
       <Screenshots />
