@@ -8,13 +8,13 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "SnappTracker — Streamlined Time Tracking",
+  title: "SnappTracker, Streamlined Time Tracking",
   description:
     "A clean, iOS-inspired time tracker with Cut sessions, Pomodoro, multiple timer modes, and cloud sync. Available on iOS, Android, and the web.",
   metadataBase: new URL("https://snapptracker.com"),
   manifest: "/manifest.json",
   openGraph: {
-    title: "SnappTracker — Streamlined Time Tracking",
+    title: "SnappTracker, Streamlined Time Tracking",
     description:
       "A clean, iOS-inspired time tracker with Cut sessions, Pomodoro, and cloud sync.",
     url: "https://snapptracker.com",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "SnappTracker — Streamlined Time Tracking",
+    title: "SnappTracker, Streamlined Time Tracking",
     description:
       "A clean, iOS-inspired time tracker with Cut sessions, Pomodoro, and cloud sync.",
     images: "/icon.png",

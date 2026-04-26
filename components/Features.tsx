@@ -13,7 +13,7 @@ const features: Feature[] = [
     icon: "content_cut",
     title: "The Cut Feature",
     description:
-      "Switch contexts instantly without losing your flow. Cut creates a session boundary and resets the visual timer — no stopping, no losing history.",
+      "Switch contexts instantly without losing your flow. Cut creates a session boundary and resets the visual timer. No stopping, no losing history.",
     highlight: true,
   },
   {
@@ -52,7 +52,7 @@ const features: Feature[] = [
     icon: "cloud_upload",
     title: "Cloud Sync",
     description:
-      "Your data synced seamlessly across all devices — iOS, Android, and web. Export as CSV or JSON anytime. Pro feature.",
+      "Your data synced seamlessly across all devices, iOS, Android, and web. Export as CSV or JSON anytime. Pro feature.",
     highlight: false,
     variant: "purple",
   },
@@ -89,7 +89,7 @@ export default function Features() {
               />
               <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
               <p
-                className={`text-sm leading-relaxed ${feature.highlight ? "text-white/80" : "text-gray-500 dark:text-gray-400"
+                className={`text-md leading-relaxed ${feature.highlight ? "text-white/80" : "text-gray-500 dark:text-gray-400"
                   }`}
               >
                 {feature.description}

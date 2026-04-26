@@ -16,8 +16,15 @@
   --transition-timing-function-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
   --transition-timing-function-out-smooth: cubic-bezier(0.32, 0.72, 0, 1);
   --color-accent-50: #e0f5fe;
+  --color-accent-100: #b9e6fc;
+  --color-accent-200: #88d4fa;
+  --color-accent-300: #55c1f5;
+  --color-accent-400: #2db3ef;
+  --color-accent-500: #14a0de;
   --color-accent-600: #11aed7;
   --color-accent-700: #0a8db3;
+  --color-accent-800: #096884;
+  --color-accent-900: #08556d;
 }
 
 body {

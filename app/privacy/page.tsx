@@ -18,7 +18,7 @@ export default function PrivacyPage() {
             Snapp Tracker handles your data differently based on your user status:
           </p>
           <div className="space-y-6">
-            <div className="p-5 bg-gray-50 dark:bg-gray-900/50 rounded-2xl border border-gray-100 dark:border-gray-800">
+            <div className="p-5 bg-gray-100 dark:bg-gray-900/50 rounded-2xl border border-gray-200 dark:border-gray-800">
               <h3 className="font-bold mb-2">Guest & Registered Free Users</h3>
               <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
                 Your tracking data is stored <strong>locally on your device</strong> (using secure native storage). We do not have access to this data unless you explicitly sync it or upgrade to a Pro account. Clearing your app data will permanently delete this information.

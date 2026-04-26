@@ -17,7 +17,7 @@ export default function Screenshots() {
             Clean. Precise. Effortless.
           </h2>
           <p className="text-lg text-gray-500 max-w-xl mx-auto">
-            An interface designed around how you actually work — not the other way around.
+            An interface designed around how you actually work, not the other way around.
           </p>
         </div>
 
@@ -33,7 +33,7 @@ export default function Screenshots() {
             ))}
           </div>
         ) : (
-          /* Placeholder UI mockups — replace with real screenshots */
+          /* Placeholder UI mockups, replace with real screenshots */
           <div className="flex gap-6 justify-center flex-wrap">
             <MockScreen title="Timer" color="#11aed7">
               <MockTimerContent />
