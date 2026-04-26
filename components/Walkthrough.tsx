@@ -128,10 +128,10 @@ const ModesPreview = () => {
       {/* Glow Background - Key changes forces re-render for gradient animation */}
       <div
         key={mode}
-        className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-linear-to-br ${mode === 'timer' ? 'from-blue-500 to-cyan-600' : mode === 'countdown' ? 'from-purple-500 to-indigo-600' : 'from-orange-500 to-amber-600'} opacity-20 blur-[100px] rounded-full animate-in fade-in duration-700 fill-mode-both`}
+        className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-linear-to-br ${mode === 'timer' ? 'from-blue-500 to-cyan-600' : mode === 'countdown' ? 'from-purple-500 to-indigo-600' : 'from-orange-500 to-amber-600'} opacity-20 blur-[100px] rounded-full animate-in fade-in duration-700 fill-mode-both`}
       />
 
-      <div className="relative w-full max-w-[400px] flex flex-col items-center gap-6 px-4 pt-6 sm:pt-8 pb-8 bg-white/30 dark:bg-white/5 rounded-3xl border border-white/10 shadow-xl overflow-hidden">
+      <div className="relative w-full max-w-[400px] flex flex-col items-center gap-6 px-4 py-8 bg-white/30 dark:bg-white/5 rounded-3xl border border-white dark:border-white/10 shadow-xl overflow-hidden">
         <SegmentedControl
           value={mode}
           options={options}
@@ -159,9 +159,9 @@ const GroupsPreview = () => {
 
   return (
     <div className="relative flex items-center justify-center w-full">
-      <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-linear-to-br from-emerald-500 to-teal-600 opacity-20 blur-[100px] rounded-full`} />
+      <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-linear-to-br from-emerald-500 to-teal-600 opacity-20 blur-[100px] rounded-full`} />
 
-      <div className="relative w-full max-w-[360px] h-[262px] bg-white/30 dark:bg-white/5 rounded-[2.5rem] border border-white/10 shadow-xl">
+      <div className="relative w-full max-w-[360px] h-[262px] bg-white/30 dark:bg-white/5 rounded-[2.5rem] border border-white dark:border-white/10 shadow-xl">
         {groups.map((group, idx) => {
           const position = order.indexOf(idx);
           return (
@@ -219,9 +219,9 @@ const HistoryPreview = () => {
 
   return (
     <div className="relative w-full h-full max-h-[400px] flex items-center justify-center">
-      <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-linear-to-br from-orange-500 to-amber-600 opacity-20 blur-[100px] rounded-full`} />
+      <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-linear-to-br from-orange-500 to-amber-600 opacity-20 blur-[100px] rounded-full`} />
 
-      <div className="relative flex flex-col items-center w-full max-w-[400px] h-[400px] max-h-full overflow-hidden bg-white/30 dark:bg-white/5 rounded-[2.5rem] border border-white/10 shadow-xl">
+      <div className="relative flex flex-col items-center w-full max-w-[400px] h-[400px] max-h-full overflow-hidden bg-white/30 dark:bg-white/5 rounded-[2.5rem] border border-white dark:border-white/10 shadow-xl">
         {/* Scroll Container */}
         <div className="absolute top-1/2 left-1/2 w-full flex flex-col gap-4 animate-[scroll_12s_ease-in-out_infinite] px-4 sm:px-6 z-10">
           {mockSessions.map((session, sIdx) => (
@@ -296,7 +296,7 @@ const walkthroughSteps = [
 
 export default function Walkthrough() {
   return (
-    <section className="bg-white dark:bg-gray-950 py-24 pb-32 overflow-hidden">
+    <section className="bg-white dark:bg-gray-950 py-24 overflow-hidden">
       <div className="max-w-6xl mx-auto px-6">
         <div className="space-y-32">
           {walkthroughSteps.map((step, idx) => (
@@ -318,7 +318,7 @@ export default function Walkthrough() {
               </div>
 
               {/* Preview Phone/Card Container */}
-              <div className="flex-1 w-full max-w-[500px] lg:aspect-square sm:bg-gray-50 dark:sm:bg-gray-950 sm:rounded-[40px] flex flex-col items-center justify-center sm:shadow-2xl sm:ring-1 sm:ring-gray-200 dark:ring-white/5 sm:overflow-hidden sm:p-10">
+              <div className="flex-1 w-full max-w-[500px] lg:aspect-square sm:bg-gray-50 dark:sm:bg-gray-950 sm:rounded-[40px] flex flex-col items-center justify-center sm:shadow-2xl sm:ring-1 sm:ring-gray-200 dark:ring-white/5 sm:p-10">
                 {step.preview}
               </div>
             </div>

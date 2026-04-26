@@ -17,18 +17,18 @@ export default function Hero() {
           <span className="text-lg font-semibold tracking-tight text-zinc-900 dark:text-white">SnappTracker</span>
         </div>
         <div className="flex items-center gap-6">
+          <ThemeToggle />
           <Link
             href={APP_URL}
             className="text-sm font-medium text-zinc-600 dark:text-gray-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
           >
             Try Web App →
           </Link>
-          <ThemeToggle />
         </div>
       </nav>
 
       {/* Hero content */}
-      <div className="relative z-10 flex flex-col items-center text-center px-6 pt-16 pb-24 max-w-4xl mx-auto">
+      <div className="relative z-10 flex flex-col items-center text-center px-6 py-16 max-w-4xl mx-auto">
         {/* Badge */}
         <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-[#e0f5fe] px-4 py-1.5 text-sm font-medium text-accent-700">
           <span>Available on iOS, Android &amp; Web</span>

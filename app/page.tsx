@@ -13,7 +13,7 @@ export default function Home() {
       <Walkthrough />
       <DemoSection />
       <Features />
-      <Screenshots />
+      {/* <Screenshots /> */}
       <Pricing />
       <Footer />
     </main>
