@@ -11,9 +11,7 @@ export default function DemoSection() {
               Try it now
             </p>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-900 mb-5">
-              Time tracking,
-              <br />
-              right here
+              Time tracking, right here
             </h2>
             <p className="text-lg text-zinc-500 leading-relaxed mb-6 max-w-md mx-auto lg:mx-0">
               Pick a mode and hit play. No account needed — just the timer, working exactly as it does in the app.

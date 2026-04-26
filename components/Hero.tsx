@@ -16,11 +16,11 @@ export default function Hero() {
           <Image src="/logo.png" alt="SnappTracker" width={36} height={36} className="rounded-xl" />
           <span className="text-lg font-semibold tracking-tight text-zinc-900 dark:text-white">SnappTracker</span>
         </div>
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-4">
           <ThemeToggle />
           <Link
             href={APP_URL}
-            className="text-sm font-medium text-zinc-600 dark:text-gray-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
+            className="hidden sm:flex items-center gap-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-5 py-3 text-zinc-700 dark:text-white text-sm font-medium hover:border-zinc-300 dark:hover:border-zinc-700 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
           >
             Try Web App →
           </Link>
@@ -34,10 +34,9 @@ export default function Hero() {
           <span>Available on iOS, Android &amp; Web</span>
         </div>
 
-        <h1 className="text-5xl sm:text-6xl font-bold tracking-tight text-zinc-900 dark:text-white leading-tight mb-6">
+        <h1 className="text-5xl sm:text-6xl font-bold tracking-tight text-zinc-900 dark:text-white leading-tight mb-6 max-w-xl">
           Time tracking that
-          <br />
-          <span className="text-accent-600">gets out of your way</span>
+          <span className="text-accent-600"> gets out of your way</span>
         </h1>
 
         <p className="max-w-xl text-lg text-zinc-500 dark:text-gray-400 leading-relaxed mb-10">
@@ -66,7 +65,7 @@ export default function Hero() {
             href={APP_URL}
             className="flex items-center gap-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-5 py-3 text-zinc-700 dark:text-white text-sm font-medium hover:border-zinc-300 dark:hover:border-zinc-700 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
           >
-            Try the web app →
+            Try Web App →
           </Link>
         </div>
       </div>

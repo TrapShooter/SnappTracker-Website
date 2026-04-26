@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Icon from './Icon';
 
 // --- Shared Internal Components (Visual Mirrors of App UI) ---
+// These components match the precise logic and metrics of the Snapp Tracker native app.
 
 const BoxedIcon = ({ icon, variant, size = 20 }: { icon: string, variant: string, size?: number }) => {
   const variants: any = {
@@ -28,9 +29,7 @@ const TYPE_CONFIGS = {
   cut: { label: 'Cut', icon: 'content_cut', bgClass: 'bg-gray-100 dark:bg-gray-800', textClass: 'text-gray-500 dark:text-gray-400', activeBgClass: 'bg-gray-600' }
 };
 
-// Exact SegmentedControl implementation mirrored from the App
 
-// Exact SegmentedControl implementation mirrored from the App
 const SegmentedControl = ({ value, options }: { value: string, options: any[] }) => {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const [sliderStyle, setSliderStyle] = useState({ width: 0, left: 0 });
@@ -90,6 +89,7 @@ const SegmentedControl = ({ value, options }: { value: string, options: any[] })
             <div className="flex items-center justify-center">
               {option.icon}
             </div>
+            {/* CSS Grid Animation Wrapper - Allows smooth width transition for the text label */}
             <div className={`grid transition-[grid-template-columns] duration-200 ease-out-smooth ${shouldExpand ? 'grid-cols-[1fr]' : 'grid-cols-[0fr]'}`}>
               <span className={`overflow-hidden whitespace-nowrap transition-opacity duration-200 ${shouldExpand ? 'opacity-100' : 'opacity-0'}`}>
                 {option.label}
@@ -104,7 +104,7 @@ const SegmentedControl = ({ value, options }: { value: string, options: any[] })
 
 // --- Preview Components (Mirror of VisualOnboardingView_OLD) ---
 
-const ModesPreview = () => {
+const ModesPreview = ({ reverse }: { reverse?: boolean }) => {
   const [mode, setMode] = useState<'timer' | 'countdown' | 'pomodoro'>('timer');
 
   useEffect(() => {
@@ -124,14 +124,17 @@ const ModesPreview = () => {
   ];
 
   return (
-    <div className="relative flex flex-col items-center justify-center w-full">
-      {/* Glow Background - Key changes forces re-render for gradient animation */}
+    <div className={`relative flex flex-col items-center ${reverse ? 'lg:items-start' : 'lg:items-end'} justify-center w-full`}>
+      {/* Glow Background - Hardware accelerated radial gradient for mobile/safari compatibility */}
       <div
         key={mode}
-        className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-linear-to-br ${mode === 'timer' ? 'from-blue-500 to-cyan-600' : mode === 'countdown' ? 'from-purple-500 to-indigo-600' : 'from-orange-500 to-amber-600'} opacity-20 blur-[100px] rounded-full animate-in fade-in duration-700 fill-mode-both`}
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] opacity-20 animate-in fade-in duration-700 fill-mode-both pointer-events-none"
+        style={{
+          background: `radial-gradient(circle, ${mode === 'timer' ? '#3b82f6' : mode === 'countdown' ? '#a855f7' : '#f97316'} 0%, transparent 70%)`
+        }}
       />
 
-      <div className="relative w-full max-w-[400px] flex flex-col items-center gap-6 px-4 py-8 bg-white/30 dark:bg-white/5 rounded-3xl border border-white dark:border-white/10 shadow-xl overflow-hidden">
+      <div className="relative w-full flex flex-col items-center gap-6 px-4 py-8 bg-white/30 dark:bg-white/5 rounded-3xl border border-white dark:border-white/10 shadow-xl overflow-hidden">
         <SegmentedControl
           value={mode}
           options={options}
@@ -141,7 +144,7 @@ const ModesPreview = () => {
   );
 };
 
-const GroupsPreview = () => {
+const GroupsPreview = ({ reverse }: { reverse?: boolean }) => {
   const [order, setOrder] = useState([0, 1, 2]);
 
   useEffect(() => {
@@ -158,10 +161,14 @@ const GroupsPreview = () => {
   ];
 
   return (
-    <div className="relative flex items-center justify-center w-full">
-      <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-linear-to-br from-emerald-500 to-teal-600 opacity-20 blur-[100px] rounded-full`} />
+    <div className={`relative flex flex-col items-center ${reverse ? 'lg:items-start' : 'lg:items-end'} justify-center w-full`}>
+      {/* Glow Background - Hardware accelerated radial gradient */}
+      <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] opacity-20 pointer-events-none"
+        style={{ background: 'radial-gradient(circle, #10b981 0%, transparent 70%)' }}
+      />
 
-      <div className="relative w-full max-w-[360px] h-[262px] bg-white/30 dark:bg-white/5 rounded-[2.5rem] border border-white dark:border-white/10 shadow-xl">
+      <div className="relative w-full h-[262px] bg-white/30 dark:bg-white/5 rounded-[2.5rem] border border-white dark:border-white/10 shadow-xl">
         {groups.map((group, idx) => {
           const position = order.indexOf(idx);
           return (
@@ -185,7 +192,7 @@ const GroupsPreview = () => {
   );
 };
 
-const HistoryPreview = () => {
+const HistoryPreview = ({ reverse }: { reverse?: boolean }) => {
   const mockSessions = [
     {
       total: '3h 15m',
@@ -218,10 +225,14 @@ const HistoryPreview = () => {
   ];
 
   return (
-    <div className="relative w-full h-full max-h-[400px] flex items-center justify-center">
-      <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-linear-to-br from-orange-500 to-amber-600 opacity-20 blur-[100px] rounded-full`} />
+    <div className={`relative flex flex-col items-center ${reverse ? 'lg:items-start' : 'lg:items-end'} justify-center w-full`}>
+      {/* Glow Background - Hardware accelerated radial gradient */}
+      <div
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] opacity-20 pointer-events-none"
+        style={{ background: 'radial-gradient(circle, #f97316 0%, transparent 70%)' }}
+      />
 
-      <div className="relative flex flex-col items-center w-full max-w-[400px] h-[400px] max-h-full overflow-hidden bg-white/30 dark:bg-white/5 rounded-[2.5rem] border border-white dark:border-white/10 shadow-xl">
+      <div className="relative flex flex-col items-center w-full h-[400px] max-h-full overflow-hidden bg-white/30 dark:bg-white/5 rounded-[2.5rem] border border-white dark:border-white/10 shadow-xl">
         {/* Scroll Container */}
         <div className="absolute top-1/2 left-1/2 w-full flex flex-col gap-4 animate-[scroll_12s_ease-in-out_infinite] px-4 sm:px-6 z-10">
           {mockSessions.map((session, sIdx) => (
@@ -275,55 +286,54 @@ const walkthroughSteps = [
     subtitle: "Versatile Timer Modes",
     title: "Track Your Way",
     description: "Switch between Timer, Countdown, and Pomodoro modes to match your workflow exactly how you need it.",
-    preview: <ModesPreview />,
+    Preview: ModesPreview,
     reverse: false
   },
   {
     subtitle: "Groups & Reordering",
     title: "Stay Organized",
     description: "Categorize your trackers into groups and arrange them exactly how you like. Move smoothly between projects.",
-    preview: <GroupsPreview />,
+    Preview: GroupsPreview,
     reverse: true
   },
   {
     subtitle: "History & Performance",
     title: "Master Your Data",
     description: "Review detailed logs, filter them, and use Cuts to segment your tracking into sessions for deep insights.",
-    preview: <HistoryPreview />,
+    Preview: HistoryPreview,
     reverse: false
   }
 ];
 
 export default function Walkthrough() {
   return (
-    <section className="bg-white dark:bg-gray-950 py-24 overflow-hidden">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="space-y-32">
-          {walkthroughSteps.map((step, idx) => (
-            <div
-              key={idx}
-              className={`flex flex-col lg:flex-row items-center gap-12 lg:gap-24 ${step.reverse ? 'lg:flex-row-reverse' : ''}`}
-            >
-              {/* Text Content */}
-              <div className="flex-1 text-center lg:text-left">
-                <h2 className="text-sm font-medium text-brand-dark dark:text-brand tracking-tight mb-2">
-                  {step.subtitle}
-                </h2>
-                <h3 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white mb-4">
-                  {step.title}
-                </h3>
-                <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed font-normal max-w-xl mx-auto lg:mx-0">
-                  {step.description}
-                </p>
-              </div>
+    <section className="bg-white dark:bg-gray-950 py-24">
+      <div className="max-w-6xl mx-auto space-y-16">
 
-              {/* Preview Phone/Card Container */}
-              <div className="flex-1 w-full max-w-[500px] lg:aspect-square sm:bg-gray-50 dark:sm:bg-gray-950 sm:rounded-[40px] flex flex-col items-center justify-center sm:shadow-2xl sm:ring-1 sm:ring-gray-200 dark:ring-white/5 sm:p-10">
-                {step.preview}
-              </div>
+        {walkthroughSteps.map((step, idx) => (
+          <div
+            key={idx}
+            className={`flex flex-col lg:flex-row lg:justify-between items-center p-10 lg:gap-24 gap-8 ${step.reverse ? 'lg:flex-row-reverse' : ''}`}
+          >
+            {/* Text Content */}
+            <div className="flex-1 text-center lg:text-left">
+              <h2 className="text-sm font-medium text-brand-dark dark:text-brand tracking-tight mb-2">
+                {step.subtitle}
+              </h2>
+              <h3 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white mb-4">
+                {step.title}
+              </h3>
+              <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed font-normal max-w-xl mx-auto lg:mx-0">
+                {step.description}
+              </p>
             </div>
-          ))}
-        </div>
+
+            {/* Preview Phone/Card Container */}
+            <div className="flex-1 w-full max-w-[400px] flex flex-col items-center justify-center">
+              <step.Preview reverse={step.reverse} />
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );
