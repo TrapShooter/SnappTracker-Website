@@ -104,7 +104,7 @@ const SegmentedControl = ({ value, options }: { value: string, options: any[] })
 
 // --- Preview Components (Mirror of VisualOnboardingView_OLD) ---
 
-const ModesPreview = ({ reverse }: { reverse?: boolean }) => {
+const ModesPreview = () => {
   const [mode, setMode] = useState<'timer' | 'countdown' | 'pomodoro'>('timer');
 
   useEffect(() => {
@@ -124,7 +124,7 @@ const ModesPreview = ({ reverse }: { reverse?: boolean }) => {
   ];
 
   return (
-    <div className={`relative flex flex-col items-center ${reverse ? 'lg:items-start' : 'lg:items-end'} justify-center w-full`}>
+    <div className="relative flex flex-col items-center justify-center w-full">
       {/* Glow Background - Hardware accelerated radial gradient for mobile/safari compatibility */}
       <div
         key={mode}
@@ -144,7 +144,7 @@ const ModesPreview = ({ reverse }: { reverse?: boolean }) => {
   );
 };
 
-const GroupsPreview = ({ reverse }: { reverse?: boolean }) => {
+const GroupsPreview = () => {
   const [order, setOrder] = useState([0, 1, 2]);
 
   useEffect(() => {
@@ -161,7 +161,7 @@ const GroupsPreview = ({ reverse }: { reverse?: boolean }) => {
   ];
 
   return (
-    <div className={`relative flex flex-col items-center ${reverse ? 'lg:items-start' : 'lg:items-end'} justify-center w-full`}>
+    <div className="relative flex flex-col items-center justify-center w-full">
       {/* Glow Background - Hardware accelerated radial gradient */}
       <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] opacity-20 pointer-events-none"
@@ -183,7 +183,7 @@ const GroupsPreview = ({ reverse }: { reverse?: boolean }) => {
             >
               <BoxedIcon icon={group.icon} variant={group.variant} size={20} />
               <span className="font-bold text-gray-900 dark:text-white text-sm">{group.name}</span>
-              <div className="ml-auto w-8 h-1.5 bg-gray-100 dark:bg-white/10 rounded-full" />
+              <div className="ml-auto w-8 h-1.5 bg-gray-200 dark:bg-white/10 rounded-full" />
             </div>
           );
         })}
@@ -192,7 +192,7 @@ const GroupsPreview = ({ reverse }: { reverse?: boolean }) => {
   );
 };
 
-const HistoryPreview = ({ reverse }: { reverse?: boolean }) => {
+const HistoryPreview = () => {
   const mockSessions = [
     {
       total: '3h 15m',
@@ -225,10 +225,10 @@ const HistoryPreview = ({ reverse }: { reverse?: boolean }) => {
   ];
 
   return (
-    <div className={`relative flex flex-col items-center ${reverse ? 'lg:items-start' : 'lg:items-end'} justify-center w-full`}>
+    <div className="relative flex flex-col items-center justify-center w-full">
       {/* Glow Background - Hardware accelerated radial gradient */}
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] opacity-20 pointer-events-none"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] opacity-20 pointer-events-none"
         style={{ background: 'radial-gradient(circle, #f97316 0%, transparent 70%)' }}
       />
 
@@ -329,8 +329,8 @@ export default function Walkthrough() {
             </div>
 
             {/* Preview Phone/Card Container */}
-            <div className="flex-1 w-full max-w-[400px] flex flex-col items-center justify-center">
-              <step.Preview reverse={step.reverse} />
+            <div className="flex-1 w-full max-w-lg flex flex-col items-center justify-center">
+              <step.Preview />
             </div>
           </div>
         ))}

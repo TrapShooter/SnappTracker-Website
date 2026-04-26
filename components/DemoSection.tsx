@@ -2,7 +2,7 @@ import DemoWidget from "@/components/demo/DemoWidget";
 
 export default function DemoSection() {
   return (
-    <section className="bg-white py-24 px-6">
+    <section className="bg-white py-24 px-6 overflow-x-hidden">
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col lg:flex-row items-center gap-16">
           {/* Left: copy */}
