@@ -34,7 +34,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${inter.variable} h-full antialiased`} suppressHydrationWarning>
+    <html lang="en" className={`${inter.variable} h-full antialiased overflow-x-hidden`} suppressHydrationWarning>
       <head>
         <link
           rel="stylesheet"
@@ -43,7 +43,9 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col bg-white dark:bg-gray-950 text-zinc-900 dark:text-gray-100 transition-colors duration-300 overflow-x-hidden">
         <Providers>
-          {children}
+          <div className="flex-1 flex flex-col overflow-x-hidden">
+            {children}
+          </div>
         </Providers>
       </body>
     </html>
