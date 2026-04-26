@@ -6,7 +6,7 @@ const GOOGLE_PLAY_URL = "#"; // TODO: replace with real Google Play link
 
 export default function Footer() {
   return (
-    <footer className="bg-white dark:bg-gray-950 border-t border-gray-200 dark:border-gray-800 py-12 px-6 transition-colors duration-300">
+    <footer className="bg-white dark:bg-gray-950 border-t border-gray-200 dark:border-gray-800 py-12 px-6">
       <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8">
         {/* Brand */}
         <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">

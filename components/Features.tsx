@@ -1,6 +1,14 @@
-import Icon from "@/components/Icon";
+import { BoxedIcon, BoxedIconVariant } from "@/components/BoxedIcon";
 
-const features = [
+type Feature = {
+  icon: string;
+  title: string;
+  description: string;
+  highlight: boolean;
+  variant?: BoxedIconVariant;
+};
+
+const features: Feature[] = [
   {
     icon: "content_cut",
     title: "The Cut Feature",
@@ -14,6 +22,7 @@ const features = [
     description:
       "Stopwatch for standard tracking, Countdown with auto-stop, and Pomodoro with customizable focus and break cycles.",
     highlight: false,
+    variant: "primary",
   },
   {
     icon: "add_2",
@@ -21,6 +30,7 @@ const features = [
     description:
       "Forgot to start the timer? Log any past activity with a custom start and end time. Your history stays accurate.",
     highlight: false,
+    variant: "emerald",
   },
   {
     icon: "folder_open",
@@ -28,6 +38,7 @@ const features = [
     description:
       "Create as many trackers as you need, organized into customizable groups. Find anything instantly.",
     highlight: false,
+    variant: "amber",
   },
   {
     icon: "bar_chart",
@@ -35,6 +46,7 @@ const features = [
     description:
       "Charts, streaks, session goals, and billable time tracking. Understand exactly where your time goes. Pro feature.",
     highlight: false,
+    variant: "red",
   },
   {
     icon: "cloud_upload",
@@ -42,6 +54,7 @@ const features = [
     description:
       "Your data synced seamlessly across all devices — iOS, Android, and web. Export as CSV or JSON anytime. Pro feature.",
     highlight: false,
+    variant: "purple",
   },
 ];
 
@@ -62,21 +75,18 @@ export default function Features() {
           {features.map((feature) => (
             <div
               key={feature.title}
-              className={`rounded-2xl p-6 ${feature.highlight
-                ? "bg-[#11aed7] text-white"
+              className={`rounded-2xl p-6 transition-all duration-700 shadow-xl/5 hover:shadow-2xl/30 hover:shadow-accent-600 hover:scale-[103%] ${feature.highlight
+                ? "bg-accent-600 text-white"
                 : "bg-white border border-gray-100 text-gray-900"
                 }`}
             >
-              <div
-                className={`mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl ${feature.highlight ? "bg-white/20" : "bg-[#e0f5fe]"
+              <BoxedIcon
+                icon={feature.icon}
+                size={20}
+                variant={feature.highlight ? "accent-solid" : feature.variant}
+                className={`mb-4 !w-10 !h-10 !rounded-xl ${feature.highlight ? "!bg-white/20 !text-white" : ""
                   }`}
-              >
-                <Icon
-                  name={feature.icon}
-                  size={20}
-                  className={feature.highlight ? "text-white" : "text-[#11aed7]"}
-                />
-              </div>
+              />
               <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
               <p
                 className={`text-sm leading-relaxed ${feature.highlight ? "text-white/80" : "text-gray-500"
