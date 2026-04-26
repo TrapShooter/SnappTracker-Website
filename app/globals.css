@@ -34,3 +34,13 @@ body {
   direction: ltr;
   -webkit-font-smoothing: antialiased;
 }
+
+button {
+  cursor: pointer;
+}
+
+@keyframes walkthrough-scroll {
+    0%, 15% { transform: translate(-50%, -118px); }
+    45%, 60% { transform: translate(-50%, -680px); }
+    85%, 100% { transform: translate(-50%, -118px); }
+}

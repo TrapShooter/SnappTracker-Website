@@ -47,13 +47,13 @@ const features = [
 
 export default function Features() {
   return (
-    <section className="bg-zinc-50 py-24 px-6">
+    <section className="bg-gray-50 py-24 px-6">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-900 mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 mb-4">
             Everything you need, nothing you don&apos;t
           </h2>
-          <p className="text-lg text-zinc-500 max-w-xl mx-auto">
+          <p className="text-lg text-gray-500 max-w-xl mx-auto">
             Designed for professionals who need precision without administrative overhead.
           </p>
         </div>
@@ -64,7 +64,7 @@ export default function Features() {
               key={feature.title}
               className={`rounded-2xl p-6 ${feature.highlight
                 ? "bg-[#11aed7] text-white"
-                : "bg-white border border-zinc-100 text-zinc-900"
+                : "bg-white border border-gray-100 text-gray-900"
                 }`}
             >
               <div
@@ -79,7 +79,7 @@ export default function Features() {
               </div>
               <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
               <p
-                className={`text-sm leading-relaxed ${feature.highlight ? "text-white/80" : "text-zinc-500"
+                className={`text-sm leading-relaxed ${feature.highlight ? "text-white/80" : "text-gray-500"
                   }`}
               >
                 {feature.description}

@@ -234,7 +234,7 @@ const HistoryPreview = () => {
 
       <div className="relative flex flex-col items-center w-full h-[400px] max-h-full overflow-hidden bg-white/30 dark:bg-white/5 rounded-[2.5rem] border border-white dark:border-white/10 shadow-xl">
         {/* Scroll Container */}
-        <div className="absolute top-1/2 left-1/2 w-full flex flex-col gap-4 animate-[scroll_12s_ease-in-out_infinite] px-4 sm:px-6 z-10">
+        <div className="absolute top-1/2 left-1/2 w-full flex flex-col gap-4 animate-[walkthrough-scroll_12s_ease-in-out_infinite] px-4 sm:px-6 z-10">
           {mockSessions.map((session, sIdx) => (
             <div key={sIdx} className="bg-white dark:bg-gray-900 rounded-3xl p-5 shadow-sm border border-gray-100 dark:border-white/5 shrink-0">
               <div className="flex justify-between items-center mb-4 pb-4 border-b border-gray-100 dark:border-white/5 text-left">
@@ -266,14 +266,6 @@ const HistoryPreview = () => {
             </div>
           ))}
         </div>
-        <style dangerouslySetInnerHTML={{
-          __html: `
-                    @keyframes scroll {
-                        0%, 15% { transform: translate(-50%, -118px); }
-                        45%, 60% { transform: translate(-50%, -680px); }
-                        85%, 100% { transform: translate(-50%, -118px); }
-                    }
-                `}} />
       </div>
     </div>
   );

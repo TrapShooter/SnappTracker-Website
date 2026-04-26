@@ -1,6 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
-import ThemeToggle from "./ThemeToggle";
+import Header from "./Header";
 
 const APP_URL = "https://app.snapptracker.com";
 // TODO: replace with real App Store / Google Play links
@@ -10,22 +9,7 @@ const GOOGLE_PLAY_URL = "#";
 export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-white dark:bg-gray-950">
-      {/* Navbar */}
-      <nav className="relative z-10 flex items-center justify-between px-6 py-5 max-w-6xl mx-auto">
-        <div className="flex items-center gap-3">
-          <Image src="/logo.png" alt="SnappTracker" width={36} height={36} className="rounded-xl" />
-          <span className="text-lg font-semibold tracking-tight text-zinc-900 dark:text-white">SnappTracker</span>
-        </div>
-        <div className="flex items-center gap-4">
-          <ThemeToggle />
-          <Link
-            href={APP_URL}
-            className="hidden sm:flex items-center gap-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-5 py-3 text-zinc-700 dark:text-white text-sm font-medium hover:border-zinc-300 dark:hover:border-zinc-700 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
-          >
-            Try Web App →
-          </Link>
-        </div>
-      </nav>
+      <Header />
 
       {/* Hero content */}
       <div className="relative z-10 flex flex-col items-center text-center px-6 py-16 max-w-4xl mx-auto">
@@ -34,13 +18,13 @@ export default function Hero() {
           <span>Available on iOS, Android &amp; Web</span>
         </div>
 
-        <h1 className="text-5xl sm:text-6xl font-bold tracking-tight text-zinc-900 dark:text-white leading-tight mb-6 max-w-xl">
+        <h1 className="text-5xl sm:text-6xl font-bold tracking-tight text-gray-900 dark:text-white leading-tight mb-6 max-w-xl">
           Time tracking that
           <span className="text-accent-600"> gets out of your way</span>
         </h1>
 
-        <p className="max-w-xl text-lg text-zinc-500 dark:text-gray-400 leading-relaxed mb-10">
-          SnappTracker&apos;s unique <strong className="text-zinc-700 dark:text-gray-200">Cut</strong> feature lets you
+        <p className="max-w-xl text-lg text-gray-500 dark:text-gray-400 leading-relaxed mb-10">
+          SnappTracker&apos;s unique <strong className="text-gray-700 dark:text-gray-200">Cut</strong> feature lets you
           switch contexts instantly without losing your session flow. Clean design,
           multiple timer modes, and powerful analytics — all in one place.
         </p>
@@ -49,21 +33,21 @@ export default function Hero() {
         <div className="flex flex-col sm:flex-row items-center gap-3">
           <Link
             href={APP_STORE_URL}
-            className="flex items-center gap-2.5 rounded-xl bg-zinc-900 dark:bg-white px-5 py-3 text-white dark:text-zinc-900 text-sm font-medium hover:bg-zinc-700 dark:hover:bg-zinc-200 transition-colors"
+            className="flex items-center gap-2.5 rounded-xl bg-gray-900 dark:bg-white px-5 py-3 text-white dark:text-gray-900 text-sm font-medium hover:bg-gray-700 dark:hover:bg-gray-200 transition-colors"
           >
             <AppleIcon />
             Download on the App Store
           </Link>
           <Link
             href={GOOGLE_PLAY_URL}
-            className="flex items-center gap-2.5 rounded-xl bg-zinc-900 dark:bg-white px-5 py-3 text-white dark:text-zinc-900 text-sm font-medium hover:bg-zinc-700 dark:hover:bg-zinc-200 transition-colors"
+            className="flex items-center gap-2.5 rounded-xl bg-gray-900 dark:bg-white px-5 py-3 text-white dark:text-gray-900 text-sm font-medium hover:bg-gray-700 dark:hover:bg-gray-200 transition-colors"
           >
             <GooglePlayIcon />
             Get it on Google Play
           </Link>
           <Link
             href={APP_URL}
-            className="flex items-center gap-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-5 py-3 text-zinc-700 dark:text-white text-sm font-medium hover:border-zinc-300 dark:hover:border-zinc-700 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
+            className="flex items-center gap-2 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 px-5 py-3 text-gray-700 dark:text-white text-sm font-medium hover:border-gray-300 dark:hover:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
           >
             Try Web App →
           </Link>
