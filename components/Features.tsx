@@ -16,7 +16,7 @@ const features = [
     highlight: false,
   },
   {
-    icon: "edit_note",
+    icon: "add_2",
     title: "Manual Entries",
     description:
       "Forgot to start the timer? Log any past activity with a custom start and end time. Your history stays accurate.",
@@ -62,16 +62,14 @@ export default function Features() {
           {features.map((feature) => (
             <div
               key={feature.title}
-              className={`rounded-2xl p-6 ${
-                feature.highlight
-                  ? "bg-[#11aed7] text-white"
-                  : "bg-white border border-zinc-100 text-zinc-900"
-              }`}
+              className={`rounded-2xl p-6 ${feature.highlight
+                ? "bg-[#11aed7] text-white"
+                : "bg-white border border-zinc-100 text-zinc-900"
+                }`}
             >
               <div
-                className={`mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl ${
-                  feature.highlight ? "bg-white/20" : "bg-[#e0f5fe]"
-                }`}
+                className={`mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl ${feature.highlight ? "bg-white/20" : "bg-[#e0f5fe]"
+                  }`}
               >
                 <Icon
                   name={feature.icon}
@@ -81,9 +79,8 @@ export default function Features() {
               </div>
               <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
               <p
-                className={`text-sm leading-relaxed ${
-                  feature.highlight ? "text-white/80" : "text-zinc-500"
-                }`}
+                className={`text-sm leading-relaxed ${feature.highlight ? "text-white/80" : "text-zinc-500"
+                  }`}
               >
                 {feature.description}
               </p>

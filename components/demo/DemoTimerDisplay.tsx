@@ -4,9 +4,8 @@ export type TimerMode = "timer" | "countdown" | "pomodoro";
 
 export const POMODORO_FOCUS = 25 * 60;
 export const POMODORO_BREAK = 5 * 60;
-export const POMODORO_LONG_BREAK = 25 * 60;
+export const POMODORO_LONG_BREAK = 15 * 60;
 export const POMODORO_CYCLES_BEFORE_LONG_BREAK = 4;
-const POMODORO_CYCLE = POMODORO_FOCUS + POMODORO_BREAK;
 
 function pad(n: number) {
   return n.toString().padStart(2, "0");
@@ -21,13 +20,29 @@ function formatDigital(totalSeconds: number): string {
 }
 
 export function getPomodoroPhase(elapsedSeconds: number): { label: string; remaining: number; isFocus: boolean; cycle: number } {
-  const totalCycles = Math.floor(elapsedSeconds / POMODORO_CYCLE);
-  const cycle = (totalCycles % POMODORO_CYCLES_BEFORE_LONG_BREAK) + 1;
-  const pos = elapsedSeconds % POMODORO_CYCLE;
-  if (pos < POMODORO_FOCUS) {
-    return { label: "Focus", remaining: POMODORO_FOCUS - pos, isFocus: true, cycle };
+  const shortCycle = POMODORO_FOCUS + POMODORO_BREAK;
+  const longCycle = POMODORO_FOCUS + POMODORO_LONG_BREAK;
+  const megaCycleDuration = shortCycle * (POMODORO_CYCLES_BEFORE_LONG_BREAK - 1) + longCycle;
+
+  const posInMegaCycle = elapsedSeconds % megaCycleDuration;
+  const lastCycleStart = shortCycle * (POMODORO_CYCLES_BEFORE_LONG_BREAK - 1);
+
+  if (posInMegaCycle < lastCycleStart) {
+    // Normal cycles (1 to N-1)
+    const cycle = Math.floor(posInMegaCycle / shortCycle) + 1;
+    const posInCycle = posInMegaCycle % shortCycle;
+    if (posInCycle < POMODORO_FOCUS) {
+      return { label: "Focus", remaining: POMODORO_FOCUS - posInCycle, isFocus: true, cycle };
+    }
+    return { label: "Break", remaining: shortCycle - posInCycle, isFocus: false, cycle };
+  } else {
+    // Last cycle with long break
+    const posInCycle = posInMegaCycle - lastCycleStart;
+    if (posInCycle < POMODORO_FOCUS) {
+      return { label: "Focus", remaining: POMODORO_FOCUS - posInCycle, isFocus: true, cycle: POMODORO_CYCLES_BEFORE_LONG_BREAK };
+    }
+    return { label: "Long Break", remaining: longCycle - posInCycle, isFocus: false, cycle: POMODORO_CYCLES_BEFORE_LONG_BREAK };
   }
-  return { label: "Break", remaining: POMODORO_CYCLE - pos, isFocus: false, cycle };
 }
 
 export function getDisplaySeconds(mode: TimerMode, elapsedSeconds: number, countdownDuration = 30 * 60): number {
@@ -46,7 +61,7 @@ interface DemoTimerDisplayProps {
 export default function DemoTimerDisplay({ mode, elapsedSeconds, countdownDuration = 30 * 60, isRunning = false }: DemoTimerDisplayProps) {
   const displaySeconds = getDisplaySeconds(mode, elapsedSeconds, countdownDuration);
   const pomodoro = mode === "pomodoro" ? getPomodoroPhase(elapsedSeconds) : null;
-  const showBadge = pomodoro && isRunning;
+  const showBadge = pomodoro && (isRunning || elapsedSeconds > 0);
 
   return (
     <div className="flex flex-col items-center gap-3 px-6 pt-12 pb-2 select-none">
