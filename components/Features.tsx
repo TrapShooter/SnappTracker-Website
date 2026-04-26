@@ -60,13 +60,13 @@ const features: Feature[] = [
 
 export default function Features() {
   return (
-    <section className="bg-gray-50 py-24 px-6">
+    <section className="bg-gray-50 dark:bg-gray-950 py-24 px-6">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 dark:text-white mb-4">
             Everything you need, nothing you don&apos;t
           </h2>
-          <p className="text-lg text-gray-500 max-w-xl mx-auto">
+          <p className="text-lg text-gray-500 dark:text-gray-400 max-w-xl mx-auto">
             Designed for professionals who need precision without administrative overhead.
           </p>
         </div>
@@ -76,8 +76,8 @@ export default function Features() {
             <div
               key={feature.title}
               className={`rounded-2xl p-6 transition-all duration-700 shadow-xl/5 hover:shadow-2xl/30 hover:shadow-accent-600 hover:scale-[103%] ${feature.highlight
-                ? "bg-accent-600 text-white"
-                : "bg-white border border-gray-100 text-gray-900"
+                ? "bg-accent-700 text-white"
+                : "bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-700 text-gray-900 dark:text-white"
                 }`}
             >
               <BoxedIcon
@@ -89,7 +89,7 @@ export default function Features() {
               />
               <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
               <p
-                className={`text-sm leading-relaxed ${feature.highlight ? "text-white/80" : "text-gray-500"
+                className={`text-sm leading-relaxed ${feature.highlight ? "text-white/80" : "text-gray-500 dark:text-gray-400"
                   }`}
               >
                 {feature.description}
