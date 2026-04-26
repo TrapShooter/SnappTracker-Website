@@ -7,7 +7,7 @@ export default function DemoSection() {
         <div className="flex flex-col lg:flex-row items-center gap-16">
           {/* Left: copy */}
           <div className="flex-1 text-center lg:text-left">
-            <p className="text-sm font-semibold text-accent-600 uppercase tracking-wider mb-3">
+            <p className="text-sm font-medium text-accent-600 tracking-tight mb-2">
               Try it now
             </p>
             <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-900 mb-5">
@@ -22,7 +22,7 @@ export default function DemoSection() {
               {[
                 { icon: "timer", text: "Timer — counts up, no limits" },
                 { icon: "hourglass_bottom", text: "Countdown — set a target and wind down" },
-                { icon: "self_improvement", text: "Pomodoro — focus and break cycles" },
+                { icon: "bolt", text: "Pomodoro — focus and break cycles" },
               ].map(({ icon, text }) => (
                 <li key={text} className="flex items-center gap-3">
                   <span

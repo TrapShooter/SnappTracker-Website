@@ -139,6 +139,78 @@ const SegmentedControl = ({ value, options }: { value: string, options: any[] })
   );
 };
 
+// SegmentedControl_V2 (Shows labels on mobile too)
+const SegmentedControl_V2 = ({ value, options }: { value: string, options: any[] }) => {
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const [sliderStyle, setSliderStyle] = useState({ width: 0, left: 0 });
+  const [ready, setReady] = useState(false);
+  const activeIndex = options.findIndex(o => o.value === value);
+
+  useEffect(() => {
+    const rafId = requestAnimationFrame(() => setReady(true));
+    return () => cancelAnimationFrame(rafId);
+  }, []);
+
+  useEffect(() => {
+    if (!ready || !containerRef.current) return;
+    const rafId = requestAnimationFrame(() => {
+      const container = containerRef.current;
+      if (!container) return;
+
+      const CONTAINER_PADDING = 4;
+      const CONTAINER_BORDER = 1;
+      const INACTIVE_WIDTH = 80;
+
+      const containerWidth = container.offsetWidth;
+      const availableWidth = containerWidth - (2 * CONTAINER_PADDING) - (2 * CONTAINER_BORDER);
+      
+      const inactiveCount = options.length - 1;
+      const totalInactiveWidth = inactiveCount * INACTIVE_WIDTH;
+      const activeWidth = availableWidth - totalInactiveWidth;
+      const targetLeft = CONTAINER_PADDING + (activeIndex * INACTIVE_WIDTH);
+
+      setSliderStyle({ width: activeWidth, left: targetLeft });
+    });
+    return () => cancelAnimationFrame(rafId);
+  }, [activeIndex, options.length, ready]);
+
+  const activeOption = options[activeIndex];
+
+  return (
+    <div
+      ref={containerRef}
+      className="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-1 rounded-full relative isolate flex items-center justify-between transition-all duration-200 w-full"
+    >
+      <div
+        className={`absolute inset-y-1 left-0 rounded-full shadow-sm z-0 ${ready ? 'transition-[width,transform,background-color] duration-200 ease-out-smooth' : ''} ${activeOption?.activeBgClassName || 'bg-accent-600'}`}
+        style={{
+          width: `${sliderStyle.width}px`,
+          transform: `translateX(${sliderStyle.left}px)`
+        }}
+      />
+      {options.map((option) => {
+        const isActive = value === option.value;
+        const shouldExpand = isActive;
+        return (
+          <div
+            key={String(option.value)}
+            className={`relative z-10 font-medium transition-all duration-200 ease-out-smooth rounded-full flex items-center justify-center overflow-hidden py-3 ${shouldExpand ? 'flex-1 px-2 gap-2 text-white' : 'w-20 px-0 gap-0 text-gray-400'}`}
+          >
+            <div className="flex items-center justify-center">
+              {option.icon}
+            </div>
+            <div className={`grid transition-[grid-template-columns] duration-200 ease-out-smooth ${shouldExpand ? 'grid-cols-[1fr]' : 'grid-cols-[0fr]'}`}>
+              <span className={`overflow-hidden whitespace-nowrap transition-opacity duration-200 ${shouldExpand ? 'opacity-100' : 'opacity-0'}`}>
+                {option.label}
+              </span>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
 // --- Preview Components (Mirror of VisualOnboardingView_OLD) ---
 
 const ModesPreview = () => {
@@ -185,6 +257,31 @@ const ModesPreview = () => {
           value={mode}
           options={options}
         />
+      </div>
+    </div>
+  );
+};
+
+const ModesPreview_V2 = () => {
+  const [mode, setMode] = useState<'timer' | 'countdown' | 'pomodoro'>('timer');
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setMode(prev => prev === 'timer' ? 'countdown' : prev === 'countdown' ? 'pomodoro' : 'timer');
+    }, 1500);
+    return () => clearInterval(interval);
+  }, []);
+
+  const options = [
+    { value: 'timer', label: 'Timer', icon: <Icon name="timer" size={20} />, activeBgClassName: 'bg-cyan-600' },
+    { value: 'countdown', label: 'Countdown', icon: <Icon name="hourglass_bottom" size={20} />, activeBgClassName: 'bg-purple-600' },
+    { value: 'pomodoro', label: 'Pomodoro', icon: <Icon name="bolt" size={20} />, activeBgClassName: 'bg-orange-600' },
+  ];
+
+  return (
+    <div className="relative flex flex-col items-center justify-center w-full">
+      <div key={mode} className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-linear-to-br ${mode === 'timer' ? 'from-blue-500 to-cyan-600' : mode === 'countdown' ? 'from-purple-500 to-indigo-600' : 'from-orange-500 to-amber-600'} opacity-20 blur-[100px] rounded-full animate-in fade-in duration-700`} />
+      <div className="relative w-full max-w-[400px] px-4 py-8 bg-white/5 rounded-3xl border border-white/10 shadow-xl overflow-hidden">
+        <SegmentedControl_V2 value={mode} options={options} />
       </div>
     </div>
   );
@@ -335,6 +432,13 @@ const walkthroughSteps = [
     reverse: true
   },
   {
+    subtitle: "Original Expansion (Test)",
+    title: "V2 Comparison",
+    description: "This version keeps the labels inside the control even on mobile. Use this to compare the visual weight and balance.",
+    preview: <ModesPreview_V2 />,
+    reverse: false
+  },
+  {
     subtitle: "History & Performance",
     title: "Master Your Data",
     description: "Review detailed logs, filter them, and use Cuts to segment your tracking into sessions for deep insights.",
@@ -355,19 +459,19 @@ export default function Walkthrough() {
             >
               {/* Text Content */}
               <div className="flex-1 text-center lg:text-left">
-                <p className="text-sm font-semibold text-brand-dark dark:text-brand tracking-widest uppercase mb-3">
+                <h2 className="text-sm font-medium text-brand-dark dark:text-brand tracking-tight mb-2">
                   {step.subtitle}
-                </p>
-                <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-gray-900 dark:text-white mb-6">
-                  {step.title}
                 </h2>
-                <p className="text-lg text-gray-500 dark:text-gray-400 leading-relaxed max-w-xl mx-auto lg:mx-0">
+                <h3 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white mb-4">
+                  {step.title}
+                </h3>
+                <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed font-normal max-w-xl mx-auto lg:mx-0">
                   {step.description}
                 </p>
               </div>
 
               {/* Preview Phone/Card Container */}
-              <div className="flex-1 w-full max-w-[500px] lg:aspect-square bg-gray-50 dark:bg-gray-950 sm:rounded-[40px] flex flex-col items-center justify-center sm:shadow-2xl sm:ring-1 sm:ring-gray-200 dark:ring-white/5 sm:overflow-hidden p-4 sm:p-10">
+              <div className="flex-1 w-full max-w-[500px] lg:aspect-square bg-gray-50 dark:bg-gray-950 sm:rounded-[40px] flex flex-col items-center justify-center sm:shadow-2xl sm:ring-1 sm:ring-gray-200 dark:ring-white/5 sm:overflow-hidden sm:p-10">
                 {step.preview}
               </div>
             </div>
