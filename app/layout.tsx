@@ -28,19 +28,23 @@ export const metadata: Metadata = {
   },
 };
 
+import { Providers } from "@/components/Providers";
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${inter.variable} h-full antialiased`}>
+    <html lang="en" className={`${inter.variable} h-full antialiased`} suppressHydrationWarning>
       <head>
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
         />
       </head>
-      <body className="min-h-full flex flex-col bg-white text-zinc-900">
-        {children}
+      <body className="min-h-full flex flex-col bg-white dark:bg-gray-950 text-zinc-900 dark:text-gray-100 transition-colors duration-300">
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   );

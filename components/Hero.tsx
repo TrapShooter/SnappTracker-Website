@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import ThemeToggle from "./ThemeToggle";
 
 const APP_URL = "https://app.snapptracker.com";
 // TODO: replace with real App Store / Google Play links
@@ -8,36 +9,39 @@ const GOOGLE_PLAY_URL = "#";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-white">
+    <section className="relative overflow-hidden bg-white dark:bg-gray-950">
       {/* Navbar */}
       <nav className="relative z-10 flex items-center justify-between px-6 py-5 max-w-6xl mx-auto">
         <div className="flex items-center gap-3">
           <Image src="/logo.png" alt="SnappTracker" width={36} height={36} className="rounded-xl" />
-          <span className="text-lg font-semibold tracking-tight text-zinc-900">SnappTracker</span>
+          <span className="text-lg font-semibold tracking-tight text-zinc-900 dark:text-white">SnappTracker</span>
         </div>
-        <Link
-          href={APP_URL}
-          className="text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors"
-        >
-          Try Web App →
-        </Link>
+        <div className="flex items-center gap-6">
+          <Link
+            href={APP_URL}
+            className="text-sm font-medium text-zinc-600 dark:text-gray-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
+          >
+            Try Web App →
+          </Link>
+          <ThemeToggle />
+        </div>
       </nav>
 
       {/* Hero content */}
       <div className="relative z-10 flex flex-col items-center text-center px-6 pt-16 pb-24 max-w-4xl mx-auto">
         {/* Badge */}
-        <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-[#e0f5fe] px-4 py-1.5 text-sm font-medium text-[#0a8db3]">
+        <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-[#e0f5fe] px-4 py-1.5 text-sm font-medium text-accent-700">
           <span>Available on iOS, Android &amp; Web</span>
         </div>
 
-        <h1 className="text-5xl sm:text-6xl font-bold tracking-tight text-zinc-900 leading-tight mb-6">
+        <h1 className="text-5xl sm:text-6xl font-bold tracking-tight text-zinc-900 dark:text-white leading-tight mb-6">
           Time tracking that
           <br />
-          <span className="text-[#11aed7]">gets out of your way</span>
+          <span className="text-accent-600">gets out of your way</span>
         </h1>
 
-        <p className="max-w-xl text-lg text-zinc-500 leading-relaxed mb-10">
-          SnappTracker&apos;s unique <strong className="text-zinc-700">Cut</strong> feature lets you
+        <p className="max-w-xl text-lg text-zinc-500 dark:text-gray-400 leading-relaxed mb-10">
+          SnappTracker&apos;s unique <strong className="text-zinc-700 dark:text-gray-200">Cut</strong> feature lets you
           switch contexts instantly without losing your session flow. Clean design,
           multiple timer modes, and powerful analytics — all in one place.
         </p>
@@ -46,21 +50,21 @@ export default function Hero() {
         <div className="flex flex-col sm:flex-row items-center gap-3">
           <Link
             href={APP_STORE_URL}
-            className="flex items-center gap-2.5 rounded-xl bg-zinc-900 px-5 py-3 text-white text-sm font-medium hover:bg-zinc-700 transition-colors"
+            className="flex items-center gap-2.5 rounded-xl bg-zinc-900 dark:bg-white px-5 py-3 text-white dark:text-zinc-900 text-sm font-medium hover:bg-zinc-700 dark:hover:bg-zinc-200 transition-colors"
           >
             <AppleIcon />
             Download on the App Store
           </Link>
           <Link
             href={GOOGLE_PLAY_URL}
-            className="flex items-center gap-2.5 rounded-xl bg-zinc-900 px-5 py-3 text-white text-sm font-medium hover:bg-zinc-700 transition-colors"
+            className="flex items-center gap-2.5 rounded-xl bg-zinc-900 dark:bg-white px-5 py-3 text-white dark:text-zinc-900 text-sm font-medium hover:bg-zinc-700 dark:hover:bg-zinc-200 transition-colors"
           >
             <GooglePlayIcon />
             Get it on Google Play
           </Link>
           <Link
             href={APP_URL}
-            className="flex items-center gap-2 rounded-xl border border-zinc-200 bg-white px-5 py-3 text-zinc-700 text-sm font-medium hover:border-zinc-300 hover:bg-zinc-50 transition-colors"
+            className="flex items-center gap-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 px-5 py-3 text-zinc-700 dark:text-white text-sm font-medium hover:border-zinc-300 dark:hover:border-zinc-700 hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors"
           >
             Try the web app →
           </Link>
@@ -70,7 +74,7 @@ export default function Hero() {
       {/* Background decoration */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 -z-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,#e0f5fe,transparent)]"
+        className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,#e0f5fe,transparent)] dark:bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(17,174,215,0.08),transparent)]"
       />
     </section>
   );

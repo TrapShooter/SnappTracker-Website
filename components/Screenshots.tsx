@@ -141,8 +141,8 @@ function MockStatsContent() {
         ))}
       </div>
       <div className="flex justify-between text-[10px] text-zinc-400">
-        {["M", "T", "W", "T", "F", "S", "S"].map((d) => (
-          <span key={d}>{d}</span>
+        {["M", "T", "W", "T", "F", "S", "S"].map((d, i) => (
+          <span key={i}>{d}</span>
         ))}
       </div>
     </div>

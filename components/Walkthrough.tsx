@@ -29,118 +29,9 @@ const TYPE_CONFIGS = {
 };
 
 // Exact SegmentedControl implementation mirrored from the App
+
+// Exact SegmentedControl implementation mirrored from the App
 const SegmentedControl = ({ value, options }: { value: string, options: any[] }) => {
-  const containerRef = React.useRef<HTMLDivElement>(null);
-  const [sliderStyle, setSliderStyle] = useState({ width: 0, left: 0 });
-  const [ready, setReady] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-
-  const activeIndex = options.findIndex(o => o.value === value);
-
-  // Enable transition and check for mobile layout
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 640);
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    const rafId = requestAnimationFrame(() => setReady(true));
-    return () => {
-      window.removeEventListener('resize', handleResize);
-      cancelAnimationFrame(rafId);
-    };
-  }, []);
-
-  // Compute precise slider widths matching the native app
-  useEffect(() => {
-    if (!ready || !containerRef.current) return;
-
-    const rafId = requestAnimationFrame(() => {
-      const container = containerRef.current;
-      if (!container) return;
-
-      const CONTAINER_PADDING = 4;
-      const CONTAINER_BORDER = 1;
-
-      // Dynamic inactive width based on viewport
-      const INACTIVE_WIDTH = isMobile ? 64 : 80;
-
-      const containerWidth = container.offsetWidth;
-      const availableWidth = containerWidth - (2 * CONTAINER_PADDING) - (2 * CONTAINER_BORDER);
-
-      const inactiveCount = options.length - 1;
-      const totalInactiveWidth = inactiveCount * INACTIVE_WIDTH;
-      const activeWidth = availableWidth - totalInactiveWidth;
-      const targetLeft = CONTAINER_PADDING + (activeIndex * INACTIVE_WIDTH);
-
-      setSliderStyle({ width: activeWidth, left: targetLeft });
-    });
-    return () => cancelAnimationFrame(rafId);
-  }, [activeIndex, options.length, ready, isMobile]);
-
-  const activeOption = options[activeIndex];
-
-  return (
-    <div
-      ref={containerRef}
-      className={`
-        bg-gray-50 dark:bg-gray-800
-        border border-gray-200 dark:border-gray-700
-        p-1 rounded-full relative isolate flex items-center justify-between 
-        transition-all duration-200 w-full
-      `}
-    >
-      {/* Sliding Background */}
-      <div
-        className={`absolute inset-y-1 left-0 rounded-full shadow-sm z-0
-          ${ready ? 'transition-[width,transform,background-color] duration-200 ease-out-smooth' : ''}
-          ${activeOption?.activeBgClassName || 'bg-accent-600'}
-        `}
-        style={{
-          width: `${sliderStyle.width}px`,
-          transform: `translateX(${sliderStyle.left}px)`
-        }}
-      />
-
-      {options.map((option) => {
-        const isActive = value === option.value;
-        const shouldExpand = isActive;
-
-        return (
-          <div
-            key={String(option.value)}
-            className={`
-              relative z-10 font-medium transition-all duration-200 ease-out-smooth rounded-full flex items-center justify-center overflow-hidden
-              py-3
-              ${shouldExpand ? 'flex-1 sm:px-2 sm:gap-2' : 'flex-none w-16 sm:w-20 px-0 gap-0'}
-              text-md
-              ${isActive ? 'text-white' : 'text-gray-400 dark:text-gray-400'}
-            `}
-          >
-            {option.icon && (
-              <div className={`flex items-center justify-center transition-all duration-200 scale-100`}>
-                {option.icon}
-              </div>
-            )}
-
-            {/* CSS Grid Animation Wrapper - Only active on Desktop (sm) */}
-            <div
-              className={`
-                hidden sm:grid transition-[grid-template-columns] duration-200 ease-out-smooth
-                ${shouldExpand ? 'grid-cols-[1fr]' : 'grid-cols-[0fr]'}
-              `}
-            >
-              <span className={`overflow-hidden whitespace-nowrap transition-opacity duration-200 ${shouldExpand ? 'opacity-100' : 'opacity-0'}`}>
-                {option.label}
-              </span>
-            </div>
-          </div>
-        );
-      })}
-    </div>
-  );
-};
-
-// SegmentedControl_V2 (Shows labels on mobile too)
-const SegmentedControl_V2 = ({ value, options }: { value: string, options: any[] }) => {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const [sliderStyle, setSliderStyle] = useState({ width: 0, left: 0 });
   const [ready, setReady] = useState(false);
@@ -163,7 +54,7 @@ const SegmentedControl_V2 = ({ value, options }: { value: string, options: any[]
 
       const containerWidth = container.offsetWidth;
       const availableWidth = containerWidth - (2 * CONTAINER_PADDING) - (2 * CONTAINER_BORDER);
-      
+
       const inactiveCount = options.length - 1;
       const totalInactiveWidth = inactiveCount * INACTIVE_WIDTH;
       const activeWidth = availableWidth - totalInactiveWidth;
@@ -232,8 +123,6 @@ const ModesPreview = () => {
     { value: 'pomodoro', label: 'Pomodoro', icon: <Icon name="bolt" size={20} />, activeBgClassName: 'bg-orange-600' },
   ];
 
-  const activeLabel = options.find(o => o.value === mode)?.label;
-
   return (
     <div className="relative flex flex-col items-center justify-center w-full">
       {/* Glow Background - Key changes forces re-render for gradient animation */}
@@ -242,46 +131,11 @@ const ModesPreview = () => {
         className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-linear-to-br ${mode === 'timer' ? 'from-blue-500 to-cyan-600' : mode === 'countdown' ? 'from-purple-500 to-indigo-600' : 'from-orange-500 to-amber-600'} opacity-20 blur-[100px] rounded-full animate-in fade-in duration-700 fill-mode-both`}
       />
 
-      <div className="relative w-full max-w-[400px] flex flex-col items-center gap-6 px-4 pt-6 sm:pt-8 pb-8 bg-white/5 rounded-3xl border border-white/10 shadow-xl overflow-hidden">
-        {/* Mobile-only Label Inside Box */}
-        <div
-          key={`label-${mode}`}
-          className="sm:hidden animate-in fade-in slide-in-from-bottom-1 duration-500 fill-mode-both"
-        >
-          <span className="text-md font-medium text-white tracking-wide">
-            {activeLabel}
-          </span>
-        </div>
-
+      <div className="relative w-full max-w-[400px] flex flex-col items-center gap-6 px-4 pt-6 sm:pt-8 pb-8 bg-white/30 dark:bg-white/5 rounded-3xl border border-white/10 shadow-xl overflow-hidden">
         <SegmentedControl
           value={mode}
           options={options}
         />
-      </div>
-    </div>
-  );
-};
-
-const ModesPreview_V2 = () => {
-  const [mode, setMode] = useState<'timer' | 'countdown' | 'pomodoro'>('timer');
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setMode(prev => prev === 'timer' ? 'countdown' : prev === 'countdown' ? 'pomodoro' : 'timer');
-    }, 1500);
-    return () => clearInterval(interval);
-  }, []);
-
-  const options = [
-    { value: 'timer', label: 'Timer', icon: <Icon name="timer" size={20} />, activeBgClassName: 'bg-cyan-600' },
-    { value: 'countdown', label: 'Countdown', icon: <Icon name="hourglass_bottom" size={20} />, activeBgClassName: 'bg-purple-600' },
-    { value: 'pomodoro', label: 'Pomodoro', icon: <Icon name="bolt" size={20} />, activeBgClassName: 'bg-orange-600' },
-  ];
-
-  return (
-    <div className="relative flex flex-col items-center justify-center w-full">
-      <div key={mode} className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-linear-to-br ${mode === 'timer' ? 'from-blue-500 to-cyan-600' : mode === 'countdown' ? 'from-purple-500 to-indigo-600' : 'from-orange-500 to-amber-600'} opacity-20 blur-[100px] rounded-full animate-in fade-in duration-700`} />
-      <div className="relative w-full max-w-[400px] px-4 py-8 bg-white/5 rounded-3xl border border-white/10 shadow-xl overflow-hidden">
-        <SegmentedControl_V2 value={mode} options={options} />
       </div>
     </div>
   );
@@ -307,7 +161,7 @@ const GroupsPreview = () => {
     <div className="relative flex items-center justify-center w-full">
       <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-linear-to-br from-emerald-500 to-teal-600 opacity-20 blur-[100px] rounded-full`} />
 
-      <div className="relative w-full max-w-[360px] h-[262px] bg-white/5 rounded-[2.5rem] border border-white/10 shadow-xl">
+      <div className="relative w-full max-w-[360px] h-[262px] bg-white/30 dark:bg-white/5 rounded-[2.5rem] border border-white/10 shadow-xl">
         {groups.map((group, idx) => {
           const position = order.indexOf(idx);
           return (
@@ -367,7 +221,7 @@ const HistoryPreview = () => {
     <div className="relative w-full h-full max-h-[400px] flex items-center justify-center">
       <div className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-linear-to-br from-orange-500 to-amber-600 opacity-20 blur-[100px] rounded-full`} />
 
-      <div className="relative flex flex-col items-center w-full max-w-[400px] h-[400px] max-h-full overflow-hidden bg-white/5 rounded-[2.5rem] border border-white/10 shadow-xl">
+      <div className="relative flex flex-col items-center w-full max-w-[400px] h-[400px] max-h-full overflow-hidden bg-white/30 dark:bg-white/5 rounded-[2.5rem] border border-white/10 shadow-xl">
         {/* Scroll Container */}
         <div className="absolute top-1/2 left-1/2 w-full flex flex-col gap-4 animate-[scroll_12s_ease-in-out_infinite] px-4 sm:px-6 z-10">
           {mockSessions.map((session, sIdx) => (
@@ -432,13 +286,6 @@ const walkthroughSteps = [
     reverse: true
   },
   {
-    subtitle: "Original Expansion (Test)",
-    title: "V2 Comparison",
-    description: "This version keeps the labels inside the control even on mobile. Use this to compare the visual weight and balance.",
-    preview: <ModesPreview_V2 />,
-    reverse: false
-  },
-  {
     subtitle: "History & Performance",
     title: "Master Your Data",
     description: "Review detailed logs, filter them, and use Cuts to segment your tracking into sessions for deep insights.",
@@ -471,7 +318,7 @@ export default function Walkthrough() {
               </div>
 
               {/* Preview Phone/Card Container */}
-              <div className="flex-1 w-full max-w-[500px] lg:aspect-square bg-gray-50 dark:bg-gray-950 sm:rounded-[40px] flex flex-col items-center justify-center sm:shadow-2xl sm:ring-1 sm:ring-gray-200 dark:ring-white/5 sm:overflow-hidden sm:p-10">
+              <div className="flex-1 w-full max-w-[500px] lg:aspect-square sm:bg-gray-50 dark:sm:bg-gray-950 sm:rounded-[40px] flex flex-col items-center justify-center sm:shadow-2xl sm:ring-1 sm:ring-gray-200 dark:ring-white/5 sm:overflow-hidden sm:p-10">
                 {step.preview}
               </div>
             </div>
