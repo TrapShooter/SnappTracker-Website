@@ -1,10 +1,21 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import DemoTimerDisplay, { TimerMode, POMODORO_FOCUS, POMODORO_BREAK, POMODORO_LONG_BREAK } from "@/components/demo/DemoTimerDisplay";
+import DemoTimerDisplay, { TimerMode, POMODORO_FOCUS, POMODORO_BREAK, POMODORO_LONG_BREAK, getPomodoroPhase } from "@/components/demo/DemoTimerDisplay";
 import DemoControls from "@/components/demo/DemoControls";
 import DemoSegmentedControl, { SegmentedControlOption } from "@/components/demo/DemoSegmentedControl";
 import Icon from "@/components/Icon";
+
+// Mirrors the app's formatDuration 'natural' format for seconds values
+function formatSecs(s: number): string {
+  if (s >= 3600) {
+    const h = Math.floor(s / 3600);
+    const m = Math.floor((s % 3600) / 60);
+    return m > 0 ? `${h}h ${m}m` : `${h}h`;
+  }
+  if (s >= 60) return `${Math.floor(s / 60)}m`;
+  return `${s}s`;
+}
 
 const PRESETS = [
   { label: "5m", seconds: 5 * 60 },
@@ -46,6 +57,34 @@ export default function DemoWidget() {
   const [now, setNow] = useState(Date.now());
 
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const audioCtxRef = useRef<AudioContext | null>(null);
+  const soundFiredRef = useRef(false);
+  const pomodoroPhaseRef = useRef<string | null>(null);
+
+  const playRadar = () => {
+    try {
+      if (!audioCtxRef.current) {
+        audioCtxRef.current = new (window.AudioContext || (window as any).webkitAudioContext)();
+      }
+      const ctx = audioCtxRef.current;
+      if (ctx.state === "suspended") ctx.resume();
+      const t = ctx.currentTime;
+      for (let i = 0; i < 3; i++) {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = "square";
+        osc.frequency.value = 880;
+        gain.gain.setValueAtTime(0.25, t + i * 0.2);
+        gain.gain.exponentialRampToValueAtTime(0.001, t + i * 0.2 + 0.1);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(t + i * 0.2);
+        osc.stop(t + i * 0.2 + 0.1);
+      }
+    } catch (e) {
+      console.error("[DemoWidget] Radar sound failed:", e);
+    }
+  };
 
   useEffect(() => {
     intervalRef.current = setInterval(() => setNow(Date.now()), 100);
@@ -60,6 +99,31 @@ export default function DemoWidget() {
   // Timer is "active" if it's running or has been paused mid-session
   const hasActiveTimer = isRunning || accumulatedSeconds > 0;
 
+  // Play the Radar sound once when countdown reaches zero
+  useEffect(() => {
+    if (mode !== "countdown" || !isRunning) return;
+    const hasJustCrossedZero = elapsedSeconds >= countdownDuration;
+    if (hasJustCrossedZero && !soundFiredRef.current) {
+      soundFiredRef.current = true;
+      playRadar();
+    }
+    // Reset the guard when elapsed drops back below duration (e.g. timer reset)
+    if (!hasJustCrossedZero) soundFiredRef.current = false;
+  }, [elapsedSeconds, countdownDuration, mode, isRunning]);
+
+  // Play the Radar sound on every Pomodoro phase change
+  useEffect(() => {
+    if (mode !== "pomodoro" || !isRunning) {
+      pomodoroPhaseRef.current = null;
+      return;
+    }
+    const phase = getPomodoroPhase(elapsedSeconds).label;
+    if (pomodoroPhaseRef.current !== null && pomodoroPhaseRef.current !== phase) {
+      playRadar();
+    }
+    pomodoroPhaseRef.current = phase;
+  }, [elapsedSeconds, mode, isRunning]);
+
   const handleStart = () => setStartTime(Date.now());
 
   const handlePause = () => {
@@ -68,19 +132,21 @@ export default function DemoWidget() {
     setStartTime(null);
   };
 
-  const handleStop = () => {
-    setStartTime(null);
-    setAccumulatedSeconds(0);
-  };
-
   const handleModeChange = (newMode: TimerMode) => {
     setMode(newMode);
     setStartTime(null);
     setAccumulatedSeconds(0);
+    soundFiredRef.current = false;
+  };
+
+  const handleStop = () => {
+    setStartTime(null);
+    setAccumulatedSeconds(0);
+    soundFiredRef.current = false;
   };
 
   return (
-    <div className="w-full max-w-sm mx-auto rounded-3xl bg-white shadow-2xl shadow-gray-900/10 border border-gray-100 overflow-hidden transition-all duration-300 ease-in-out">
+    <div className="w-full max-w-[400px] mx-auto rounded-3xl bg-white shadow-2xl shadow-gray-900/10 border border-gray-100 overflow-hidden transition-all duration-300 ease-in-out">
       <div className="px-5 pt-5">
         <DemoSegmentedControl
           options={modeOptions}
@@ -110,17 +176,17 @@ export default function DemoWidget() {
               <div className="flex items-center justify-center gap-2 text-xs text-gray-400 h-[34px]">
                 <span className="flex items-center gap-1">
                   <span className="material-symbols-rounded" style={{ fontSize: 13, fontVariationSettings: "'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20" }}>bolt</span>
-                  Focus {POMODORO_FOCUS / 60}m
+                  Focus {formatSecs(POMODORO_FOCUS)}
                 </span>
                 <span>·</span>
                 <span className="flex items-center gap-1">
                   <span className="material-symbols-rounded" style={{ fontSize: 13, fontVariationSettings: "'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20" }}>coffee</span>
-                  Short {POMODORO_BREAK / 60}m
+                  Short {formatSecs(POMODORO_BREAK)}
                 </span>
                 <span>·</span>
                 <span className="flex items-center gap-1">
                   <span className="material-symbols-rounded" style={{ fontSize: 13, fontVariationSettings: "'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 20" }}>coffee</span>
-                  Long {POMODORO_LONG_BREAK / 60}m
+                  Long {formatSecs(POMODORO_LONG_BREAK)}
                 </span>
               </div>
             </div>

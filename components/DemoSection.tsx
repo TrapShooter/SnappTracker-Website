@@ -40,7 +40,7 @@ export default function DemoSection() {
           </div>
 
           {/* Right: live widget */}
-          <div className="flex-1 w-full max-w-sm lg:max-w-none">
+          <div className="flex-1 w-full">
             <DemoWidget />
           </div>
         </div>

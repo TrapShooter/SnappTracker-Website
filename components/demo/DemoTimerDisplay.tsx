@@ -12,11 +12,13 @@ function pad(n: number) {
 }
 
 function formatDigital(totalSeconds: number): string {
-  const abs = Math.max(0, Math.floor(totalSeconds));
+  const negative = totalSeconds < 0;
+  const abs = Math.floor(Math.abs(totalSeconds));
   const h = Math.floor(abs / 3600);
   const m = Math.floor((abs % 3600) / 60);
   const s = abs % 60;
-  return h > 0 ? `${h}:${pad(m)}:${pad(s)}` : `${m}:${pad(s)}`;
+  const formatted = h > 0 ? `${h}:${pad(m)}:${pad(s)}` : `${m}:${pad(s)}`;
+  return negative ? `-${formatted}` : formatted;
 }
 
 export function getPomodoroPhase(elapsedSeconds: number): { label: string; remaining: number; isFocus: boolean; cycle: number } {
@@ -46,9 +48,9 @@ export function getPomodoroPhase(elapsedSeconds: number): { label: string; remai
 }
 
 export function getDisplaySeconds(mode: TimerMode, elapsedSeconds: number, countdownDuration = 30 * 60): number {
-  if (mode === "timer") return elapsedSeconds;
-  if (mode === "countdown") return Math.max(0, countdownDuration - elapsedSeconds);
-  return getPomodoroPhase(elapsedSeconds).remaining;
+  if (mode === "timer") return Math.floor(elapsedSeconds);
+  if (mode === "countdown") return Math.ceil(countdownDuration - elapsedSeconds);
+  return Math.ceil(getPomodoroPhase(elapsedSeconds).remaining);
 }
 
 interface DemoTimerDisplayProps {
@@ -60,6 +62,7 @@ interface DemoTimerDisplayProps {
 
 export default function DemoTimerDisplay({ mode, elapsedSeconds, countdownDuration = 30 * 60, isRunning = false }: DemoTimerDisplayProps) {
   const displaySeconds = getDisplaySeconds(mode, elapsedSeconds, countdownDuration);
+  const isNegative = mode === "countdown" && displaySeconds < 0;
   const pomodoro = mode === "pomodoro" ? getPomodoroPhase(elapsedSeconds) : null;
   const showBadge = pomodoro && (isRunning || elapsedSeconds > 0);
 
@@ -86,7 +89,7 @@ export default function DemoTimerDisplay({ mode, elapsedSeconds, countdownDurati
       {!showBadge && <div className="h-6" />}
 
       {/* Clock */}
-      <div className="text-6xl font-bold tabular-nums tracking-tighter text-gray-900 leading-none">
+      <div className={`text-6xl font-bold tabular-nums tracking-tighter leading-none transition-colors ${isNegative ? "text-red-500" : "text-gray-900"}`}>
         {formatDigital(displaySeconds)}
       </div>
 
