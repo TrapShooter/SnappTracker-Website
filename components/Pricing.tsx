@@ -25,7 +25,7 @@ const proFeatures = [
 
 export default function Pricing() {
   return (
-    <section className="bg-gray-100 dark:bg-gray-900 py-24 px-6">
+    <section className="bg-gray-100 dark:bg-gray-900 py-24 px-6 md:px-12">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 dark:text-white mb-4">
@@ -36,14 +36,14 @@ export default function Pricing() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Free */}
-          <div className="rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-8">
+          <div className="rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 p-8 flex flex-col">
             <p className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-2">Free</p>
             <p className="text-4xl font-bold text-gray-900 dark:text-white mb-1">$0</p>
             <p className="text-md text-gray-400 dark:text-gray-500 mb-8">Forever</p>
 
-            <ul className="space-y-3 mb-8">
+            <ul className="space-y-3 mb-8 flex-1">
               {freeFeatures.map((f) => (
                 <li key={f} className="flex items-start gap-3 text-md text-gray-700 dark:text-gray-300">
                   <Icon name="check" size={16} className="mt-0.5 shrink-0 text-gray-400 dark:text-gray-500" />
@@ -61,12 +61,12 @@ export default function Pricing() {
           </div>
 
           {/* Pro */}
-          <div className="rounded-2xl bg-gray-950 dark:bg-white text-white dark:text-gray-900 p-8 relative overflow-hidden">
+          <div className="rounded-2xl bg-gray-950 dark:bg-white text-white dark:text-gray-900 p-8 relative overflow-hidden flex flex-col">
             <p className="text-sm font-semibold text-accent-600 uppercase tracking-wider mb-2">Pro</p>
             <p className="text-4xl font-bold mb-1">In-App Purchase</p>
             <p className="text-md text-gray-400 dark:text-gray-500 mb-8">Billed via App Store / Google Play</p>
 
-            <ul className="space-y-3 mb-8">
+            <ul className="space-y-3 mb-8 flex-1">
               {proFeatures.map((f) => (
                 <li key={f} className="flex items-start gap-3 text-md text-gray-300 dark:text-gray-700">
                   <Icon name="check" size={16} className="mt-0.5 shrink-0 text-accent-600" />
