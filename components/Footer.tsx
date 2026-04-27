@@ -16,13 +16,13 @@ export default function Footer() {
 
         {/* Links */}
         <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-gray-500 dark:text-gray-400">
-          <Link href="https://app.snapptracker.com" className="hover:text-gray-900 dark:hover:text-gray-100">
+          <Link href="https://app.snapptracker.com" target="_blank" rel="noopener noreferrer" className="hover:text-gray-900 dark:hover:text-gray-100">
             Web App
           </Link>
-          <Link href={APP_STORE_URL} className="hover:text-gray-900 dark:hover:text-gray-100">
+          <Link href={APP_STORE_URL} target="_blank" rel="noopener noreferrer" className="hover:text-gray-900 dark:hover:text-gray-100">
             App Store
           </Link>
-          <Link href={GOOGLE_PLAY_URL} className="hover:text-gray-900 dark:hover:text-gray-100">
+          <Link href={GOOGLE_PLAY_URL} target="_blank" rel="noopener noreferrer" className="hover:text-gray-900 dark:hover:text-gray-100">
             Google Play
           </Link>
           <Link href="/privacy" className="hover:text-gray-900 dark:hover:text-gray-100">

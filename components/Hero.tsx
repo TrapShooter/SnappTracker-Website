@@ -33,6 +33,8 @@ export default function Hero() {
         <div className="flex flex-col sm:flex-row items-center gap-3">
           <Link
             href={APP_STORE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex items-center gap-2.5 rounded-xl bg-gray-900 dark:bg-white px-5 py-3 text-white dark:text-gray-900 text-sm font-medium hover:bg-gray-700 dark:hover:bg-gray-200 transition-colors"
           >
             <AppleIcon />
@@ -40,6 +42,8 @@ export default function Hero() {
           </Link>
           <Link
             href={GOOGLE_PLAY_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex items-center gap-2.5 rounded-xl bg-gray-900 dark:bg-white px-5 py-3 text-white dark:text-gray-900 text-sm font-medium hover:bg-gray-700 dark:hover:bg-gray-200 transition-colors"
           >
             <GooglePlayIcon />
@@ -47,6 +51,8 @@ export default function Hero() {
           </Link>
           <Link
             href={APP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex items-center gap-2 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 px-5 py-3 text-gray-700 dark:text-white text-sm font-medium hover:border-gray-300 dark:hover:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
           >
             Try Web App →
