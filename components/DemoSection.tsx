@@ -2,9 +2,9 @@ import DemoWidget from "@/components/demo/DemoWidget";
 
 export default function DemoSection() {
   return (
-    <section className="bg-gray-100 dark:bg-gray-900 py-24 overflow-x-hidden">
+    <section className="bg-gray-100 dark:bg-gray-900 py-24 px-6 md:px-12 overflow-x-hidden">
       <div className="max-w-6xl mx-auto">
-        <div className="flex flex-col lg:flex-row lg:justify-between items-center p-10 lg:gap-24 gap-8">
+        <div className="flex flex-col lg:flex-row lg:justify-between items-center lg:gap-24 gap-8">
           {/* Left: copy */}
           <div className="flex-1 text-center lg:text-left">
             <p className="text-sm font-medium text-accent-600 tracking-tight mb-2">

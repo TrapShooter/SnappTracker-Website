@@ -299,13 +299,13 @@ const walkthroughSteps = [
 
 export default function Walkthrough() {
   return (
-    <section className="bg-gray-50 dark:bg-gray-950 py-24">
+    <section className="bg-gray-50 dark:bg-gray-950 py-24 px-6 md:px-12">
       <div className="max-w-6xl mx-auto space-y-16">
 
         {walkthroughSteps.map((step, idx) => (
           <div
             key={idx}
-            className={`flex flex-col lg:flex-row lg:justify-between items-center p-10 lg:gap-24 gap-8 ${step.reverse ? 'lg:flex-row-reverse' : ''}`}
+            className={`flex flex-col lg:flex-row lg:justify-between items-center py-10 lg:gap-24 gap-8 ${step.reverse ? 'lg:flex-row-reverse' : ''}`}
           >
             {/* Text Content */}
             <div className="flex-1 text-center lg:text-left">

@@ -60,7 +60,7 @@ const features: Feature[] = [
 
 export default function Features() {
   return (
-    <section className="bg-gray-50 dark:bg-gray-950 py-24 px-6">
+    <section className="bg-gray-50 dark:bg-gray-950 py-24 px-6 md:px-12">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 dark:text-white mb-4">
