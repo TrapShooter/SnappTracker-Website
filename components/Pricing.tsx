@@ -23,18 +23,20 @@ const proFeatures = [
   "Rounding rules",
 ];
 
-export default function Pricing() {
+export default function Pricing({ hideHeader }: { hideHeader?: boolean }) {
   return (
-    <section className="bg-gray-100 dark:bg-gray-900 py-24 px-6 md:px-12">
+    <section className="bg-gray-100 dark:bg-gray-900 pt-32 pb-16 px-6 md:px-12">
       <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 dark:text-white mb-4">
-            Simple, honest pricing
-          </h2>
-          <p className="text-lg text-gray-500 dark:text-gray-400 max-w-xl mx-auto">
-            Start for free. Upgrade when you need the power features.
-          </p>
-        </div>
+        {!hideHeader && (
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 dark:text-white mb-4">
+              Simple, honest pricing
+            </h2>
+            <p className="text-lg text-gray-500 dark:text-gray-400 max-w-xl mx-auto">
+              Start for free. Upgrade when you need the power features.
+            </p>
+          </div>
+        )}
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Free */}

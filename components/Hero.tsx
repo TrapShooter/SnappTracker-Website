@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Header from "./Header";
 
 const APP_URL = "https://app.snapptracker.com";
 // TODO: replace with real App Store / Google Play links
@@ -8,11 +7,9 @@ const GOOGLE_PLAY_URL = "#";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-white dark:bg-gray-950">
-      <Header />
-
+    <section className="relative bg-white dark:bg-gray-950">
       {/* Hero content */}
-      <div className="relative z-10 flex flex-col items-center text-center px-6 py-16 max-w-4xl mx-auto">
+        <div className="relative z-10 max-w-4xl mx-auto px-6 pt-32 pb-20 sm:pt-40 sm:pb-28 text-center flex flex-col items-center">
         {/* Badge */}
         <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-[#e0f5fe] px-4 py-1.5 text-sm font-medium text-accent-700">
           <span>Available on iOS, Android &amp; Web</span>
@@ -55,7 +52,7 @@ export default function Hero() {
             rel="noopener noreferrer"
             className="flex items-center gap-2 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 px-5 py-3 text-gray-700 dark:text-white text-sm font-medium hover:border-gray-300 dark:hover:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
           >
-            Try Web App →
+            Launch Web App →
           </Link>
         </div>
       </div>
