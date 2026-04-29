@@ -1,37 +1,24 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
 
-export default function Header({ overlay = false }: { overlay?: boolean }) {
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // When in overlay mode and not scrolled, we use absolute positioning so it doesn't push content.
-  // Otherwise we use sticky so it follows the scroll.
-  const isSticky = !overlay || isScrolled;
-
+export default function Header() {
   return (
-    <nav className={`${isSticky ? "sticky" : "absolute"} top-0 z-50 w-full transition-all duration-300 ${
-      isScrolled 
-        ? "bg-white/80 dark:bg-gray-950/80 backdrop-blur-md border-b border-gray-300 dark:border-gray-700 py-3" 
-        : "bg-transparent border-b border-transparent py-5"
-    }`}>
-      <div className="max-w-6xl mx-auto px-6 flex items-center justify-between w-full">
+    <div className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 px-4 sm:px-6 pointer-events-none">
+      <nav className="
+        pointer-events-auto
+        flex items-center justify-between
+        w-full max-w-6xl
+        bg-white/80 dark:bg-gray-950/80 backdrop-blur-md shadow-lg 
+        py-2 pl-4 pr-2 rounded-2xl border border-gray-200 dark:border-gray-800
+      ">
         <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-          <Image src="/logo.png" alt="SnappTracker" width={36} height={36} className="rounded-xl" />
+          <Image src="/logo.png" alt="SnappTracker" width={32} height={32} className="rounded-lg" />
           <span className="text-lg font-semibold tracking-tight text-gray-900 dark:text-white">SnappTracker</span>
         </Link>
+
         <div className="flex items-center gap-8">
           <Link
             href="/download"
@@ -47,7 +34,7 @@ export default function Header({ overlay = false }: { overlay?: boolean }) {
           </Link>
           <ThemeToggle />
         </div>
-      </div>
-    </nav>
+      </nav>
+    </div>
   );
 }

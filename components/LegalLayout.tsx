@@ -14,7 +14,7 @@ export default function LegalLayout({ title, children }: LegalLayoutProps) {
       <Header />
       {/* Content */}
       <div className="flex-1 bg-gray-100 dark:bg-gray-900">
-        <main className="max-w-3xl mx-auto px-6 py-16 sm:py-16 animate-in fade-in slide-in-from-bottom-4 w-full">
+        <main className="max-w-3xl mx-auto px-6 pt-32 pb-16 animate-in fade-in slide-in-from-bottom-4 w-full">
           <h1 className="text-4xl font-bold tracking-tight mb-4">{title}</h1>
           <div className="prose prose-gray dark:prose-invert max-w-none">
             {children}

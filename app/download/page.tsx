@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 export default function DownloadPage() {
   return (
     <main>
-      <Header overlay />
+      <Header />
       <Download />
       <Footer />
     </main>
