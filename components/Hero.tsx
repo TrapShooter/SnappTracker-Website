@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 
 const APP_URL = "https://app.snapptracker.com";
@@ -52,7 +54,8 @@ export default function Hero() {
             rel="noopener noreferrer"
             className="flex items-center gap-2 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 px-5 py-3 text-gray-700 dark:text-white text-sm font-medium hover:border-gray-300 dark:hover:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
           >
-            Launch Web App →
+            <GlobeIcon />
+            Launch Web App
           </Link>
         </div>
       </div>
@@ -77,7 +80,16 @@ function AppleIcon() {
 function GooglePlayIcon() {
   return (
     <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-      <path d="M3.18 23.76c.3.17.64.22.99.14l12.12-6.99-2.81-2.81-10.3 9.66zm-1.43-1.09V1.33c0-.48.26-.89.66-1.11L14.1 12 2.41 23.78c-.4-.22-.66-.63-.66-1.11zM20.49 10.46L17.9 9l-3.05 3.05 3.05 3.05 2.62-1.51c.75-.43.75-1.6-.03-2.13zM4.17.23L16.29 7.22l-2.81 2.81L3.18.37C3.48.2 3.82.16 4.17.23z" />
+      <path d="M3.18 23.76c.3.17.64.22.99.14l12.12-6.99-2.81-2.81-10.3 9.66zm-1.43-1.09V1.33c0-.48.26-.89.66-1.11L14.1 12 2.41 23.78c-.4-.22-.63-.63-.66-1.11zM20.49 10.46L17.9 9l-3.05 3.05 3.05 3.05 2.62-1.51c.75-.43.75-1.6-.03-2.13zM4.17.23L16.29 7.22l-2.81 2.81L3.18.37C3.48.2 3.82.16 4.17.23z" />
+    </svg>
+  );
+}
+
+function GlobeIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="10" />
+      <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
     </svg>
   );
 }

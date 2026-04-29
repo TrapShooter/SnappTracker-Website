@@ -207,7 +207,7 @@ export default function Download() {
               className="inline-flex items-center gap-2 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 px-5 py-3 text-gray-700 dark:text-white text-sm font-medium hover:border-gray-300 dark:hover:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
             >
               <GlobeIcon />
-              Open Web App →
+              Launch Web App
             </Link>
           </div>
 
