@@ -9,15 +9,15 @@ const GOOGLE_PLAY_URL = "#";
 
 export default function Hero() {
   return (
-    <section className="relative bg-white dark:bg-gray-950">
+    <section className="relative bg-gray-50 dark:bg-gray-950">
       {/* Hero content */}
-        <div className="relative z-10 max-w-4xl mx-auto px-6 pt-32 pb-20 sm:pt-40 sm:pb-28 text-center flex flex-col items-center">
+      <div className="relative z-10 max-w-4xl mx-auto px-6 pt-32 sm:pb-20 sm:pt-40 text-center flex flex-col items-center">
         {/* Badge */}
-        <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-[#e0f5fe] px-4 py-1.5 text-sm font-medium text-accent-700">
+        <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-accent-50 px-4 py-1.5 text-sm font-medium text-accent-700">
           <span>Available on iOS, Android &amp; Web</span>
         </div>
 
-        <h1 className="text-5xl sm:text-6xl font-bold tracking-tight text-gray-900 dark:text-white leading-tight mb-6 max-w-xl">
+        <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-gray-900 dark:text-white leading-tight mb-6 max-w-xl">
           Time tracking that
           <span className="text-accent-600"> gets out of your way</span>
         </h1>

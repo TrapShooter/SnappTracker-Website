@@ -299,7 +299,7 @@ const walkthroughSteps = [
 
 export default function Walkthrough() {
   return (
-    <section className="bg-gray-50 dark:bg-gray-950 py-24 px-6 md:px-12">
+    <section className="bg-gray-50 dark:bg-gray-950 py-16 sm:py-24 px-6 md:px-12">
       <div className="max-w-6xl mx-auto space-y-16">
 
         {walkthroughSteps.map((step, idx) => (

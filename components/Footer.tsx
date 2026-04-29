@@ -5,7 +5,7 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <footer className="bg-white dark:bg-gray-950 border-t border-gray-200 dark:border-gray-800 py-12 px-6">
-      <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-8">
+      <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-8">
         {/* Brand */}
         <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
           <Image src="/logo.png" alt="SnappTracker" width={36} height={36} className="rounded-xl" />
@@ -13,7 +13,7 @@ export default function Footer() {
         </Link>
 
         {/* Links */}
-        <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-gray-500 dark:text-gray-400">
+        <nav className="flex flex-wrap justify-center sm:justify-start gap-x-6 gap-y-2 text-sm text-gray-500 dark:text-gray-400">
           <Link href="/privacy" className="hover:text-gray-900 dark:hover:text-gray-100">
             Privacy Policy
           </Link>
