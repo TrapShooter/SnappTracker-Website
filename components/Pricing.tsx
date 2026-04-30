@@ -5,7 +5,7 @@ const APP_STORE_URL = "#"; // TODO: replace with real App Store link
 
 const freeFeatures = [
   "Unlimited trackers & groups",
-  "All three timer modes",
+  "All three tracking modes",
   "Manual time entries",
   "Cut session feature",
   "Offline support",

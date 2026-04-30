@@ -1,6 +1,6 @@
 "use client";
 
-export type TimerMode = "timer" | "countdown" | "pomodoro";
+export type TimerMode = "stopwatch" | "countdown" | "pomodoro";
 
 export const POMODORO_FOCUS = 25 * 60;
 export const POMODORO_BREAK = 5 * 60;
@@ -48,7 +48,7 @@ export function getPomodoroPhase(elapsedSeconds: number): { label: string; remai
 }
 
 export function getDisplaySeconds(mode: TimerMode, elapsedSeconds: number, countdownDuration = 30 * 60): number {
-  if (mode === "timer") return Math.floor(elapsedSeconds);
+  if (mode === "stopwatch") return Math.floor(elapsedSeconds);
   if (mode === "countdown") return Math.ceil(countdownDuration - elapsedSeconds);
   return Math.ceil(getPomodoroPhase(elapsedSeconds).remaining);
 }

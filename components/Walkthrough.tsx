@@ -22,10 +22,10 @@ const BoxedIcon = ({ icon, variant, size = 20 }: { icon: string, variant: string
 };
 
 const TYPE_CONFIGS = {
-  timer: { label: 'Timer', icon: 'timer', bgClass: 'bg-cyan-100 dark:bg-cyan-900/30', textClass: 'text-cyan-600 dark:text-cyan-400', activeBgClass: 'bg-cyan-600' },
+  stopwatch: { label: 'Stopwatch', icon: 'timer', bgClass: 'bg-cyan-100 dark:bg-cyan-900/30', textClass: 'text-cyan-600 dark:text-cyan-400', activeBgClass: 'bg-cyan-600' },
   countdown: { label: 'Countdown', icon: 'hourglass_bottom', bgClass: 'bg-purple-100 dark:bg-purple-900/30', textClass: 'text-purple-600 dark:text-purple-400', activeBgClass: 'bg-purple-600' },
   pomodoro: { label: 'Pomodoro', icon: 'bolt', bgClass: 'bg-orange-100 dark:bg-orange-900/30', textClass: 'text-orange-600 dark:text-orange-400', activeBgClass: 'bg-orange-600' },
-  manual: { label: 'Manual', icon: 'add', bgClass: 'bg-emerald-100 dark:bg-emerald-900/30', textClass: 'text-emerald-600 dark:text-emerald-400', activeBgClass: 'bg-emerald-600' },
+  manual: { label: 'Manual', icon: 'add_2', bgClass: 'bg-emerald-100 dark:bg-emerald-900/30', textClass: 'text-emerald-600 dark:text-emerald-400', activeBgClass: 'bg-emerald-600' },
   cut: { label: 'Cut', icon: 'content_cut', bgClass: 'bg-gray-100 dark:bg-gray-800', textClass: 'text-gray-500 dark:text-gray-400', activeBgClass: 'bg-gray-600' }
 };
 
@@ -105,12 +105,12 @@ const SegmentedControl = ({ value, options }: { value: string, options: any[] })
 // --- Preview Components (Mirror of VisualOnboardingView_OLD) ---
 
 const ModesPreview = () => {
-  const [mode, setMode] = useState<'timer' | 'countdown' | 'pomodoro'>('timer');
+  const [mode, setMode] = useState<'stopwatch' | 'countdown' | 'pomodoro'>('stopwatch');
 
   useEffect(() => {
     const interval = setInterval(() => {
       setMode(prev => {
-        const next = prev === 'timer' ? 'countdown' : prev === 'countdown' ? 'pomodoro' : 'timer';
+        const next = prev === 'stopwatch' ? 'countdown' : prev === 'countdown' ? 'pomodoro' : 'stopwatch';
         return next;
       });
     }, 1500);
@@ -118,7 +118,7 @@ const ModesPreview = () => {
   }, []);
 
   const options = [
-    { value: 'timer', label: 'Timer', icon: <Icon name="timer" size={20} />, activeBgClassName: 'bg-cyan-600' },
+    { value: 'stopwatch', label: 'Stopwatch', icon: <Icon name="timer" size={20} />, activeBgClassName: 'bg-cyan-600' },
     { value: 'countdown', label: 'Countdown', icon: <Icon name="hourglass_bottom" size={20} />, activeBgClassName: 'bg-purple-600' },
     { value: 'pomodoro', label: 'Pomodoro', icon: <Icon name="bolt" size={20} />, activeBgClassName: 'bg-orange-600' },
   ];
@@ -130,7 +130,7 @@ const ModesPreview = () => {
         key={mode}
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] opacity-20 animate-in fade-in duration-700 fill-mode-both pointer-events-none"
         style={{
-          background: `radial-gradient(circle, ${mode === 'timer' ? '#3b82f6' : mode === 'countdown' ? '#a855f7' : '#f97316'} 0%, transparent 70%)`
+          background: `radial-gradient(circle, ${mode === 'stopwatch' ? '#3b82f6' : mode === 'countdown' ? '#a855f7' : '#f97316'} 0%, transparent 70%)`
         }}
       />
 
@@ -198,7 +198,7 @@ const HistoryPreview = () => {
       total: '3h 15m',
       date: 'Today',
       entries: [
-        { name: 'Design Review', type: 'timer', time: '40m' },
+        { name: 'Design Review', type: 'stopwatch', time: '40m' },
         { name: 'Short Break', type: 'countdown', time: '15m' },
         { name: 'Morning Focus', type: 'pomodoro', time: '2h 20m' },
       ]
@@ -208,7 +208,7 @@ const HistoryPreview = () => {
       date: 'Yesterday',
       entries: [
         { name: 'Cut', type: 'cut', time: '' },
-        { name: 'Evening Walk', type: 'timer', time: '1h 15m' },
+        { name: 'Evening Walk', type: 'stopwatch', time: '1h 15m' },
         { name: 'Reading', type: 'manual', time: '1h 30m' },
         { name: 'Research', type: 'countdown', time: '2h 45m' },
       ]
@@ -219,7 +219,7 @@ const HistoryPreview = () => {
       entries: [
         { name: 'Cut', type: 'cut', time: '' },
         { name: 'Code Session', type: 'pomodoro', time: '3h 30m' },
-        { name: 'Client Call', type: 'timer', time: '1h' },
+        { name: 'Client Call', type: 'stopwatch', time: '1h' },
       ]
     }
   ];
@@ -275,9 +275,9 @@ const HistoryPreview = () => {
 
 const walkthroughSteps = [
   {
-    subtitle: "Versatile Timer Modes",
+    subtitle: "Versatile Tracking Modes",
     title: "Track Your Way",
-    description: "Switch between Timer, Countdown, and Pomodoro modes to match your workflow exactly how you need it.",
+    description: "Switch between Stopwatch, Countdown, and Pomodoro modes to match your workflow exactly how you need it.",
     Preview: ModesPreview,
     reverse: false
   },

@@ -34,7 +34,7 @@ export default function DemoControls({
             bg-red-500 hover:bg-red-600 shadow-lg shadow-red-500/40
             ${hasActiveTimer ? "opacity-100 scale-100" : "opacity-0 scale-50 pointer-events-none"}`}
           style={{ transform: `translateX(${stopOffset}px)` }}
-          aria-label="Stop timer"
+          aria-label="Stop tracking"
         >
           <div className="flex items-center justify-center w-full h-full">
             <Icon name="stop" size={28} />
@@ -50,7 +50,7 @@ export default function DemoControls({
               : "bg-cyan-600 hover:bg-cyan-700 text-white shadow-cyan-500/50"
             }`}
           style={{ transform: `translateX(${playOffset}px)` }}
-          aria-label={isRunning ? "Pause timer" : "Start timer"}
+          aria-label={isRunning ? "Pause tracking" : "Start tracking"}
         >
           {/* Pause icon */}
           <div className={`absolute inset-0 flex items-center justify-center transition-all duration-300 ${isRunning ? "opacity-100 scale-100" : "opacity-0 scale-50"}`}>

@@ -27,8 +27,8 @@ const PRESETS = [
 
 const modeOptions: SegmentedControlOption<TimerMode>[] = [
   {
-    value: "timer",
-    label: "Timer",
+    value: "stopwatch",
+    label: "Stopwatch",
     icon: <Icon name="timer" size={20} />,
     activeBgClassName: "bg-cyan-600",
     activeTextClassName: "text-white",
@@ -50,7 +50,7 @@ const modeOptions: SegmentedControlOption<TimerMode>[] = [
 ];
 
 export default function DemoWidget() {
-  const [mode, setMode] = useState<TimerMode>("timer");
+  const [mode, setMode] = useState<TimerMode>("stopwatch");
   const [countdownDuration, setCountdownDuration] = useState(30 * 60);
   const [startTime, setStartTime] = useState<number | null>(null);
   const [accumulatedSeconds, setAccumulatedSeconds] = useState(0);
@@ -133,6 +133,7 @@ export default function DemoWidget() {
   };
 
   const handleModeChange = (newMode: TimerMode) => {
+    if (newMode === mode) return;
     setMode(newMode);
     setStartTime(null);
     setAccumulatedSeconds(0);

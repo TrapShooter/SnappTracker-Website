@@ -13,12 +13,12 @@ const features: Feature[] = [
     icon: "content_cut",
     title: "The Cut Feature",
     description:
-      "Switch contexts instantly without losing your flow. Cut creates a session boundary and resets the visual timer. No stopping, no losing history.",
+      "Switch contexts instantly without losing your flow. Cut creates a session boundary and resets the visual tracker. No stopping, no losing history.",
     highlight: true,
   },
   {
-    icon: "timer",
-    title: "Three Timer Modes",
+    icon: "stopwatch",
+    title: "Three Tracking Modes",
     description:
       "Stopwatch for standard tracking, Countdown with auto-stop, and Pomodoro with customizable focus and break cycles.",
     highlight: false,
@@ -28,7 +28,7 @@ const features: Feature[] = [
     icon: "add_2",
     title: "Manual Entries",
     description:
-      "Forgot to start the timer? Log any past activity with a custom start and end time. Your history stays accurate.",
+      "Forgot to start the stopwatch? Log any past activity with a custom start and end time. Your history stays accurate.",
     highlight: false,
     variant: "emerald",
   },

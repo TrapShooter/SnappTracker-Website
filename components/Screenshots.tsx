@@ -35,8 +35,8 @@ export default function Screenshots() {
         ) : (
           /* Placeholder UI mockups, replace with real screenshots */
           <div className="flex gap-6 justify-center flex-wrap">
-            <MockScreen title="Timer" color="#11aed7">
-              <MockTimerContent />
+            <MockScreen title="Tracker" color="#11aed7">
+              <MockTrackerContent />
             </MockScreen>
             <MockScreen title="History" color="#6366f1">
               <MockHistoryContent />
@@ -82,7 +82,7 @@ function MockScreen({
   );
 }
 
-function MockTimerContent() {
+function MockTrackerContent() {
   return (
     <div className="flex flex-col items-center gap-4 pt-4">
       <div className="text-3xl font-mono font-bold text-gray-900">00:23:47</div>

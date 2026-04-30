@@ -25,7 +25,7 @@ export default function Hero() {
         <p className="max-w-xl text-lg text-gray-500 dark:text-gray-400 leading-relaxed mb-10">
           SnappTracker&apos;s unique <strong className="text-gray-700 dark:text-gray-200">Cut</strong> feature lets you
           switch contexts instantly without losing your session flow. Clean design,
-          multiple timer modes, and powerful analytics, all in one place.
+          multiple tracking modes, and powerful analytics, all in one place.
         </p>
 
         {/* CTAs */}

@@ -14,11 +14,11 @@ export default function DemoSection() {
               Time tracking, right here
             </h2>
             <p className="text-lg text-gray-500 dark:text-gray-400 leading-relaxed mb-6 max-w-md mx-auto lg:mx-0">
-              Pick a mode and hit play. No account needed, just the timer, working exactly as it does in the app.
+              Pick a mode and hit play. No account needed, just the counter, working exactly as it does in the app.
             </p>
             <ul className="space-y-3 text-md text-gray-500 dark:text-gray-400 mx-auto lg:mx-0">
               {[
-                { icon: "timer", title: "Timer", desc: "Counts up, no limits", bgClass: "bg-cyan-100 dark:bg-cyan-900/30", textClass: "text-cyan-600 dark:text-cyan-400" },
+                { icon: "timer", title: "Stopwatch", desc: "Counts up, no limits", bgClass: "bg-cyan-100 dark:bg-cyan-900/30", textClass: "text-cyan-600 dark:text-cyan-400" },
                 { icon: "hourglass_bottom", title: "Countdown", desc: "Set a target and wind down", bgClass: "bg-purple-100 dark:bg-purple-900/30", textClass: "text-purple-600 dark:text-purple-400" },
                 { icon: "bolt", title: "Pomodoro", desc: "Focus and break cycles", bgClass: "bg-orange-100 dark:bg-orange-900/30", textClass: "text-orange-600 dark:text-orange-400" },
               ].map(({ icon, title, desc, bgClass, textClass }) => (

@@ -124,7 +124,7 @@ export default function Download() {
               Designed for <span className="text-accent-600">iPhone</span>
             </h2>
             <p className="text-lg text-gray-500 dark:text-gray-400 leading-relaxed mb-8">
-              A native iOS experience built around how you actually work. Instant timers, Cut sessions, Pomodoro mode, and beautiful widgets that live on your home screen.
+              A native iOS experience built around how you actually work. Instant tracking, Cut sessions, Pomodoro mode, and beautiful widgets that live on your home screen.
             </p>
             <Link
               href={APP_STORE_URL}
