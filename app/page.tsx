@@ -8,14 +8,16 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main>
-      <Header />
-      <Hero />
-      <Walkthrough />
-      <DemoSection />
-      <Features />
-      {/* <Screenshots /> */}
-      <Footer />
-    </main>
+    <div className="relative overflow-x-hidden">
+      <main>
+        <Header />
+        <Hero />
+        <Walkthrough />
+        <DemoSection />
+        <Features />
+        {/* <Screenshots /> */}
+        <Footer />
+      </main>
+    </div>
   );
 }

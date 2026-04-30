@@ -86,7 +86,7 @@ function MockTrackerContent() {
   return (
     <div className="flex flex-col items-center gap-4 pt-4">
       <div className="text-3xl font-mono font-bold text-gray-900">00:23:47</div>
-      <div className="w-16 h-16 rounded-full bg-[#11aed7] flex items-center justify-center shadow-lg">
+      <div className="w-16 h-16 rounded-full bg-accent-600 flex items-center justify-center shadow-lg">
         <span className="text-white text-2xl">⏸</span>
       </div>
       <div className="w-full mt-2">
@@ -95,7 +95,7 @@ function MockTrackerContent() {
           <span>12:30 PM</span>
         </div>
         <div className="h-1 bg-gray-100 rounded-full">
-          <div className="h-1 w-3/5 bg-[#11aed7] rounded-full" />
+          <div className="h-1 w-3/5 bg-accent-600 rounded-full" />
         </div>
       </div>
       <div className="w-full rounded-xl bg-gray-50 p-3 text-center">
