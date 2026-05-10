@@ -13,8 +13,21 @@ export default function Hero() {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     name: "SnappTracker",
+    description: "A flexible time tracker for work, life, and anything in between. Organize your time with customizable trackers, smart Pomodoro timers, and powerful session management.",
     operatingSystem: "iOS, Android, Web",
-    applicationCategory: "BusinessApplication, ProductivityApplication",
+    applicationCategory: "ProductivityApplication",
+    applicationSubCategory: "Time Management, Pomodoro Timer",
+    featureList: [
+      "Customizable Trackers",
+      "Flexible Sessions with Cut feature",
+      "Smart Pomodoro Timer",
+      "Countdown Timer",
+      "Stopwatch Mode",
+      "Cloud Sync across all devices",
+      "Privacy-first local storage",
+      "CSV & JSON Data Export"
+    ],
+    screenshot: "https://snapptracker.com/og-image.jpg",
     offers: {
       "@type": "Offer",
       price: "0",

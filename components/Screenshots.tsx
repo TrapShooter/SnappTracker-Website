@@ -34,14 +34,14 @@ export default function Screenshots() {
           </div>
         ) : (
           /* Placeholder UI mockups, replace with real screenshots */
-          <div className="flex gap-6 justify-center flex-wrap">
-            <MockScreen title="Tracker" color="#11aed7">
+          <div className="flex gap-6 justify-center flex-wrap" aria-label="App feature previews">
+            <MockScreen title="Tracker" color="#11aed7" ariaLabel="Visual preview of the main time tracker interface">
               <MockTrackerContent />
             </MockScreen>
-            <MockScreen title="History" color="#6366f1">
+            <MockScreen title="History" color="#6366f1" ariaLabel="Visual preview of the history and sessions view">
               <MockHistoryContent />
             </MockScreen>
-            <MockScreen title="Stats" color="#10b981">
+            <MockScreen title="Stats" color="#10b981" ariaLabel="Visual preview of the productivity analytics dashboard">
               <MockStatsContent />
             </MockScreen>
           </div>
@@ -54,14 +54,20 @@ export default function Screenshots() {
 function MockScreen({
   title,
   color,
+  ariaLabel,
   children,
 }: {
   title: string;
   color: string;
+  ariaLabel?: string;
   children: React.ReactNode;
 }) {
   return (
-    <div className="w-56 shrink-0 rounded-3xl overflow-hidden shadow-2xl border-4 border-gray-800 bg-white">
+    <div 
+      className="w-56 shrink-0 rounded-3xl overflow-hidden shadow-2xl border-4 border-gray-800 bg-white"
+      aria-label={ariaLabel}
+      role="img"
+    >
       {/* Status bar */}
       <div className="bg-gray-900 h-7 flex items-center justify-center">
         <div className="w-16 h-3 bg-gray-700 rounded-full" />

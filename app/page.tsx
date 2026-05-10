@@ -16,7 +16,7 @@ export default function Home() {
         <Walkthrough />
         <DemoSection />
         <Features />
-        {/* <Screenshots /> */}
+        <Screenshots />
         <FAQ limit={6} />
         <Footer />
       </main>

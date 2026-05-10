@@ -9,6 +9,7 @@ interface BoxedIconProps {
   variant?: BoxedIconVariant;
   className?: string; // Container overrides (padding, rounded, etc)
   fill?: boolean;
+  ariaLabel?: string;
 }
 
 export const BoxedIcon: React.FC<BoxedIconProps> = ({
@@ -16,7 +17,8 @@ export const BoxedIcon: React.FC<BoxedIconProps> = ({
   size = 20,
   variant = 'default',
   className = '',
-  fill = true
+  fill = true,
+  ariaLabel
 }) => {
   const variants = {
     default: "bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300",
@@ -34,7 +36,11 @@ export const BoxedIcon: React.FC<BoxedIconProps> = ({
   const baseClasses = "flex items-center justify-center shrink-0 w-fit p-2 rounded-lg";
 
   return (
-    <div className={`${baseClasses} ${variants[variant]} ${className}`}>
+    <div 
+      className={`${baseClasses} ${variants[variant]} ${className}`}
+      aria-label={ariaLabel}
+      role={ariaLabel ? "img" : undefined}
+    >
       <Icon name={icon} size={size} fill={fill} />
     </div>
   );

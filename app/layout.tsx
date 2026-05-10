@@ -8,26 +8,47 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "SnappTracker, Streamlined Time Tracking",
+  title: "SnappTracker | Free Pomodoro & Time Tracker for Work & Life",
   description:
-    "A clean, iOS-inspired time tracker with Cut sessions, Pomodoro, multiple timer modes, and cloud sync. Available on iOS, Android, and the web.",
+    "A flexible time tracker for work, life, and anything in between. Organize your time with customizable trackers, smart Pomodoro timers, and powerful session management across iOS, Android, and the web.",
+  keywords: [
+    "Time Tracker",
+    "Pomodoro Timer",
+    "Work Log",
+    "Productivity App",
+    "iOS Time Tracking",
+    "Free Time Tracker",
+    "Cut Sessions",
+    "Time Management",
+    "Task Tracker",
+  ],
   metadataBase: new URL("https://snapptracker.com"),
+  alternates: {
+    canonical: "/",
+  },
   manifest: "/manifest.json",
   openGraph: {
-    title: "SnappTracker, Streamlined Time Tracking",
+    title: "SnappTracker | Free Pomodoro & Time Tracker for Work & Life",
     description:
-      "A clean, iOS-inspired time tracker with Cut sessions, Pomodoro, and cloud sync.",
+      "A flexible time tracker for work, life, and anything in between. Organize your time with customizable trackers, smart Pomodoro timers, and powerful session management.",
     url: "https://snapptracker.com",
     siteName: "SnappTracker",
     type: "website",
-    images: "/icon.png",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "SnappTracker | Download Today",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "SnappTracker, Streamlined Time Tracking",
+    title: "SnappTracker | Free Pomodoro & Time Tracker for Work & Life",
     description:
-      "A clean, iOS-inspired time tracker with Cut sessions, Pomodoro, and cloud sync.",
-    images: "/icon.png",
+      "A flexible time tracker for work, life, and anything in between. Organize your time with customizable trackers, smart Pomodoro timers, and powerful session management.",
+    images: ["/og-image.jpg"],
   },
   icons: {
     icon: [
@@ -62,6 +83,22 @@ export default function RootLayout({
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "SnappTracker",
+              "url": "https://snapptracker.com",
+              "logo": "https://snapptracker.com/logo.png",
+              "sameAs": [
+                "https://twitter.com/snapptracker",
+                "https://github.com/snapptracker"
+              ]
+            })
+          }}
         />
       </head>
       <body className="min-h-full flex flex-col bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100">

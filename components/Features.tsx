@@ -87,6 +87,7 @@ export default function Features() {
                 size={20}
                 variant={feature.highlight ? "ghost" : feature.variant}
                 className="mb-4"
+                ariaLabel={`${feature.title} icon`}
               />
               <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
               <p

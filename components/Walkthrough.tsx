@@ -302,30 +302,35 @@ export default function Walkthrough() {
     <section className="bg-gray-50 dark:bg-gray-950 py-16 sm:py-24 px-6 md:px-12">
       <div className="max-w-6xl mx-auto space-y-16">
 
-        {walkthroughSteps.map((step, idx) => (
-          <div
-            key={idx}
-            className={`flex flex-col lg:flex-row lg:justify-between items-center py-10 lg:gap-24 gap-8 ${step.reverse ? 'lg:flex-row-reverse' : ''}`}
-          >
-            {/* Text Content */}
-            <div className="flex-1 text-center lg:text-left">
-              <h2 className="text-sm font-medium text-brand-dark dark:text-brand tracking-tight mb-2">
-                {step.subtitle}
-              </h2>
-              <h3 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white mb-4">
-                {step.title}
-              </h3>
-              <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed font-normal max-w-xl mx-auto lg:mx-0">
-                {step.description}
-              </p>
-            </div>
+        {walkthroughSteps.map((step, idx) => {
+          const stepId = step.title.toLowerCase().replace(/\s+/g, '-');
+          return (
+            <section
+              key={idx}
+              id={stepId}
+              className={`flex flex-col lg:flex-row lg:justify-between items-center py-10 lg:gap-24 gap-8 ${step.reverse ? 'lg:flex-row-reverse' : ''}`}
+              aria-labelledby={`${stepId}-title`}
+            >
+              {/* Text Content */}
+              <article className="flex-1 text-center lg:text-left">
+                <p className="text-sm font-medium text-brand-dark dark:text-brand tracking-tight mb-2">
+                  {step.subtitle}
+                </p>
+                <h2 id={`${stepId}-title`} className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white mb-4">
+                  {step.title}
+                </h2>
+                <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed font-normal max-w-xl mx-auto lg:mx-0">
+                  {step.description}
+                </p>
+              </article>
 
-            {/* Preview Phone/Card Container */}
-            <div className="flex-1 w-full max-w-lg flex flex-col items-center justify-center">
-              <step.Preview />
-            </div>
-          </div>
-        ))}
+              {/* Preview Phone/Card Container */}
+              <div className="flex-1 w-full max-w-lg flex flex-col items-center justify-center">
+                <step.Preview />
+              </div>
+            </section>
+          );
+        })}
       </div>
     </section>
   );
