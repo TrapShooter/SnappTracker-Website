@@ -297,9 +297,15 @@ const walkthroughSteps = [
   }
 ];
 
-export default function Walkthrough() {
+export default function Walkthrough({
+  disableTopPadding = false,
+  disableBottomPadding = false,
+}: {
+  disableTopPadding?: boolean;
+  disableBottomPadding?: boolean;
+}) {
   return (
-    <section className="bg-gray-50 dark:bg-gray-950 py-16 sm:py-24 px-6 md:px-12">
+    <section className={`bg-gray-50 dark:bg-gray-950 px-6 md:px-12 ${disableTopPadding ? 'pt-0' : 'pt-16 sm:pt-24'} ${disableBottomPadding ? 'pb-0' : 'pb-16 sm:pb-24'}`}>
       <div className="max-w-6xl mx-auto space-y-16">
 
         {walkthroughSteps.map((step, idx) => {

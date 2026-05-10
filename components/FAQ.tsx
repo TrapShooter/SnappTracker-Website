@@ -172,9 +172,13 @@ function FAQRow({
 export default function FAQ({
   limit,
   isPage = false,
+  disableTopPadding = false,
+  disableBottomPadding = false,
 }: {
   limit?: number;
   isPage?: boolean;
+  disableTopPadding?: boolean;
+  disableBottomPadding?: boolean;
 }) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
@@ -207,7 +211,7 @@ export default function FAQ({
       className={`px-6 md:px-12 ${
         isPage
           ? "bg-gray-100 dark:bg-gray-900 pt-40 pb-24"
-          : "bg-gray-50 dark:bg-gray-950 py-24"
+          : `bg-gray-50 dark:bg-gray-950 ${disableTopPadding ? 'pt-0' : 'pt-24'} ${disableBottomPadding ? 'pb-0' : 'pb-24'}`
       }`}
     >
       {/* Schema.org JSON-LD */}

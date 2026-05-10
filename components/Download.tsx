@@ -1,5 +1,6 @@
 import Button from "./Button";
-import { AppleIcon, GooglePlayIcon, GlobeIcon } from "./BrandIcons";
+import { AppStoreButton, GooglePlayButton } from "./StoreButton";
+import { GlobeIcon } from "./BrandIcons";
 
 const APP_URL = "https://app.snapptracker.com";
 const APP_STORE_URL = "#"; // TODO: replace with real App Store link
@@ -23,31 +24,15 @@ function ImagePlaceholder({ label, aspectRatio = "3/5" }: { label: string; aspec
 function StoreButtons({ showWeb = false }: { showWeb?: boolean }) {
   return (
     <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 w-full sm:w-auto">
-      <Button
-        href={APP_STORE_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="w-full sm:w-auto"
-      >
-        <AppleIcon />
-        Download on the App Store
-      </Button>
-      <Button
-        href={GOOGLE_PLAY_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="w-full sm:w-auto"
-      >
-        <GooglePlayIcon />
-        Get it on Google Play
-      </Button>
+      <AppStoreButton href={APP_STORE_URL} className="w-full sm:w-auto" />
+      <GooglePlayButton href={GOOGLE_PLAY_URL} className="w-full sm:w-auto" />
       {showWeb && (
         <Button
           href={APP_URL}
           variant="secondary"
           target="_blank"
           rel="noopener noreferrer"
-          className="w-full sm:w-auto"
+          className="h-[52px] w-full sm:w-auto px-6"
         >
           <GlobeIcon />
           Launch Web App
@@ -70,8 +55,8 @@ export default function Download() {
           aria-hidden
           className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,#e0f5fe,transparent)] dark:bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(17,174,215,0.08),transparent)]"
         />
-        <div className="relative z-10 max-w-4xl mx-auto px-6 pt-32 pb-20 sm:pt-40 sm:pb-28 text-center flex flex-col items-center">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-accent-50 dark:bg-[rgba(17,174,215,0.12)] px-4 py-1.5 text-sm font-medium text-[#0891b2] dark:text-[#22d3ee]">
+        <div className="relative z-10 max-w-4xl mx-auto px-6 pt-32 pb-20 sm:pb-28 text-center flex flex-col items-center">
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-accent-50 dark:bg-[rgba(17,174,215,0.12)] px-4 py-1.5 text-sm font-medium text-cyan-600 dark:text-cyan-400">
             iOS · Android · Web
           </div>
           <h1 className="text-5xl sm:text-6xl font-bold tracking-tight leading-tight mb-6">
@@ -101,15 +86,7 @@ export default function Download() {
             <p className="text-lg text-gray-500 dark:text-gray-400 leading-relaxed mb-8">
               A native iOS experience built around how you actually work. Instant tracking, Cut sessions, Pomodoro mode, and beautiful widgets that live on your home screen.
             </p>
-            <Button
-              href={APP_STORE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto"
-            >
-              <AppleIcon />
-              Download on the App Store
-            </Button>
+            <AppStoreButton href={APP_STORE_URL} className="w-full sm:w-auto" />
           </div>
 
           {/* Image slot */}
@@ -143,15 +120,7 @@ export default function Download() {
             <p className="text-lg text-gray-500 dark:text-gray-400 leading-relaxed mb-8">
               The same clean, distraction-free experience on your Android device. Full feature parity, cloud sync, and a home screen widget to keep your time front and center.
             </p>
-            <Button
-              href={GOOGLE_PLAY_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto"
-            >
-              <GooglePlayIcon />
-              Get it on Google Play
-            </Button>
+            <GooglePlayButton href={GOOGLE_PLAY_URL} className="w-full sm:w-auto" />
           </div>
         </div>
       </section>
@@ -175,16 +144,6 @@ export default function Download() {
             <p className="text-lg text-gray-500 dark:text-gray-400 leading-relaxed mb-8">
               No install needed. Open the web app and start tracking in seconds. Your sessions sync instantly across every device you use.
             </p>
-            <Button
-              href={APP_URL}
-              variant="secondary"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto"
-            >
-              <GlobeIcon />
-              Launch Web App
-            </Button>
           </div>
 
           {/* Image slot */}

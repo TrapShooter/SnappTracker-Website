@@ -2,7 +2,7 @@ import Link from "next/link";
 import Icon from "./Icon";
 import { ReactNode } from "react";
 
-type ButtonVariant = "primary" | "secondary" | "accent" | "ghost";
+type ButtonVariant = "primary" | "secondary" | "accent" | "ghost" | "ghost-secondary";
 
 interface ButtonProps {
   children: ReactNode;
@@ -27,7 +27,7 @@ export default function Button({
   rel,
   fullWidth = false,
 }: ButtonProps) {
-  const baseStyles = `inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-medium transition-colors duration-200 ${fullWidth ? "w-full" : ""
+  const baseStyles = `inline-flex items-center justify-center gap-2 rounded-xl px-4 py-3 text-sm font-medium transition-colors duration-200 ${fullWidth ? "w-full" : ""
     }`;
 
   const variants = {
@@ -39,6 +39,8 @@ export default function Button({
       "bg-accent-600 text-white hover:bg-accent-700 shadow-lg shadow-accent-600/20",
     ghost:
       "text-accent-600 dark:text-accent-400 border border-transparent hover:bg-white hover:border-gray-300 dark:hover:bg-white/5 dark:hover:border-gray-700 font-semibold",
+    "ghost-secondary":
+      "text-gray-700 dark:text-white border border-transparent hover:bg-white hover:border-gray-300 dark:hover:bg-white/5 dark:hover:border-gray-700 font-semibold",
   };
 
   const content = (

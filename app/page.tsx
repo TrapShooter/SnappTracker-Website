@@ -1,5 +1,5 @@
 import Header from "@/components/Header";
-import Hero from "@/components/Hero";
+import HeroWithImage from "@/components/HeroWithImage";
 import Walkthrough from "@/components/Walkthrough";
 import DemoSection from "@/components/DemoSection";
 import Features from "@/components/Features";
@@ -12,11 +12,11 @@ export default function Home() {
     <div className="relative overflow-x-hidden">
       <main>
         <Header />
-        <Hero />
-        <Walkthrough />
+        <HeroWithImage />
+        <Walkthrough disableTopPadding />
         <DemoSection />
-        <Features />
-        <Screenshots />
+        <Features disableBottomPadding />
+        {/* <Screenshots /> */}
         <FAQ limit={6} />
         <Footer />
       </main>

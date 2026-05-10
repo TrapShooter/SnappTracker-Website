@@ -23,9 +23,17 @@ const proFeatures = [
   "Rounding rules",
 ];
 
-export default function Pricing({ hideHeader }: { hideHeader?: boolean }) {
+export default function Pricing({
+  hideHeader,
+  disableTopPadding = false,
+  disableBottomPadding = false,
+}: {
+  hideHeader?: boolean;
+  disableTopPadding?: boolean;
+  disableBottomPadding?: boolean;
+}) {
   return (
-    <section className="bg-gray-100 dark:bg-gray-900 pt-40 pb-16 px-6 md:px-12">
+    <section className={`bg-gray-100 dark:bg-gray-900 px-6 md:px-12 ${disableTopPadding ? 'pt-0' : 'pt-40'} ${disableBottomPadding ? 'pb-0' : 'pb-16'}`}>
       <div className="max-w-4xl mx-auto">
         {!hideHeader && (
           <div className="text-center mb-16">

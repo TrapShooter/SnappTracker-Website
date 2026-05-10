@@ -58,9 +58,15 @@ const features: Feature[] = [
   },
 ];
 
-export default function Features() {
+export default function Features({
+  disableTopPadding = false,
+  disableBottomPadding = false,
+}: {
+  disableTopPadding?: boolean;
+  disableBottomPadding?: boolean;
+}) {
   return (
-    <section className="bg-gray-50 dark:bg-gray-950 py-24 px-6 md:px-12">
+    <section className={`bg-gray-50 dark:bg-gray-950 px-6 md:px-12 ${disableTopPadding ? 'pt-0' : 'pt-24'} ${disableBottomPadding ? 'pb-0' : 'pb-24'}`}>
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16 max-w-3xl mx-auto">
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 dark:text-white mb-4">

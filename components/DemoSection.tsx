@@ -1,8 +1,14 @@
 import DemoWidget from "@/components/demo/DemoWidget";
 
-export default function DemoSection() {
+export default function DemoSection({
+  disableTopPadding = false,
+  disableBottomPadding = false,
+}: {
+  disableTopPadding?: boolean;
+  disableBottomPadding?: boolean;
+}) {
   return (
-    <section className="bg-gray-100 dark:bg-gray-900 py-24 px-6 md:px-12 overflow-x-hidden">
+    <section className={`bg-gray-100 dark:bg-gray-900 px-6 md:px-12 overflow-x-hidden ${disableTopPadding ? 'pt-0' : 'pt-24'} ${disableBottomPadding ? 'pb-0' : 'pb-24'}`}>
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col lg:flex-row lg:justify-between items-center lg:gap-24 gap-8">
           {/* Left: copy */}

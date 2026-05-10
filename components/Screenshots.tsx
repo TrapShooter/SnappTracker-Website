@@ -8,9 +8,15 @@ const screenshots: { src: string; alt: string }[] = [
   // { src: "/screenshots/stats.png", alt: "Stats screen" },
 ];
 
-export default function Screenshots() {
+export default function Screenshots({
+  disableTopPadding = false,
+  disableBottomPadding = false,
+}: {
+  disableTopPadding?: boolean;
+  disableBottomPadding?: boolean;
+}) {
   return (
-    <section className="bg-white py-24 px-6">
+    <section className={`bg-white px-6 ${disableTopPadding ? 'pt-0' : 'pt-24'} ${disableBottomPadding ? 'pb-0' : 'pb-24'}`}>
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 mb-4">

@@ -7,7 +7,7 @@ export default function Footer() {
     <footer className="bg-white dark:bg-gray-950 border-t border-gray-200 dark:border-gray-800 py-12 px-6">
       <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-8">
         {/* Brand */}
-        <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
+        <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
           <Image src="/logo.png" alt="SnappTracker" width={36} height={36} className="rounded-xl" />
           <span className="text-lg font-semibold tracking-tight text-gray-900 dark:text-white">SnappTracker</span>
         </Link>
