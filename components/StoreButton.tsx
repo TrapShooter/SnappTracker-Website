@@ -3,9 +3,10 @@
 import Link from "next/link";
 import { ReactNode } from "react";
 import { AppleIcon, GooglePlayIcon } from "./BrandIcons";
+import { APP_STORE_URL, GOOGLE_PLAY_URL } from "@/lib/constants";
 
 interface StoreButtonProps {
-  href: string;
+  href?: string;
   className?: string;
   target?: string;
   rel?: string;
@@ -44,10 +45,11 @@ function BaseStoreButton({
   );
 }
 
-export function AppStoreButton(props: StoreButtonProps) {
+export function AppStoreButton({ href = APP_STORE_URL, ...props }: StoreButtonProps) {
   return (
     <BaseStoreButton
       {...props}
+      href={href}
       icon={<AppleIcon className="w-8 h-8 -mt-1" />}
       upperText="Download on the"
       lowerText="App Store"
@@ -55,10 +57,11 @@ export function AppStoreButton(props: StoreButtonProps) {
   );
 }
 
-export function GooglePlayButton(props: StoreButtonProps) {
+export function GooglePlayButton({ href = GOOGLE_PLAY_URL, ...props }: StoreButtonProps) {
   return (
     <BaseStoreButton
       {...props}
+      href={href}
       icon={<GooglePlayIcon className="w-7 h-7" />}
       upperText="Get it on"
       lowerText="Google Play"

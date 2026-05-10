@@ -4,10 +4,7 @@ import Button from "./Button";
 import { AppStoreButton, GooglePlayButton } from "./StoreButton";
 import { GlobeIcon } from "./BrandIcons";
 
-const APP_URL = "https://app.snapptracker.com";
-// TODO: replace with real App Store / Google Play links
-const APP_STORE_URL = "#";
-const GOOGLE_PLAY_URL = "#";
+import { APP_URL } from "@/lib/constants";
 
 export default function Hero() {
   const jsonLd = {
@@ -67,8 +64,8 @@ export default function Hero() {
 
         {/* CTAs */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full sm:w-auto">
-          <AppStoreButton href={APP_STORE_URL} className="w-full sm:w-auto" />
-          <GooglePlayButton href={GOOGLE_PLAY_URL} className="w-full sm:w-auto" />
+          <AppStoreButton className="w-full sm:w-auto" />
+          <GooglePlayButton className="w-full sm:w-auto" />
           <Button
             href={APP_URL}
             variant="secondary"

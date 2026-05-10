@@ -5,10 +5,7 @@ import Button from "./Button";
 import { AppStoreButton, GooglePlayButton } from "./StoreButton";
 import { GlobeIcon } from "./BrandIcons";
 
-const APP_URL = "https://app.snapptracker.com";
-// TODO: replace with real App Store / Google Play links
-const APP_STORE_URL = "#";
-const GOOGLE_PLAY_URL = "#";
+import { APP_URL } from "@/lib/constants";
 
 export default function HeroWithImage({
   disableTopPadding = false,
@@ -76,8 +73,8 @@ export default function HeroWithImage({
             </p>
 
             <div className="flex flex-row flex-wrap items-stretch justify-center lg:justify-start gap-3 w-full">
-              <AppStoreButton href={APP_STORE_URL} />
-              <GooglePlayButton href={GOOGLE_PLAY_URL} />
+              <AppStoreButton />
+              <GooglePlayButton />
               <Button
                 href={APP_URL}
                 variant="ghost-secondary"

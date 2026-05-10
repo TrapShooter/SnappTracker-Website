@@ -1,10 +1,7 @@
 import Button from "./Button";
 import { AppStoreButton, GooglePlayButton } from "./StoreButton";
 import { GlobeIcon } from "./BrandIcons";
-
-const APP_URL = "https://app.snapptracker.com";
-const APP_STORE_URL = "#"; // TODO: replace with real App Store link
-const GOOGLE_PLAY_URL = "#"; // TODO: replace with real Google Play link
+import { APP_URL } from "@/lib/constants";
 
 // ─── Image placeholder ────────────────────────────────────────────────────────
 
@@ -15,29 +12,6 @@ function ImagePlaceholder({ label, aspectRatio = "3/5" }: { label: string; aspec
       style={{ aspectRatio }}
     >
       {label}
-    </div>
-  );
-}
-
-// ─── Store buttons ────────────────────────────────────────────────────────────
-
-function StoreButtons({ showWeb = false }: { showWeb?: boolean }) {
-  return (
-    <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 w-full sm:w-auto">
-      <AppStoreButton href={APP_STORE_URL} className="w-full sm:w-auto" />
-      <GooglePlayButton href={GOOGLE_PLAY_URL} className="w-full sm:w-auto" />
-      {showWeb && (
-        <Button
-          href={APP_URL}
-          variant="secondary"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="h-[52px] w-full sm:w-auto px-6"
-        >
-          <GlobeIcon />
-          Launch Web App
-        </Button>
-      )}
     </div>
   );
 }
@@ -56,7 +30,7 @@ export default function Download() {
           className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,#e0f5fe,transparent)] dark:bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(17,174,215,0.08),transparent)]"
         />
         <div className="relative z-10 max-w-4xl mx-auto px-6 pt-32 pb-20 sm:pb-28 text-center flex flex-col items-center">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-accent-50 dark:bg-[rgba(17,174,215,0.12)] px-4 py-1.5 text-sm font-medium text-cyan-600 dark:text-cyan-400">
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-accent-50 px-4 py-1.5 text-sm font-medium text-accent-700">
             iOS · Android · Web
           </div>
           <h1 className="text-5xl sm:text-6xl font-bold tracking-tight leading-tight mb-6">
@@ -66,7 +40,20 @@ export default function Download() {
           <p className="max-w-xl text-lg text-gray-500 dark:text-gray-400 leading-relaxed mb-10">
             Available on iPhone, Android, and in your browser. Start free, upgrade when you're ready.
           </p>
-          <StoreButtons showWeb />
+          <div className="flex flex-row flex-wrap items-stretch justify-center gap-3 w-full">
+            <AppStoreButton />
+            <GooglePlayButton />
+            <Button
+              href={APP_URL}
+              variant="ghost-secondary"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2 group"
+            >
+              <GlobeIcon />
+              Launch Web App
+            </Button>
+          </div>
         </div>
       </section>
 
@@ -77,7 +64,7 @@ export default function Download() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Text */}
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full bg-gray-100 dark:bg-gray-800 px-3 py-1 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-4">
+            <div className="inline-flex items-center gap-2 rounded-full bg-accent-50 px-3 py-1 text-xs font-semibold text-accent-700 uppercase tracking-wider mb-4">
               iPhone
             </div>
             <h2 className="text-4xl font-bold tracking-tight mb-4">
@@ -86,7 +73,7 @@ export default function Download() {
             <p className="text-lg text-gray-500 dark:text-gray-400 leading-relaxed mb-8">
               A native iOS experience built around how you actually work. Instant tracking, Cut sessions, Pomodoro mode, and beautiful widgets that live on your home screen.
             </p>
-            <AppStoreButton href={APP_STORE_URL} className="w-full sm:w-auto" />
+            <AppStoreButton />
           </div>
 
           {/* Image slot */}
@@ -111,7 +98,7 @@ export default function Download() {
 
           {/* Text */}
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full bg-gray-100 dark:bg-gray-800 px-3 py-1 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-4">
+            <div className="inline-flex items-center gap-2 rounded-full bg-accent-50 px-3 py-1 text-xs font-semibold text-accent-700 uppercase tracking-wider mb-4">
               Android
             </div>
             <h2 className="text-4xl font-bold tracking-tight mb-4">
@@ -120,7 +107,7 @@ export default function Download() {
             <p className="text-lg text-gray-500 dark:text-gray-400 leading-relaxed mb-8">
               The same clean, distraction-free experience on your Android device. Full feature parity, cloud sync, and a home screen widget to keep your time front and center.
             </p>
-            <GooglePlayButton href={GOOGLE_PLAY_URL} className="w-full sm:w-auto" />
+            <GooglePlayButton />
           </div>
         </div>
       </section>
@@ -135,7 +122,7 @@ export default function Download() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Text */}
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full bg-gray-100 dark:bg-gray-800 px-3 py-1 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-4">
+            <div className="inline-flex items-center gap-2 rounded-full bg-accent-50 px-3 py-1 text-xs font-semibold text-accent-700 uppercase tracking-wider mb-4">
               Web
             </div>
             <h2 className="text-4xl font-bold tracking-tight mb-4">
@@ -144,6 +131,16 @@ export default function Download() {
             <p className="text-lg text-gray-500 dark:text-gray-400 leading-relaxed mb-8">
               No install needed. Open the web app and start tracking in seconds. Your sessions sync instantly across every device you use.
             </p>
+            <Button
+              href={APP_URL}
+              variant="primary"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-2 group"
+            >
+              <GlobeIcon />
+              Launch Web App
+            </Button>
           </div>
 
           {/* Image slot */}
@@ -154,7 +151,7 @@ export default function Download() {
       </section>
 
       {/* ── Final CTA ─────────────────────────────────────────────────── */}
-      <section className="bg-gray-50 dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800">
+      {/*  <section className="bg-gray-50 dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800">
         <div className="max-w-3xl mx-auto px-6 py-20 sm:py-24 text-center flex flex-col items-center gap-6">
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
             Ready to take control of your time?
@@ -162,9 +159,22 @@ export default function Download() {
           <p className="text-gray-500 dark:text-gray-400 text-lg">
             Free to download. No account required to get started.
           </p>
-          <StoreButtons showWeb />
+          <div className="flex flex-row flex-wrap items-stretch justify-center gap-3 w-full">
+            <AppStoreButton />
+            <GooglePlayButton />
+            <Button
+              href={APP_URL}
+              variant="ghost-secondary"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2 group"
+            >
+              <GlobeIcon />
+              Launch Web App
+            </Button>
+          </div>
         </div>
-      </section>
+      </section> */}
 
     </div>
   );
