@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Button from "@/components/Button";
 import Icon from "@/components/Icon";
 
 const APP_STORE_URL = "#"; // TODO: replace with real App Store link
@@ -25,7 +25,7 @@ const proFeatures = [
 
 export default function Pricing({ hideHeader }: { hideHeader?: boolean }) {
   return (
-    <section className="bg-gray-100 dark:bg-gray-900 pt-32 pb-16 px-6 md:px-12">
+    <section className="bg-gray-100 dark:bg-gray-900 pt-40 pb-16 px-6 md:px-12">
       <div className="max-w-4xl mx-auto">
         {!hideHeader && (
           <div className="text-center mb-16">
@@ -54,12 +54,13 @@ export default function Pricing({ hideHeader }: { hideHeader?: boolean }) {
               ))}
             </ul>
 
-            <Link
+            <Button
               href="https://app.snapptracker.com"
-              className="block w-full rounded-xl border border-gray-200 dark:border-gray-700 py-3 text-center text-md font-semibold text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+              variant="secondary"
+              fullWidth
             >
               Get started free
-            </Link>
+            </Button>
           </div>
 
           {/* Pro */}
@@ -77,12 +78,13 @@ export default function Pricing({ hideHeader }: { hideHeader?: boolean }) {
               ))}
             </ul>
 
-            <Link
+            <Button
               href={APP_STORE_URL}
-              className="block w-full rounded-xl bg-accent-600 py-3 text-center text-md font-semibold text-white hover:bg-accent-700 transition-colors"
+              variant="accent"
+              fullWidth
             >
               Download &amp; upgrade
-            </Link>
+            </Button>
           </div>
         </div>
       </div>

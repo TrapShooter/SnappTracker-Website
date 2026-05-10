@@ -68,7 +68,7 @@ export default function DemoTimerDisplay({ mode, elapsedSeconds, countdownDurati
 
   return (
     <div className="flex flex-col items-center gap-3 px-6 pt-12 pb-2 select-none">
-      {/* Pomodoro phase badge — only while running */}
+      {/* Pomodoro phase badge: only while running */}
       {showBadge && (
         <div className={`flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold transition-all duration-500 ${pomodoro.isFocus
           ? "bg-orange-100 text-orange-600"

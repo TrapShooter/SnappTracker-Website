@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Icon from './Icon';
 
 // --- Shared Internal Components (Visual Mirrors of App UI) ---
-// These components match the precise logic and metrics of the Snapp Tracker native app.
+// These components match the precise logic and metrics of the SnappTracker native app.
 
 const BoxedIcon = ({ icon, variant, size = 20 }: { icon: string, variant: string, size?: number }) => {
   const variants: any = {
@@ -15,7 +15,7 @@ const BoxedIcon = ({ icon, variant, size = 20 }: { icon: string, variant: string
     red: "bg-red-100 dark:bg-red-900/20 text-red-600 dark:text-red-400",
   };
   return (
-    <div className={`flex items-center justify-center shrink-0 p-2 rounded-lg ${variants[variant] || 'bg-gray-100 text-gray-600'}`}>
+    <div className={`flex items-center justify-center shrink-0 w-fit p-2 rounded-lg ${variants[variant] || 'bg-gray-100 text-gray-600'}`}>
       <Icon name={icon} size={size} />
     </div>
   );
@@ -275,23 +275,23 @@ const HistoryPreview = () => {
 
 const walkthroughSteps = [
   {
-    subtitle: "Versatile Tracking Modes",
+    subtitle: "Stopwatch · Countdown · Pomodoro",
     title: "Track Your Way",
-    description: "Switch between Stopwatch, Countdown, and Pomodoro modes to match your workflow exactly how you need it.",
+    description: "Start a stopwatch for open-ended work, set a countdown for focused bursts, or let Pomodoro cycle your sessions automatically. One app, every style of work.",
     Preview: ModesPreview,
     reverse: false
   },
   {
-    subtitle: "Groups & Reordering",
+    subtitle: "Groups & Unlimited Trackers",
     title: "Stay Organized",
-    description: "Categorize your trackers into groups and arrange them exactly how you like. Move smoothly between projects.",
+    description: "Create groups for work, personal, fitness, habits, or whatever fits your life. Add as many trackers as you need and keep your most-used ones always within reach.",
     Preview: GroupsPreview,
     reverse: true
   },
   {
-    subtitle: "History & Performance",
+    subtitle: "History & Session Tracking",
     title: "Master Your Data",
-    description: "Review detailed logs, filter them, and use Cuts to segment your tracking into sessions for deep insights.",
+    description: "Every entry is logged and saved. Use Cuts to organize them into sessions on your own schedule, whether that's daily, weekly, or whenever it feels right.",
     Preview: HistoryPreview,
     reverse: false
   }

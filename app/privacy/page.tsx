@@ -8,14 +8,14 @@ export default function PrivacyPage() {
 
         <section>
           <p className="leading-relaxed">
-            At Snapp Tracker, we take your privacy seriously. This Privacy Policy explains how we collect, use, and protect your information when you use our application.
+            At SnappTracker, we take your privacy seriously. This Privacy Policy explains how we collect, use, and protect your information when you use our application.
           </p>
         </section>
 
         <section>
           <h2 className="text-xl font-bold mb-4">1. Data Storage and Handling</h2>
           <p className="mb-4 leading-relaxed">
-            Snapp Tracker handles your data differently based on your user status:
+            SnappTracker handles your data differently based on your user status:
           </p>
           <div className="space-y-6">
             <div className="p-5 bg-gray-100 dark:bg-gray-900/50 rounded-2xl border border-gray-200 dark:border-gray-800">

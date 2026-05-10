@@ -62,18 +62,20 @@ export default function Features() {
   return (
     <section className="bg-gray-50 dark:bg-gray-950 py-24 px-6 md:px-12">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 max-w-3xl mx-auto">
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 dark:text-white mb-4">
-            Everything you need, nothing you don&apos;t
+            Everything you need{" "}
+            <br className="hidden md:block" />
+            to understand where your time goes
           </h2>
-          <p className="text-lg text-gray-500 dark:text-gray-400 max-w-xl mx-auto">
+          <p className="text-lg text-gray-500 dark:text-gray-400 mx-auto">
             Designed for professionals who need precision without administrative overhead.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {features.map((feature) => (
-            <div
+            <li
               key={feature.title}
               className={`rounded-2xl p-6 transition-all duration-700 shadow-xl/5 hover:shadow-2xl/30 hover:shadow-accent-600 hover:scale-[103%] ${feature.highlight
                 ? "bg-accent-700 text-white"
@@ -83,9 +85,8 @@ export default function Features() {
               <BoxedIcon
                 icon={feature.icon}
                 size={20}
-                variant={feature.highlight ? "accent-solid" : feature.variant}
-                className={`mb-4 !w-10 !h-10 !rounded-xl ${feature.highlight ? "!bg-white/20 !text-white" : ""
-                  }`}
+                variant={feature.highlight ? "ghost" : feature.variant}
+                className="mb-4"
               />
               <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
               <p
@@ -94,9 +95,9 @@ export default function Features() {
               >
                 {feature.description}
               </p>
-            </div>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   );

@@ -1,7 +1,7 @@
 import React from 'react';
 import Icon from './Icon';
 
-export type BoxedIconVariant = 'default' | 'primary' | 'purple' | 'red' | 'orange' | 'amber' | 'emerald' | 'accent-solid' | 'accent-light';
+export type BoxedIconVariant = 'default' | 'primary' | 'purple' | 'red' | 'orange' | 'amber' | 'emerald' | 'accent-solid' | 'accent-light' | 'ghost';
 
 interface BoxedIconProps {
   icon: string; // Material Symbol name
@@ -20,7 +20,7 @@ export const BoxedIcon: React.FC<BoxedIconProps> = ({
 }) => {
   const variants = {
     default: "bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300",
-    primary: "bg-accent-50 dark:bg-accent-900/20 text-accent-600 dark:text-accent-400", // Light blue (Headers)
+    primary: "bg-accent-100 dark:bg-accent-900/20 text-accent-600 dark:text-accent-400", // Light blue (Headers)
     purple: "bg-purple-100 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400",
     red: "bg-red-100 dark:bg-red-900/20 text-red-600 dark:text-red-400",
     orange: "bg-orange-100 dark:bg-orange-900/20 text-orange-600 dark:text-orange-400",
@@ -28,9 +28,10 @@ export const BoxedIcon: React.FC<BoxedIconProps> = ({
     emerald: "bg-emerald-100 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400",
     'accent-solid': "bg-accent-200 dark:bg-accent-800 text-accent-700 dark:text-accent-200", // Group active
     'accent-light': "bg-accent-100 dark:bg-accent-800 text-accent-600 dark:text-accent-300", // Export session
+    ghost: "bg-white/20 text-white",
   };
 
-  const baseClasses = "flex items-center justify-center shrink-0 p-2 rounded-lg";
+  const baseClasses = "flex items-center justify-center shrink-0 w-fit p-2 rounded-lg";
 
   return (
     <div className={`${baseClasses} ${variants[variant]} ${className}`}>

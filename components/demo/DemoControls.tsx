@@ -27,7 +27,7 @@ export default function DemoControls({
     <div className="px-6 py-10">
       <div className="relative flex items-center justify-center h-20 max-w-sm mx-auto">
 
-        {/* Stop button — slides in from the right when timer is active */}
+        {/* Stop button - slides in from the right when timer is active */}
         <button
           onClick={onStop}
           className={`absolute h-16 w-16 rounded-full text-white transition-all duration-300 ease-spring active:scale-95 cursor-pointer
@@ -41,7 +41,7 @@ export default function DemoControls({
           </div>
         </button>
 
-        {/* Play / Pause button — slides left when timer is active */}
+        {/* Play / Pause button - slides left when timer is active */}
         <button
           onClick={isRunning ? onPause : onStart}
           className={`absolute h-20 w-20 rounded-full shadow-2xl ring-4 ring-white transition-all duration-300 ease-spring active:scale-95 z-10 cursor-pointer
