@@ -12,7 +12,8 @@ interface StoreButtonProps {
   rel?: string;
 }
 
-interface BaseStoreButtonProps extends StoreButtonProps {
+interface BaseStoreButtonProps extends Omit<StoreButtonProps, "href"> {
+  href: string;
   icon: ReactNode;
   upperText: string;
   lowerText: string;
@@ -29,7 +30,7 @@ function BaseStoreButton({
 }: BaseStoreButtonProps) {
   return (
     <Link
-      href={href}
+      href={href || "#"}
       target={target}
       rel={rel}
       className={`inline-flex items-center justify-center gap-2 bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-4 py-2 rounded-xl transition-all hover:bg-gray-800 dark:hover:bg-gray-100 shadow-md w-full max-w-[175px] shrink-0 ${className}`}
