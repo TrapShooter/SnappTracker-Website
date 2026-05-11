@@ -107,7 +107,7 @@ export default function Features({
         </ul> */}
 
 
-        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 shadow-xl/5 rounded-2xl overflow-hidden gap-0.5 bg-gray-100 dark:bg-black">
+        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 shadow-xl/5 rounded-2xl overflow-hidden gap-px bg-gray-200 dark:bg-black border border-gray-200">
           {features.map((feature) => (
             <li
               key={feature.title}

@@ -15,9 +15,9 @@ export default function Home() {
         <HeroWithImage />
         <Walkthrough disableTopPadding />
         {/* <DemoSection /> */}
-        <Features disableTopPadding disableBottomPadding />
+        <Features disableTopPadding />
         {/* <Screenshots /> */}
-        <FAQ limit={6} />
+        <FAQ limit={6} disableTopPadding />
         <Footer />
       </main>
     </div>
