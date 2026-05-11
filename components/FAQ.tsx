@@ -144,20 +144,18 @@ function FAQRow({
           {item.question}
         </span>
         <span
-          className={`shrink-0 transition-all duration-300 ${
-            isOpen
+          className={`shrink-0 transition-all duration-300 ${isOpen
               ? "rotate-180 text-accent-600 dark:text-accent-400"
               : "text-gray-400 dark:text-gray-500"
-          }`}
+            }`}
         >
           <Icon name="expand_more" size={24} />
         </span>
       </button>
 
       <div
-        className={`grid transition-all duration-300 ease-in-out ${
-          isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
-        }`}
+        className={`grid transition-all duration-300 ease-in-out ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+          }`}
       >
         <div className="overflow-hidden">
           <div className="px-6 pb-6 text-gray-500 dark:text-gray-400 leading-relaxed text-[15px]">
@@ -208,11 +206,10 @@ export default function FAQ({
 
   return (
     <section
-      className={`px-6 md:px-12 ${
-        isPage
+      className={`px-6 md:px-12 ${isPage
           ? "bg-gray-100 dark:bg-gray-900 pt-40 pb-24"
           : `bg-gray-50 dark:bg-gray-950 ${disableTopPadding ? 'pt-0' : 'pt-24'} ${disableBottomPadding ? 'pb-0' : 'pb-24'}`
-      }`}
+        }`}
     >
       {/* Schema.org JSON-LD */}
       <script
@@ -224,7 +221,7 @@ export default function FAQ({
         {/* Header */}
         <div className={`text-center ${isPage ? "mb-16" : "mb-12"}`}>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
-            Frequently asked questions
+            Frequently Asked Questions
           </h2>
         </div>
 
