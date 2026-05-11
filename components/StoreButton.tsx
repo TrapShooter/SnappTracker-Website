@@ -10,6 +10,7 @@ interface StoreButtonProps {
   className?: string;
   target?: string;
   rel?: string;
+  variant?: "default" | "compact";
 }
 
 interface BaseStoreButtonProps extends Omit<StoreButtonProps, "href"> {
@@ -27,43 +28,55 @@ function BaseStoreButton({
   className = "",
   target = "_blank",
   rel = "noopener noreferrer",
+  variant = "default",
 }: BaseStoreButtonProps) {
+  const isCompact = variant === "compact";
+
   return (
     <Link
       href={href || "#"}
       target={target}
       rel={rel}
-      className={`inline-flex items-center justify-center gap-2 bg-gray-900 dark:bg-white text-white dark:text-gray-900 px-4 py-2 rounded-xl transition-all hover:bg-gray-700 dark:hover:bg-gray-200 shadow-md w-full max-w-[175px] shrink-0 ${className}`}
+      className={`inline-flex items-center justify-center gap-2 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-xl transition-all hover:bg-gray-700 dark:hover:bg-gray-200 shadow-md shrink-0 w-full ${isCompact ? "px-3 py-2 max-w-[155px]" : "px-4 py-2 max-w-[175px]"
+        } ${className}`}
     >
-      <div className="shrink-0">
+      <div className="shrink-0 flex items-center justify-center">
         {icon}
       </div>
       <div className="flex flex-col items-start leading-tight">
-        <span className="text-[11px] font-normal opacity-80">{upperText}</span>
-        <span className="text-lg font-semibold -mt-1">{lowerText}</span>
+        <span className={`${isCompact ? "text-[10px]" : "text-[11px]"} font-normal opacity-80`}>
+          {upperText}
+        </span>
+        <span className={`${isCompact ? "text-base" : "text-lg"} font-semibold -mt-1 whitespace-nowrap`}>
+          {lowerText}
+        </span>
       </div>
     </Link>
   );
 }
 
-export function AppStoreButton({ href = APP_STORE_URL, ...props }: StoreButtonProps) {
+export function AppStoreButton({ href = APP_STORE_URL, variant = "default", ...props }: StoreButtonProps) {
+  const isCompact = variant === "compact";
   return (
     <BaseStoreButton
       {...props}
       href={href}
-      icon={<AppleIcon className="w-8 h-8 -mt-1" />}
+      variant={variant}
+      icon={<AppleIcon className={`${isCompact ? "w-7 h-7" : "w-8 h-8"} -mt-1`} />}
       upperText="Download on the"
       lowerText="App Store"
     />
   );
 }
 
-export function GooglePlayButton({ href = GOOGLE_PLAY_URL, ...props }: StoreButtonProps) {
+export function GooglePlayButton({ href = GOOGLE_PLAY_URL, variant = "default", ...props }: StoreButtonProps) {
+  const isCompact = variant === "compact";
   return (
     <BaseStoreButton
       {...props}
       href={href}
-      icon={<GooglePlayIcon className="w-7 h-7" />}
+      variant={variant}
+      icon={<GooglePlayIcon className={isCompact ? "w-6 h-6" : "w-7 h-7"} />}
       upperText="Get it on"
       lowerText="Google Play"
     />
