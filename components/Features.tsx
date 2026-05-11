@@ -58,15 +58,9 @@ const features: Feature[] = [
   },
 ];
 
-export default function Features({
-  disableTopPadding = false,
-  disableBottomPadding = false,
-}: {
-  disableTopPadding?: boolean;
-  disableBottomPadding?: boolean;
-}) {
+export default function Features() {
   return (
-    <section className={`bg-gray-50 dark:bg-gray-950 px-6 md:px-12 ${disableTopPadding ? 'pt-0' : 'pt-24'} ${disableBottomPadding ? 'pb-0' : 'pb-24'}`}>
+    <section className="bg-gray-50 dark:bg-gray-950 py-24 px-6 md:px-12">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16 max-w-3xl mx-auto">
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 dark:text-white mb-4">
@@ -78,7 +72,7 @@ export default function Features({
             Designed for professionals who need precision without administrative overhead.
           </p>
         </div>
-
+        {/* 
         <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {features.map((feature) => (
             <li
@@ -104,7 +98,36 @@ export default function Features({
               </p>
             </li>
           ))}
+        </ul> */}
+
+
+        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 shadow-xl/5 rounded-2xl overflow-hidden gap-0.5 bg-gray-100 dark:bg-black">
+          {features.map((feature) => (
+            <li
+              key={feature.title}
+              className={`p-8 transition-all duration-700 ${feature.highlight
+                ? "bg-accent-700 text-white"
+                : "bg-white dark:bg-gray-900  text-gray-900 dark:text-white"
+                }`}
+            >
+              <BoxedIcon
+                icon={feature.icon}
+                size={20}
+                variant={feature.highlight ? "ghost" : feature.variant}
+                className="mb-4"
+                ariaLabel={`${feature.title} icon`}
+              />
+              <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
+              <p
+                className={`text-md leading-relaxed ${feature.highlight ? "text-white/80" : "text-gray-500 dark:text-gray-400"
+                  }`}
+              >
+                {feature.description}
+              </p>
+            </li>
+          ))}
         </ul>
+
       </div>
     </section>
   );

@@ -31,7 +31,7 @@ export default function Header() {
         <nav className="
           pointer-events-auto
           flex items-center justify-between
-          w-full max-w-6xl
+          w-full max-w-7xl
           bg-white/80 dark:bg-gray-950/80 backdrop-blur-sm shadow-lg 
           py-2 pl-4 pr-2 rounded-2xl border border-gray-200 dark:border-gray-800
         ">
@@ -60,7 +60,7 @@ export default function Header() {
           {/* Mobile Toggle */}
           <div className="flex md:hidden items-center gap-2">
             <ThemeToggle />
-            <button 
+            <button
               onClick={() => setIsOpen(true)}
               className="flex items-center justify-center w-11 h-11 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-xl transition-colors"
             >
@@ -82,7 +82,7 @@ export default function Header() {
               </Link>
             </div>
             <div className="flex items-center h-11">
-              <button 
+              <button
                 onClick={() => setIsOpen(false)}
                 className="flex items-center justify-center w-11 h-11 text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-gray-800 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-900 transition-colors"
               >
@@ -93,15 +93,15 @@ export default function Header() {
 
           {/* Links List */}
           <div className="px-4 flex flex-col gap-1">
-            <Link 
-              href="/download" 
+            <Link
+              href="/download"
               onClick={() => setIsOpen(false)}
               className="py-4 text-lg font-medium text-gray-900 dark:text-white border-b-2 border-gray-200 dark:border-gray-800"
             >
               Download
             </Link>
-            <Link 
-              href="/pricing" 
+            <Link
+              href="/pricing"
               onClick={() => setIsOpen(false)}
               className="py-4 text-lg font-medium text-gray-900 dark:text-white border-b-2 border-gray-200 dark:border-gray-800"
             >
