@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Button from "./Button";
+import Badge from "./Badge";
 import { AppStoreButton, GooglePlayButton } from "./StoreButton";
 import { GlobeIcon } from "./BrandIcons";
 
@@ -59,9 +60,9 @@ export default function HeroWithImage({
           {/* Left Column: Content */}
           <div className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left">
             {/* Badge */}
-            <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-accent-50 px-4 py-1.5 text-sm font-medium text-accent-700">
-              <span>Available on iOS, Android &amp; Web</span>
-            </div>
+            <Badge className="mb-4">
+              Available on iOS, Android &amp; Web
+            </Badge>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 dark:text-white leading-tight mb-6 text-balance">
               Time tracking for
@@ -107,7 +108,8 @@ export default function HeroWithImage({
       {/* Background decoration */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,#e0f5fe,transparent)] dark:bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(17,174,215,0.08),transparent)]"
+        className="pointer-events-none absolute inset-0 z-0 
+        bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(17,174,215,0.20),transparent)]"
       />
     </section>
   );

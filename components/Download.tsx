@@ -1,4 +1,5 @@
 import Button from "./Button";
+import Badge from "./Badge";
 import { AppStoreButton, GooglePlayButton } from "./StoreButton";
 import { GlobeIcon } from "./BrandIcons";
 import { APP_URL } from "@/lib/constants";
@@ -30,9 +31,9 @@ export default function Download() {
           className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,#e0f5fe,transparent)] dark:bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(17,174,215,0.08),transparent)]"
         />
         <div className="relative z-10 max-w-4xl mx-auto px-6 pt-32 pb-20 sm:pb-28 text-center flex flex-col items-center">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-accent-50 px-4 py-1.5 text-sm font-medium text-accent-700">
+          <Badge className="mb-6">
             iOS · Android · Web
-          </div>
+          </Badge>
           <h1 className="text-5xl sm:text-6xl font-bold tracking-tight leading-tight mb-6">
             Get SnappTracker,<br />
             <span className="text-accent-600">your way</span>
@@ -64,9 +65,9 @@ export default function Download() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Text */}
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full bg-accent-50 px-3 py-1 text-xs font-semibold text-accent-700 uppercase tracking-wider mb-4">
+            <Badge className="mb-4">
               iPhone
-            </div>
+            </Badge>
             <h2 className="text-4xl font-bold tracking-tight mb-4">
               Designed for <span className="text-accent-600">iPhone</span>
             </h2>
@@ -98,9 +99,9 @@ export default function Download() {
 
           {/* Text */}
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full bg-accent-50 px-3 py-1 text-xs font-semibold text-accent-700 uppercase tracking-wider mb-4">
+            <Badge className="mb-4">
               Android
-            </div>
+            </Badge>
             <h2 className="text-4xl font-bold tracking-tight mb-4">
               Also on <span className="text-accent-600">Android</span>
             </h2>
@@ -122,9 +123,9 @@ export default function Download() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Text */}
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full bg-accent-50 px-3 py-1 text-xs font-semibold text-accent-700 uppercase tracking-wider mb-4">
+            <Badge className="mb-4">
               Web
-            </div>
+            </Badge>
             <h2 className="text-4xl font-bold tracking-tight mb-4">
               Works in your <span className="text-accent-600">browser too</span>
             </h2>

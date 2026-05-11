@@ -1,3 +1,4 @@
+import Badge from "./Badge";
 import { BoxedIcon, BoxedIconVariant } from "@/components/BoxedIcon";
 
 type Feature = {
@@ -10,52 +11,54 @@ type Feature = {
 
 const features: Feature[] = [
   {
-    icon: "content_cut",
-    title: "The Cut Feature",
+    icon: "cloud_upload",
+    title: "Cloud Sync",
     description:
-      "Switch contexts instantly without losing your flow. Cut creates a session boundary and resets the visual tracker. No stopping, no losing history.",
-    highlight: true,
-  },
-  {
-    icon: "timer",
-    title: "Three Tracking Modes",
-    description:
-      "Stopwatch for standard tracking, Countdown with auto-stop, and Pomodoro with customizable focus and break cycles.",
+      "Keep your data in sync across iOS, Android, and Web. Seamless real-time updates with full offline support.",
     highlight: false,
-    variant: "primary",
+    variant: "purple",
   },
   {
-    icon: "add_2",
-    title: "Manual Entries",
+    icon: "payments",
+    title: "Billable Tracking",
     description:
-      "Forgot to start the counter? Log any past activity with a custom start and end time. Your history stays accurate.",
+      "Track hourly earnings with custom rates and currencies, and export professional billable reports.",
     highlight: false,
     variant: "emerald",
   },
   {
-    icon: "folder_open",
-    title: "Unlimited Organization",
+    icon: "leaderboard",
+    title: "Analytics & Stats",
     description:
-      "Create as many trackers as you need, organized into customizable groups. Find anything instantly.",
+      "Analyze activity patterns, histograms, and labels. Track billable revenue and goals with detailed visual reports.",
+    highlight: false,
+    variant: "primary",
+  },
+  {
+    icon: "calculate",
+    title: "Rounding Rules",
+    description:
+      "Snap logs to custom intervals with rounding and minimum durations. Apply per entry or session.",
     highlight: false,
     variant: "amber",
   },
   {
-    icon: "bar_chart",
-    title: "Analytics & Stats",
+    icon: "flag",
+    title: "Session Goals",
     description:
-      "Charts, streaks, session goals, and billable time tracking. Understand exactly where your time goes. Pro feature.",
+      "Set session targets and track your consistency with streaks. Reach your productivity milestones with ease.",
     highlight: false,
     variant: "red",
   },
   {
-    icon: "cloud_upload",
-    title: "Cloud Sync",
+    icon: "file_export",
+    title: "CSV & JSON Export",
     description:
-      "Your data synced seamlessly across all devices, iOS, Android, and web. Export as CSV or JSON anytime. Pro feature.",
+      "Export your complete history to CSV for spreadsheets and invoicing, or create full JSON backups.",
     highlight: false,
-    variant: "purple",
+    variant: "orange",
   },
+
 ];
 
 export default function Features({
@@ -69,13 +72,16 @@ export default function Features({
     <section className={`bg-gray-50 dark:bg-gray-950 px-6 md:px-12 ${disableTopPadding ? 'pt-0' : 'pt-24'} ${disableBottomPadding ? 'pb-0' : 'pb-24'}`}>
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16 max-w-3xl mx-auto">
+          <Badge variant="dark" className="mb-4">
+            SnappTracker Pro
+          </Badge>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 dark:text-white mb-4">
             Everything you need{" "}
             <br className="hidden md:block" />
             to understand where your time goes
           </h2>
           <p className="text-lg text-gray-500 dark:text-gray-400 mx-auto">
-            Designed for professionals who need precision without administrative overhead.
+            Unlock advanced features for serious tracking and deeper insights.
           </p>
         </div>
         {/* 
