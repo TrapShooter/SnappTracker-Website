@@ -58,9 +58,8 @@ export default function PhoneMockup({ images, intervalMs = 3000, className = "w-
                 sizes="(max-width: 768px) 260px, 280px"
                 priority={priority && index === 0}
                 style={{ zIndex: zValues.current[index] }}
-                className={`object-cover transition-opacity duration-700 ${
-                  isActive || isPrev ? "opacity-100" : "opacity-0"
-                }`}
+                className={`object-cover transition-opacity duration-300 ${isActive || isPrev ? "opacity-100" : "opacity-0"
+                  }`}
               />
             );
           })}
