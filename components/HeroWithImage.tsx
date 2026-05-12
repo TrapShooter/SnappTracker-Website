@@ -101,7 +101,7 @@ export default function HeroWithImage({
           </div>
 
           {/* Right Column: Image */}
-          <div className="relative lg:w-[45%] shrink-0">
+          <div className="relative lg:w-[45%] shrink-0 max-w-full">
             <div className="relative mx-auto flex justify-center lg:justify-end">
               {/* <Image
                 src="/hero-image.png"
@@ -111,7 +111,7 @@ export default function HeroWithImage({
                 className="w-full h-auto"
                 priority
               /> */}
-              <PhoneMockup images={screensLeft} className="w-[260px] rotate-[-7.5deg] -mr-10 mb-2 self-end" />
+              <PhoneMockup images={screensLeft} className="w-[260px] rotate-[-7.5deg] ml-3 -mr-10 mb-2 self-end" />
               <PhoneMockup images={screensRight} className="w-[280px]" />
             </div>
           </div>
