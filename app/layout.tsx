@@ -82,6 +82,8 @@ export default function RootLayout({
         <link rel="preload" as="image" href="/mockups/iPhone-body.png" fetchPriority="high" />
         <link rel="preload" as="image" href="/mockups/Dashboard.png" fetchPriority="high" />
         <link rel="preload" as="image" href="/mockups/Pomodoro.png" fetchPriority="high" />
+        <link rel="preload" as="image" href="/mockups/History.png" fetchPriority="high" />
+        <link rel="preload" as="image" href="/mockups/Stats.png" fetchPriority="high" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
