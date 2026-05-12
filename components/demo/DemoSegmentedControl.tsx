@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState, useEffect, useLayoutEffect } from "react";
+import React, { useRef, useState, useEffect, useMemo } from "react";
 
 export interface SegmentedControlOption<T extends string | number> {
   value: T;
@@ -36,65 +36,34 @@ export default function DemoSegmentedControl<T extends string | number>({
 }: DemoSegmentedControlProps<T>) {
   const containerRef = useRef<HTMLDivElement>(null);
   const itemRefs = useRef<(HTMLButtonElement | null)[]>([]);
-  const [sliderStyle, setSliderStyle] = useState({ width: 0, left: 0 });
-  const [ready, setReady] = useState(false);
+  const [containerWidth, setContainerWidth] = useState(0);
 
   const currentIndex = options.findIndex((o) => o.value === value);
   const activeIndex = currentIndex === -1 ? 0 : currentIndex;
 
-  const computeSliderStyle = () => {
+  useEffect(() => {
     const container = containerRef.current;
-    if (!container) return null;
-
-    const CONTAINER_PADDING = 4;
-    const CONTAINER_BORDER = 1;
-    const INACTIVE_WIDTH = 80;
-
-    const containerWidth = container.offsetWidth;
-    const availableWidth = containerWidth - 2 * CONTAINER_PADDING - 2 * CONTAINER_BORDER;
-
-    let activeWidth: number;
-    let targetLeft: number;
-
-    if (showLabelOnlyOnActive || isCollapsed) {
-      if (isCollapsed) {
-        activeWidth = availableWidth;
-        targetLeft = CONTAINER_PADDING;
-      } else {
-        const inactiveCount = options.length - 1;
-        const totalInactiveWidth = inactiveCount * INACTIVE_WIDTH;
-        activeWidth = availableWidth - totalInactiveWidth;
-        targetLeft = CONTAINER_PADDING + activeIndex * INACTIVE_WIDTH;
-      }
-    } else {
-      const buttonWidth = availableWidth / options.length;
-      activeWidth = buttonWidth;
-      targetLeft = CONTAINER_PADDING + activeIndex * buttonWidth;
-    }
-
-    return { width: activeWidth, left: targetLeft };
-  };
-
-  useLayoutEffect(() => {
-    const style = computeSliderStyle();
-    if (style) setSliderStyle(style);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    const rafId = requestAnimationFrame(() => setReady(true));
-    return () => cancelAnimationFrame(rafId);
-  }, []);
-
-  useEffect(() => {
-    if (!ready) return;
-    const rafId = requestAnimationFrame(() => {
-      const style = computeSliderStyle();
-      if (style) setSliderStyle(style);
+    if (!container) return;
+    const observer = new ResizeObserver(entries => {
+      setContainerWidth(entries[0].contentRect.width);
     });
-    return () => cancelAnimationFrame(rafId);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeIndex, options.length, showLabelOnlyOnActive, isCollapsed, ready]);
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, []);
+
+  const ready = containerWidth > 0;
+  const sliderStyle = useMemo(() => {
+    if (!containerWidth) return { width: 0, left: 0 };
+    const CONTAINER_PADDING = 4;
+    const INACTIVE_WIDTH = 80;
+    if (showLabelOnlyOnActive || isCollapsed) {
+      if (isCollapsed) return { width: containerWidth, left: CONTAINER_PADDING };
+      const totalInactiveWidth = (options.length - 1) * INACTIVE_WIDTH;
+      return { width: containerWidth - totalInactiveWidth, left: CONTAINER_PADDING + activeIndex * INACTIVE_WIDTH };
+    }
+    const buttonWidth = containerWidth / options.length;
+    return { width: buttonWidth, left: CONTAINER_PADDING + activeIndex * buttonWidth };
+  }, [containerWidth, activeIndex, options.length, showLabelOnlyOnActive, isCollapsed]);
 
   const containerBg = variant === "primary" ? "bg-white" : "bg-gray-50";
   const containerBorder = variant === "primary" ? "border-gray-100" : "border-gray-200";

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import Icon from './Icon';
 
 // --- Shared Internal Components (Visual Mirrors of App UI) ---
@@ -32,37 +32,30 @@ const TYPE_CONFIGS = {
 
 const SegmentedControl = ({ value, options }: { value: string, options: any[] }) => {
   const containerRef = React.useRef<HTMLDivElement>(null);
-  const [sliderStyle, setSliderStyle] = useState({ width: 0, left: 0 });
-  const [ready, setReady] = useState(false);
+  const [containerWidth, setContainerWidth] = useState(0);
   const activeIndex = options.findIndex(o => o.value === value);
 
   useEffect(() => {
-    const rafId = requestAnimationFrame(() => setReady(true));
-    return () => cancelAnimationFrame(rafId);
+    const container = containerRef.current;
+    if (!container) return;
+    const observer = new ResizeObserver(entries => {
+      setContainerWidth(entries[0].contentRect.width);
+    });
+    observer.observe(container);
+    return () => observer.disconnect();
   }, []);
 
-  useEffect(() => {
-    if (!ready || !containerRef.current) return;
-    const rafId = requestAnimationFrame(() => {
-      const container = containerRef.current;
-      if (!container) return;
-
-      const CONTAINER_PADDING = 4;
-      const CONTAINER_BORDER = 1;
-      const INACTIVE_WIDTH = 80;
-
-      const containerWidth = container.offsetWidth;
-      const availableWidth = containerWidth - (2 * CONTAINER_PADDING) - (2 * CONTAINER_BORDER);
-
-      const inactiveCount = options.length - 1;
-      const totalInactiveWidth = inactiveCount * INACTIVE_WIDTH;
-      const activeWidth = availableWidth - totalInactiveWidth;
-      const targetLeft = CONTAINER_PADDING + (activeIndex * INACTIVE_WIDTH);
-
-      setSliderStyle({ width: activeWidth, left: targetLeft });
-    });
-    return () => cancelAnimationFrame(rafId);
-  }, [activeIndex, options.length, ready]);
+  const ready = containerWidth > 0;
+  const sliderStyle = useMemo(() => {
+    if (!containerWidth) return { width: 0, left: 0 };
+    const CONTAINER_PADDING = 4;
+    const INACTIVE_WIDTH = 80;
+    const totalInactiveWidth = (options.length - 1) * INACTIVE_WIDTH;
+    return {
+      width: containerWidth - totalInactiveWidth,
+      left: CONTAINER_PADDING + (activeIndex * INACTIVE_WIDTH),
+    };
+  }, [containerWidth, activeIndex, options.length]);
 
   const activeOption = options[activeIndex];
 
