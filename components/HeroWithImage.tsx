@@ -111,8 +111,8 @@ export default function HeroWithImage({
                 className="w-full h-auto"
                 priority
               /> */}
-              <PhoneMockup images={screensLeft} className="w-[260px] rotate-[-7.5deg] ml-3 -mr-10 mb-2 self-end" />
-              <PhoneMockup images={screensRight} className="w-[280px]" />
+              <PhoneMockup images={screensLeft} priority className="w-[260px] rotate-[-7.5deg] ml-3 -mr-10 mb-2 self-end" />
+              <PhoneMockup images={screensRight} priority className="w-[280px]" />
             </div>
           </div>
         </div>

@@ -80,6 +80,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} h-full antialiased overflow-x-hidden`} suppressHydrationWarning>
       <head>
+        <link rel="preload" as="image" href="/mockups/iPhone-body.png" fetchPriority="high" />
+        <link rel="preload" as="image" href="/mockups/Dashboard.png" fetchPriority="high" />
+        <link rel="preload" as="image" href="/mockups/Pomodoro.png" fetchPriority="high" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link

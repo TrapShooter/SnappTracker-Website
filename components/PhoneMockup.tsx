@@ -7,9 +7,10 @@ interface PhoneMockupProps {
   images: string[];
   intervalMs?: number;
   className?: string;
+  priority?: boolean;
 }
 
-export default function PhoneMockup({ images, intervalMs = 3000, className = "w-[350px]" }: PhoneMockupProps) {
+export default function PhoneMockup({ images, intervalMs = 3000, className = "w-[350px]", priority = false }: PhoneMockupProps) {
   const zValues = useRef<number[]>(images.map((_, i) => (i === 0 ? 1 : 0)));
   const zCounter = useRef(1);
 
@@ -54,6 +55,8 @@ export default function PhoneMockup({ images, intervalMs = 3000, className = "w-
                 src={src}
                 alt={label}
                 fill
+                sizes="(max-width: 768px) 260px, 280px"
+                priority={priority && index === 0}
                 style={{ zIndex: zValues.current[index] }}
                 className={`object-cover transition-opacity duration-700 ${
                   isActive || isPrev ? "opacity-100" : "opacity-0"
