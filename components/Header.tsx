@@ -4,8 +4,10 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
-
-const APP_URL = "https://app.snapptracker.com";
+import { AppStoreButton, GooglePlayButton } from "./StoreButton";
+import Button from "./Button";
+import { GlobeIcon } from "./BrandIcons";
+import { APP_URL } from "@/lib/constants";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -111,45 +113,23 @@ export default function Header() {
 
           {/* Bottom Actions */}
           <div className="mt-auto pb-8 px-4 flex flex-col gap-3">
-            <Link
+            <Button
               href={APP_URL}
+              variant="ghost-secondary"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 px-5 py-4 text-gray-700 dark:text-white text-md font-semibold hover:border-gray-300 dark:hover:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+              className="px-4 py-2 group w-full justify-center"
             >
               <GlobeIcon />
               Launch Web App
-            </Link>
-            <Link
-              href="/download"
-              className="flex items-center justify-center gap-3 w-full py-4 text-md font-semibold text-white bg-gray-900 dark:bg-white dark:text-gray-900 rounded-2xl hover:opacity-90 shadow-lg shadow-gray-200 dark:shadow-none transition-all"
-            >
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
-              </svg>
-              Download on the App Store
-            </Link>
-            <Link
-              href="/download"
-              className="flex items-center justify-center gap-3 w-full py-4 text-md font-semibold text-white bg-gray-900 dark:bg-white dark:text-gray-900 rounded-2xl hover:opacity-90 shadow-lg shadow-gray-200 dark:shadow-none transition-all"
-            >
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-                <path d="M3.18 23.76c.3.17.64.22.99.14l12.12-6.99-2.81-2.81-10.3 9.66zm-1.43-1.09V1.33c0-.48.26-.89.66-1.11L14.1 12 2.41 23.78c-.4-.22-.63-.63-.66-1.11zM20.49 10.46L17.9 9l-3.05 3.05 3.05 3.05 2.62-1.51c.75-.43.75-1.6-.03-2.13zM4.17.23L16.29 7.22l-2.81 2.81L3.18.37C3.48.2 3.82.16 4.17.23z" />
-              </svg>
-              Get it on Google Play
-            </Link>
+            </Button>
+            <div className="flex flex-row flex-wrap items-stretch justify-center gap-3">
+              <AppStoreButton />
+              <GooglePlayButton />
+            </div>
           </div>
         </div>
       </div>
     </>
-  );
-}
-
-function GlobeIcon() {
-  return (
-    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="12" r="10" />
-      <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-    </svg>
   );
 }

@@ -5,8 +5,19 @@ import Button from "./Button";
 import Badge from "./Badge";
 import { AppStoreButton, GooglePlayButton } from "./StoreButton";
 import { GlobeIcon } from "./BrandIcons";
+import PhoneMockup from "./PhoneMockup";
 
 import { APP_URL } from "@/lib/constants";
+
+const screensRight = [
+  "/mockups/Pomodoro.png",
+  "/mockups/History.png",
+  "/mockups/Stats.png",
+];
+
+const screensLeft = [
+  "/mockups/Dashboard.png",
+];
 
 export default function HeroWithImage({
   disableTopPadding = false,
@@ -56,7 +67,7 @@ export default function HeroWithImage({
 
       {/* Hero content */}
       <div className={`relative z-10 mx-auto max-w-7xl px-6 ${disableTopPadding ? 'pt-0' : 'pt-32'} ${disableBottomPadding ? 'pb-0' : 'pb-16 sm:pb-24'}`}>
-        <div className="flex flex-col lg:flex-row gap-4 lg:gap-12 items-center">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center">
           {/* Left Column: Content */}
           <div className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left">
             {/* Badge */}
@@ -92,14 +103,16 @@ export default function HeroWithImage({
           {/* Right Column: Image */}
           <div className="relative lg:w-[45%] shrink-0">
             <div className="relative mx-auto flex justify-center lg:justify-end">
-              <Image
+              {/* <Image
                 src="/hero-image.png"
                 alt="SnappTracker App Interface"
                 width={1200}
                 height={900}
                 className="w-full h-auto"
                 priority
-              />
+              /> */}
+              <PhoneMockup images={screensLeft} className="w-[260px] rotate-[-7.5deg] -mr-10 mb-2 self-end" />
+              <PhoneMockup images={screensRight} className="w-[280px]" />
             </div>
           </div>
         </div>

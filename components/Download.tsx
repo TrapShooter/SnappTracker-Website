@@ -74,7 +74,7 @@ export default function Download() {
             <p className="text-lg text-gray-500 dark:text-gray-400 leading-relaxed mb-8">
               A native iOS experience built around how you actually work. Instant tracking, Cut sessions, Pomodoro mode, and beautiful widgets that live on your home screen.
             </p>
-            <AppStoreButton />
+            <AppStoreButton maxWFull={false} />
           </div>
 
           {/* Image slot */}
@@ -108,7 +108,7 @@ export default function Download() {
             <p className="text-lg text-gray-500 dark:text-gray-400 leading-relaxed mb-8">
               The same clean, distraction-free experience on your Android device. Full feature parity, cloud sync, and a home screen widget to keep your time front and center.
             </p>
-            <GooglePlayButton />
+            <GooglePlayButton maxWFull={false} />
           </div>
         </div>
       </section>
