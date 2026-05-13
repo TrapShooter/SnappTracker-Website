@@ -10,13 +10,13 @@ import PhoneMockup from "./PhoneMockup";
 import { APP_URL } from "@/lib/constants";
 
 const screensRight = [
-  "/mockups/Pomodoro.png",
-  "/mockups/History.png",
-  "/mockups/Stats.png",
+  "/mockups/Pomodoro.jpg",
+  "/mockups/History.jpg",
+  "/mockups/Stats.jpg",
 ];
 
 const screensLeft = [
-  "/mockups/Dashboard.png",
+  "/mockups/Dashboard.jpg",
 ];
 
 export default function HeroWithImage({

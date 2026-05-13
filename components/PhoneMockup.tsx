@@ -50,17 +50,24 @@ export default function PhoneMockup({ images, intervalMs = 3000, className = "w-
             const isActive = index === safeActive;
             const isPrev = !isActive && index === prevIndex;
             return (
-              <Image
+              <div
                 key={src}
-                src={src}
-                alt={label}
-                fill
-                sizes="(max-width: 768px) 260px, 280px"
-                priority={priority && index === 0}
                 style={{ zIndex: zValues.current[index] }}
-                className={`object-cover transition-opacity duration-500 ${isActive || isPrev ? "opacity-100" : "opacity-0"
-                  }`}
-              />
+                className={`absolute inset-0 transition-opacity duration-500 ${isActive || isPrev ? "opacity-100" : "opacity-0"}`}
+              >
+                <div className="absolute inset-0 mx-3 my-2.5 rounded-[38px] overflow-hidden">
+                  <Image
+                    src={src}
+                    alt={label}
+                    fill
+                    sizes="(max-width: 768px) 260px, 280px"
+                    priority={priority && index === 0}
+                    className="object-cover"
+                  />
+                  {/* Debug Fill */}
+                  {/* <div className="absolute inset-0 bg-red-500/30 pointer-events-none" /> */}
+                </div>
+              </div>
             );
           })}
         </div>
