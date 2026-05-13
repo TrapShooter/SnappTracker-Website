@@ -1,6 +1,21 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
+
+const MATERIAL_ICON_NAMES = [
+  'add_2', 'arrow_forward', 'bolt', 'business_center', 'calculate',
+  'check', 'cloud_upload', 'coffee', 'content_cut', 'dark_mode',
+  'expand_more', 'file_export', 'fitness_center', 'flag',
+  'hourglass_bottom', 'leaderboard', 'light_mode', 'mail', 'pause',
+  'payments', 'person', 'play_arrow', 'stop', 'timer',
+].sort()
+
+const MATERIAL_SYMBOLS_URL =
+  `https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded` +
+  `:opsz,wght,FILL@20..24,400..700,0..1` +
+  `&icon_names=${MATERIAL_ICON_NAMES.join(',')}` +
+  `&display=block`
 
 const inter = Inter({
   variable: "--font-inter",
@@ -81,10 +96,6 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..24,400..700,1,0&display=swap"
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -108,6 +119,13 @@ export default function RootLayout({
             {children}
           </div>
         </Providers>
+        <Script
+          id="material-symbols-font"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `var l=document.createElement('link');l.rel='stylesheet';l.href='${MATERIAL_SYMBOLS_URL}';document.head.appendChild(l);`,
+          }}
+        />
       </body>
     </html>
   );

@@ -3,6 +3,8 @@
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 
+const BLUR_PLACEHOLDER = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYGD4z8BQDwADhQGAWjR9awAAAABJRU5ErkJggg==";
+
 interface PhoneMockupProps {
   images: string[];
   intervalMs?: number;
@@ -34,7 +36,7 @@ export default function PhoneMockup({ images, intervalMs = 3000, className = "w-
 
   return (
     <div className={className}>
-      <div className="relative">
+      <div className="relative @container">
         <Image
           src="/mockups/iPhone-body.png"
           alt="iPhone Mockup"
@@ -55,13 +57,15 @@ export default function PhoneMockup({ images, intervalMs = 3000, className = "w-
                 style={{ zIndex: zValues.current[index] }}
                 className={`absolute inset-0 transition-opacity duration-500 ${isActive || isPrev ? "opacity-100" : "opacity-0"}`}
               >
-                <div className="absolute inset-0 mx-3 my-2.5 rounded-[38px] overflow-hidden">
+                <div className="absolute inset-0 mx-[4%] my-[3.5%] rounded-[15cqw] overflow-hidden">
                   <Image
                     src={src}
                     alt={label}
                     fill
                     sizes="(max-width: 768px) 260px, 280px"
                     priority={priority && index === 0}
+                    placeholder="blur"
+                    blurDataURL={BLUR_PLACEHOLDER}
                     className="object-cover"
                   />
                   {/* Debug Fill */}
