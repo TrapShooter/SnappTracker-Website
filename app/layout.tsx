@@ -15,7 +15,7 @@ const MATERIAL_SYMBOLS_URL =
   `https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded` +
   `:opsz,wght,FILL@20..24,400..700,0..1` +
   `&icon_names=${MATERIAL_ICON_NAMES.join(',')}` +
-  `&display=optional`
+  `&display=block`
 
 const inter = Inter({
   variable: "--font-inter",
