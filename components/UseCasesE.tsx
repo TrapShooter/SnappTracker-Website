@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { useDragScroll } from "@/hooks/useDragScroll";
 import Badge from "./Badge";
 import { BoxedIcon, BoxedIconVariant } from "@/components/BoxedIcon";
 import Icon from "./Icon";
@@ -157,8 +158,17 @@ export default function UseCasesE({
 }) {
   const [active, setActive] = useState(0);
   const [hovered, setHovered] = useState<number | null>(null);
+  const pillRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const { ref: scrollContainerRef, dragProps, didDrag } = useDragScroll();
   const Preview = previewComponents[active];
   const current = useCases[active];
+
+  const scrollPillIntoView = (i: number) => {
+    const btn = pillRefs.current[i];
+    const container = scrollContainerRef.current;
+    if (!btn || !container) return;
+    container.scrollTo({ left: btn.offsetLeft - 24, behavior: "smooth" });
+  };
 
   return (
     <section
@@ -180,28 +190,35 @@ export default function UseCasesE({
         </div>
 
         {/* Segmented Tab Bar */}
-        <div className="flex flex-wrap gap-2 justify-center my-6 max-w-4xl mx-auto">
-          {useCases.map((uc, i) => (
-            <button
-              key={uc.title}
-              onClick={() => setActive(i)}
-              onMouseEnter={() => setHovered(i)}
-              onMouseLeave={() => setHovered(null)}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl text-md font-medium whitespace-nowrap transition-all duration-200 shrink-0 border ${i === active
-                ? "bg-white dark:bg-gray-800 shadow-xl/5 border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white"
-                : i === hovered
-                  ? "border-transparent text-gray-800 dark:text-gray-100"
-                  : "text-gray-500 dark:text-gray-400 border-transparent"
-                }`}
-            >
-              <BoxedIcon
-                icon={uc.icon}
-                size={14}
-                variant={i === active || i === hovered ? uc.variant : "default"}
-              />
-              {uc.title}
-            </button>
-          ))}
+        <div ref={scrollContainerRef} {...dragProps} className="overflow-x-auto scrollbar-none cursor-grab active:cursor-grabbing">
+          <div className="flex gap-2 w-max mx-auto lg:flex-wrap lg:w-auto lg:justify-center lg:max-w-4xl  my-6">
+            {useCases.map((uc, i) => (
+              <button
+                key={uc.title}
+                ref={el => { pillRefs.current[i] = el; }}
+                onClick={() => {
+                  if (didDrag()) return;
+                  setActive(i);
+                  scrollPillIntoView(i);
+                }}
+                onMouseEnter={() => setHovered(i)}
+                onMouseLeave={() => setHovered(null)}
+                className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl text-md font-medium whitespace-nowrap transition-all duration-200 shrink-0 border ${i === active
+                  ? "bg-white dark:bg-gray-800 shadow-xl/5 border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white"
+                  : i === hovered
+                    ? "border-transparent text-gray-800 dark:text-gray-100"
+                    : "text-gray-500 dark:text-gray-400 border-transparent"
+                  }`}
+              >
+                <BoxedIcon
+                  icon={uc.icon}
+                  size={14}
+                  variant={i === active || i === hovered ? uc.variant : "default"}
+                />
+                {uc.title}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Content Panel */}
@@ -219,7 +236,7 @@ export default function UseCasesE({
                 icon={current.icon}
                 size={28}
                 variant={current.variant}
-                className="mb-5"
+                className="hidden lg:flex mb-5"
                 ariaLabel={`${current.title} icon`}
               />
               <h3 className="text-2xl font-bold mb-3 text-gray-900 dark:text-white">
