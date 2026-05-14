@@ -28,7 +28,7 @@ const faqs: FAQItem[] = [
     category: "Getting Started",
     question: "Can I group my time entries into billing cycles or project phases?",
     answer:
-      "You can use Sessions to organize your entries into logical sets. By using the Cut feature, you can 'close' a period of time — like a work week, a billing cycle, or a project milestone — and start a fresh one. This helps you track progress against specific session goals and keeps your history organized into meaningful blocks.",
+      "You can use Sessions to organize your entries into logical sets. By using the Cut feature, you can 'close' a period of time, like a work week, a billing cycle, or a project milestone, and start a fresh one. This helps you track progress against specific session goals and keeps your history organized into meaningful blocks.",
   },
   {
     category: "Getting Started",

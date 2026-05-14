@@ -96,6 +96,13 @@ button {
   cursor: pointer;
 }
 
+@utility scrollbar-none {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 @keyframes walkthrough-scroll {
     0%, 15% { transform: translate(-50%, -118px); }
     45%, 60% { transform: translate(-50%, -680px); }

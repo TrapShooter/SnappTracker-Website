@@ -4,11 +4,11 @@ import Script from "next/script";
 import "./globals.css";
 
 const MATERIAL_ICON_NAMES = [
-  'add_2', 'arrow_forward', 'bolt', 'business_center', 'calculate',
-  'check', 'cloud_upload', 'coffee', 'content_cut', 'dark_mode',
+  'add_2', 'arrow_forward', 'auto_stories', 'bolt', 'business_center', 'calculate',
+  'check', 'cloud_upload', 'code', 'coffee', 'content_cut', 'dark_mode',
   'expand_more', 'file_export', 'fitness_center', 'flag',
   'hourglass_bottom', 'leaderboard', 'light_mode', 'mail', 'pause',
-  'payments', 'person', 'play_arrow', 'stop', 'timer',
+  'payments', 'person', 'play_arrow', 'school', 'stop', 'timer', 'work',
 ].sort()
 
 const MATERIAL_SYMBOLS_URL =
