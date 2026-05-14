@@ -190,8 +190,8 @@ export default function UseCasesE({
         </div>
 
         {/* Segmented Tab Bar */}
-        <div ref={scrollContainerRef} {...dragProps} className="overflow-x-auto scrollbar-none cursor-grab active:cursor-grabbing">
-          <div className="flex gap-2 w-max mx-auto lg:flex-wrap lg:w-auto lg:justify-center lg:max-w-4xl  my-6">
+        <div ref={scrollContainerRef} {...dragProps} className="overflow-x-auto scrollbar-none cursor-grab active:cursor-grabbing -mx-6 md:-mx-12 lg:mx-0">
+          <div className="flex gap-2 w-max px-6 md:px-12 lg:px-0 mx-auto lg:flex-wrap lg:w-auto lg:justify-center lg:max-w-4xl my-6">
             {useCases.map((uc, i) => (
               <button
                 key={uc.title}
