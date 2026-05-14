@@ -71,18 +71,13 @@ export default function Features({
   return (
     <section className={`bg-gray-50 dark:bg-gray-950 px-6 md:px-12 ${disableTopPadding ? 'pt-0' : 'pt-24'} ${disableBottomPadding ? 'pb-0' : 'pb-24'}`}>
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16 max-w-3xl mx-auto">
+        <div className="text-center mb-12 max-w-3xl mx-auto">
           <Badge variant="dark" className="mb-4">
             SnappTracker Pro
           </Badge>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 dark:text-white mb-4">
-            Everything you need{" "}
-            <br className="hidden md:block" />
-            to understand where your time goes
+            Pro features. Real results.
           </h2>
-          <p className="text-lg text-gray-500 dark:text-gray-400 mx-auto">
-            Unlock advanced features for serious tracking and deeper insights.
-          </p>
         </div>
         {/* 
         <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

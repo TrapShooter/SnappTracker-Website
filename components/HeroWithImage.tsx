@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+// import Image from "next/image";
 import Button from "./Button";
 import Badge from "./Badge";
 import { AppStoreButton, GooglePlayButton } from "./StoreButton";
