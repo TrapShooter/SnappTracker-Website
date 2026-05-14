@@ -125,7 +125,7 @@ export default function Header() {
               <GlobeIcon />
               Launch Web App
             </Button>
-            <div className="flex flex-row flex-wrap items-stretch justify-center gap-3">
+            <div className="flex flex-row flex-wrap gap-3 justify-center">
               <AppStoreButton />
               <GooglePlayButton />
             </div>

@@ -24,7 +24,7 @@ export default function Footer() {
             <p className="text-sm text-gray-500 dark:text-gray-400 px-2">
               Download SnappTracker Today!
             </p>
-            <div className="flex flex-row items-center justify-center md:justify-end gap-2 w-full flex-wrap">
+            <div className="flex flex-row flex-wrap gap-2 justify-center md:justify-end">
               <AppStoreButton variant="compact" />
               <GooglePlayButton variant="compact" />
             </div>

@@ -85,14 +85,16 @@ export default function HeroWithImage({
             </p>
 
             <div className="flex flex-row flex-wrap items-stretch justify-center lg:justify-start gap-3 w-full">
-              <AppStoreButton />
-              <GooglePlayButton />
+              <div className="flex flex-row flex-wrap gap-3 justify-center lg:justify-start">
+                <AppStoreButton />
+                <GooglePlayButton />
+              </div>
               <Button
                 href={APP_URL}
                 variant="ghost-secondary"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-4 py-2 group"
+                className="w-full sm:w-auto"
               >
                 <GlobeIcon />
                 Launch Web App

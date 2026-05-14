@@ -42,14 +42,16 @@ export default function Download() {
             Available on iPhone, Android, and in your browser. Start free, upgrade when you're ready.
           </p>
           <div className="flex flex-row flex-wrap items-stretch justify-center gap-3 w-full">
-            <AppStoreButton />
-            <GooglePlayButton />
+            <div className="flex flex-row flex-wrap gap-3 justify-center">
+              <AppStoreButton />
+              <GooglePlayButton />
+            </div>
             <Button
               href={APP_URL}
               variant="ghost-secondary"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-4 py-2 group"
+              className="w-full sm:w-auto px-4 py-2 group"
             >
               <GlobeIcon />
               Launch Web App
@@ -74,7 +76,7 @@ export default function Download() {
             <p className="text-lg text-gray-500 dark:text-gray-400 leading-relaxed mb-8">
               A native iOS experience built around how you actually work. Instant tracking, Cut sessions, Pomodoro mode, and beautiful widgets that live on your home screen.
             </p>
-            <AppStoreButton maxWFull={false} />
+            <AppStoreButton />
           </div>
 
           {/* Image slot */}
@@ -108,7 +110,7 @@ export default function Download() {
             <p className="text-lg text-gray-500 dark:text-gray-400 leading-relaxed mb-8">
               The same clean, distraction-free experience on your Android device. Full feature parity, cloud sync, and a home screen widget to keep your time front and center.
             </p>
-            <GooglePlayButton maxWFull={false} />
+            <GooglePlayButton />
           </div>
         </div>
       </section>

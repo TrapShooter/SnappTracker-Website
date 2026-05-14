@@ -63,9 +63,11 @@ export default function Hero() {
         </p>
 
         {/* CTAs */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 w-full sm:w-auto">
-          <AppStoreButton className="w-full sm:w-auto" />
-          <GooglePlayButton className="w-full sm:w-auto" />
+        <div className="flex flex-row flex-wrap items-stretch justify-center gap-3 w-full">
+          <div className="flex flex-row flex-wrap gap-3 justify-center">
+            <AppStoreButton />
+            <GooglePlayButton />
+          </div>
           <Button
             href={APP_URL}
             variant="secondary"

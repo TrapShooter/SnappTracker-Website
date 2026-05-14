@@ -11,7 +11,7 @@ interface StoreButtonProps {
   target?: string;
   rel?: string;
   variant?: "default" | "compact";
-  maxWFull?: boolean;
+  fullWidth?: boolean;
 }
 
 interface BaseStoreButtonProps extends Omit<StoreButtonProps, "href"> {
@@ -30,7 +30,7 @@ function BaseStoreButton({
   target = "_blank",
   rel = "noopener noreferrer",
   variant = "default",
-  maxWFull = true,
+  fullWidth = false,
 }: BaseStoreButtonProps) {
   const isCompact = variant === "compact";
 
@@ -39,8 +39,7 @@ function BaseStoreButton({
       href={href || "#"}
       target={target}
       rel={rel}
-      className={`inline-flex items-center justify-center gap-2 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-xl transition-all hover:bg-gray-700 dark:hover:bg-gray-200 shadow-md shrink-0 ${maxWFull ? "w-full max-w-full" : ""} ${isCompact ? "px-3 py-2 sm:max-w-[155px]" : "px-4 py-2 sm:max-w-[175px]"
-        } ${className}`}
+      className={`inline-flex items-center justify-center gap-2 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-xl transition-all hover:bg-gray-700 dark:hover:bg-gray-200 shadow-md flex-1 ${isCompact ? "px-3 py-2" : "px-4 py-2"} ${fullWidth ? "w-full" : isCompact ? "min-w-[155px]" : " min-w-[175px]"} ${className}`}
     >
       <div className="shrink-0 flex items-center justify-center">
         {icon}
