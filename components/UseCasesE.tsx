@@ -186,20 +186,14 @@ export default function UseCasesE({
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto">
           <Badge className="mb-4">Built for Everyone</Badge>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 dark:text-white mb-4">
-            However you track,{" "}
-            <br className="hidden md:block" />
-            SnappTracker fits.
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 dark:text-white text-balance">
+            However you track, SnappTracker fits.
           </h2>
-          <p className="text-lg text-gray-500 dark:text-gray-400 mx-auto">
-            From billing clients to building habits, it adapts to the way you
-            work and live.
-          </p>
         </div>
 
         {/* Segmented Tab Bar */}
         <div ref={scrollContainerRef} {...dragProps} className="overflow-x-auto scrollbar-none cursor-grab active:cursor-grabbing -mx-6 md:-mx-12 lg:mx-0">
-          <div className="flex gap-2 w-max px-6 md:px-12 lg:px-0 mx-auto lg:flex-wrap lg:w-auto lg:justify-center lg:max-w-4xl my-6">
+          <div className="flex gap-2 w-max px-6 md:px-12 lg:px-0 mx-auto  my-6">
             {useCases.map((uc, i) => (
               <button
                 key={uc.title}
@@ -211,7 +205,7 @@ export default function UseCasesE({
                 }}
                 onPointerEnter={e => { if (e.pointerType !== "touch") setHovered(i); }}
                 onPointerLeave={e => { if (e.pointerType !== "touch") setHovered(null); }}
-                className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl text-md font-medium whitespace-nowrap transition-all duration-200 shrink-0 border ${i === active
+                className={`flex items-center gap-2 p-3 rounded-2xl text-md font-medium whitespace-nowrap transition-all duration-200 shrink-0 border ${i === active
                   ? "bg-white dark:bg-gray-800 shadow-xl/5 border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white"
                   : i === hovered
                     ? "border-transparent text-gray-800 dark:text-gray-100"
