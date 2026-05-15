@@ -161,7 +161,14 @@ export default function UseCasesG({
   const [hovered, setHovered] = useState<number | null>(null);
   const pillRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const { ref: scrollContainerRef, dragProps, didDrag } = useDragScroll();
-  const [emblaRef, emblaApi] = useEmblaCarousel({ align: "center", containScroll: false });
+
+  const [isDesktop, setIsDesktop] = useState(() =>
+    typeof window !== "undefined" ? window.matchMedia("(min-width: 1280px)").matches : true
+  );
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    align: "center",
+    containScroll: isDesktop ? false : "trimSnaps",
+  });
 
   const scrollPillIntoView = (i: number) => {
     const btn = pillRefs.current[i];
@@ -169,6 +176,17 @@ export default function UseCasesG({
     if (!btn || !container) return;
     container.scrollTo({ left: btn.offsetLeft - 24, behavior: "smooth" });
   };
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1280px)");
+    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+
+  useEffect(() => {
+    emblaApi?.reInit({ align: "center", containScroll: isDesktop ? false : "trimSnaps" });
+  }, [emblaApi, isDesktop]);
 
   useEffect(() => {
     if (!emblaApi) return;
@@ -225,14 +243,14 @@ export default function UseCasesG({
 
       {/* Embla Carousel */}
       <div ref={emblaRef} className="-mx-6 md:-mx-12">
-        <div className="flex py-2">
+        <div className="flex gap-4 md:gap-6 py-2 px-6 md:px-12 xl:px-0">
           {useCases.map((uc, i) => {
             const PreviewC = previewComponents[i];
             const isActive = i === active;
             return (
               <div
                 key={uc.title}
-                className="shrink-0 min-w-0 pl-4 md:pl-6 w-[85vw] xl:w-full max-w-6xl"
+                className="shrink-0 min-w-0 w-[85vw] xl:w-full max-w-6xl"
               >
                 <div
                   className={`bg-white dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800 p-6 lg:p-10 shadow-xl/5 transition-opacity duration-300 ${isActive ? "opacity-100" : "opacity-50"}`}
