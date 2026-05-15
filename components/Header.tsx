@@ -38,7 +38,7 @@ export default function Header() {
           py-2 pl-4 pr-2 rounded-2xl border border-gray-200 dark:border-gray-800
         ">
           <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-            <Image src="/logo.png" alt="SnappTracker" width={32} height={32} className="rounded-lg" />
+            <Image src="/logo.png" alt="SnappTracker" width={32} height={32} className="rounded-lg" priority />
             <span className="text-lg font-semibold tracking-tight text-gray-900 dark:text-white">SnappTracker</span>
           </Link>
 
@@ -80,7 +80,7 @@ export default function Header() {
           <div className="flex items-center justify-between py-2 pl-4 pr-2 border border-transparent mb-8">
             <div className="flex items-center h-11">
               <Link href="/" onClick={() => setIsOpen(false)} className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-                <Image src="/logo.png" alt="SnappTracker" width={32} height={32} className="rounded-lg" />
+                <Image src="/logo.png" alt="SnappTracker" width={32} height={32} className="rounded-lg" priority />
                 <span className="text-lg font-semibold tracking-tight text-gray-900 dark:text-white">SnappTracker</span>
               </Link>
             </div>

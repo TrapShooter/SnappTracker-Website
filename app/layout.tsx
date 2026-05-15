@@ -123,7 +123,7 @@ export default function RootLayout({
           id="material-symbols-font"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
-            __html: `var l=document.createElement('link');l.rel='stylesheet';l.href='${MATERIAL_SYMBOLS_URL}';document.head.appendChild(l);`,
+            __html: `var l=document.createElement('link');l.rel='stylesheet';l.href='${MATERIAL_SYMBOLS_URL}';l.onload=function(){document.documentElement.classList.add('icons-loaded');};document.head.appendChild(l);`,
           }}
         />
       </body>

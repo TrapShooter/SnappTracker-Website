@@ -90,6 +90,11 @@ body {
   white-space: nowrap;
   direction: ltr;
   -webkit-font-smoothing: antialiased;
+  visibility: hidden;
+}
+
+.icons-loaded .material-symbols-rounded {
+  visibility: visible;
 }
 
 button {
