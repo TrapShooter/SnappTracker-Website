@@ -242,8 +242,8 @@ export default function UseCasesG({
       </div>
 
       {/* Embla Carousel */}
-      <div ref={emblaRef} className="-mx-6 md:-mx-12">
-        <div className="flex gap-4 md:gap-6 py-2 px-6 md:px-12 xl:px-0">
+      <div ref={emblaRef} >
+        <div className="flex gap-4 md:gap-6 py-2 xl:px-0">
           {useCases.map((uc, i) => {
             const PreviewC = previewComponents[i];
             const isActive = i === active;
