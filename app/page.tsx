@@ -4,7 +4,7 @@ import HeroWithImage from "@/components/HeroWithImage";
 
 const Walkthrough = dynamic(() => import("@/components/Walkthrough"));
 // const DemoSection = dynamic(() => import("@/components/DemoSection"));
-const UseCasesE = dynamic(() => import("@/components/UseCasesE"));
+const UseCasesG = dynamic(() => import("@/components/UseCasesG"));
 const Features = dynamic(() => import("@/components/Features"));
 // const Screenshots = dynamic(() => import("@/components/Screenshots"));
 const FAQ = dynamic(() => import("@/components/FAQ"));
@@ -18,7 +18,7 @@ export default function Home() {
         <HeroWithImage />
         <Walkthrough disableTopPadding />
         {/* <DemoSection /> */}
-        <UseCasesE disableTopPadding />
+        <UseCasesG disableTopPadding />
         <Features disableTopPadding />
         {/* <Screenshots /> */}
         <FAQ limit={6} disableTopPadding />
