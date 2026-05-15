@@ -231,7 +231,7 @@ export default function UseCasesE({
 
 
         {/* Content Panel */}
-        <div {...swipeProps} className="-mx-6 md:-mx-12 lg:mx-0 px-6 md:px-12 lg:px-0 cursor-grab active:cursor-grabbing select-none">
+        <div {...swipeProps} className="touch-pan-y -mx-6 md:-mx-12 lg:mx-0 px-6 md:px-12 lg:px-0 cursor-grab active:cursor-grabbing select-none">
           <div className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800 p-6 lg:p-10 shadow-xl/5">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
 
