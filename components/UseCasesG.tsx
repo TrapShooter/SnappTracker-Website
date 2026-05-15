@@ -210,8 +210,8 @@ export default function UseCasesG({
       </div>
 
       {/* Segmented Tab Bar */}
-      <div ref={scrollContainerRef} {...dragProps} className="overflow-x-auto scrollbar-none cursor-grab active:cursor-grabbing -mx-6 md:-mx-12">
-        <div className="flex gap-2 w-max px-6 md:px-12 mx-auto my-6">
+      <div ref={scrollContainerRef} {...dragProps} className="overflow-x-auto scrollbar-none cursor-grab active:cursor-grabbing -mx-6 md:-mx-12 py-8">
+        <div className="flex gap-2 w-max px-6 md:px-12 mx-auto">
           {useCases.map((uc, i) => (
             <button
               key={uc.title}
@@ -243,7 +243,7 @@ export default function UseCasesG({
 
       {/* Embla Carousel */}
       <div ref={emblaRef} >
-        <div className="flex gap-4 md:gap-6 py-2 xl:px-0">
+        <div className="flex gap-4 md:gap-6 xl:px-0">
           {useCases.map((uc, i) => {
             const PreviewC = previewComponents[i];
             const isActive = i === active;
